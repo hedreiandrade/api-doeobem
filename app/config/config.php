@@ -13,7 +13,6 @@ const EMAILTO3 = '';
 
 /* 
  *  Selecione configuração para Banco conforme ambiente
-
     Assunto : Merging Configurations
  *  1  --->   Homologa  
  *  2  --->   Produção  
@@ -44,7 +43,6 @@ if(ENVIRONMENT == 2) {
         ),
     );
 }
-
 /*static public function DBconnection(){
 	$db = new PDO($dbConfig);
 	$db->setAttribute( \PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION );
