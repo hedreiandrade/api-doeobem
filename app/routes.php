@@ -5,10 +5,15 @@
 // sem interacao com o view
 $app->get('/', 'homeController:index');
 
-// chamando view direto sem passar pelo model
+// Chamando controler que passa por model e retorna informacao
+/// Verificar como enviar essa informacao array() para o home.html(view)
 $app->get('/home', function ($request, $response) {
 
-    return $this->view->render($response, 'home.twig');
+	$homeController = new homeController();
+	$dataControlModelHome = $homeController->index();
+
+
+    return $this->view->render($response, 'home.html' /*, $dataControlModelHome*/ );
 
 });
 
