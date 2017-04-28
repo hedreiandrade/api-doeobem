@@ -10,12 +10,14 @@ class HomeController extends Controller {
 		$modelHome = new \App\Models\Home;
 		$data = $modelHome->index();
 
-		print_r( $data );
+		//$user = $this->db->table('users')->where('id', 1) ;
+		//var_dump($user);
 		//http://api-doeobem:8888/public/?name=hedrei
 		//var_dump($request->getPaam('name'));
+		print_r($data);
 
 		/// Como enviar essa informacao $data array() para home.html(view) ?
-		return $this->view->render($response, 'home.html', $data);
+		return $this->view->render($response, 'home.html'/*, $data*/);
 	}
 
 }
