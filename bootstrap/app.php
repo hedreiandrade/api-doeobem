@@ -10,10 +10,10 @@ $app = new \Slim\App([
 		'displayErrorDetails' => true,
 		'db' => [
 			'driver' => 'mysql',
-			'host' => '127.0.0.1;',
+			'host' => '127.0.0.1',
 			'database' => 'donatethegood',
 			'username' => 'root',
-			'password' => 'root',
+			'password' => '',
 			'charset' => 'utf8',
 			'collation' => 'utf8_general_ci',
 			'prefix' => ''
@@ -46,7 +46,6 @@ $container['view'] = function ($container) {
 $container['homeController'] = function ($container){
 	return new \App\Controllers\HomeController($container);
 };
-
 
 /*//Banco de dados
 function DBconnection(){
