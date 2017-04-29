@@ -47,18 +47,6 @@ $container['homeController'] = function ($container){
 	return new \App\Controllers\HomeController($container);
 };
 
-/*//Banco de dados
-function DBconnection(){
-  $db = new PDO('mysql:dbhost=127.0.0.1;dbname=donatethegood','root', 'root');
-  $db->setAttribute( \PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION );
-  return $db ;
-  "slim/pdo": "~1.9"
-    $user = new \App\Models\Users;
-    $userteste = new \App\Models\UsersTeste;
-    print_r( $user->insert());
-    print_r( $userteste->insert());
-}*/
-
 require __DIR__ . '/../app/routes.php';
 
 
