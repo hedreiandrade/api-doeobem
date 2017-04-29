@@ -1,7 +1,7 @@
 <?php
 
 
-$app->get('/', 'homeController:index');
+$app->get('/', 'HomeController:index');
 
 $app->get('/home', function ($request, $response) {
 

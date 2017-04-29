@@ -8,7 +8,7 @@ class Home {
 
 		$data = array();
 
-		$data = array ( 'Models/Home' => 'true' );
+
 
 		return $data ;
 	}

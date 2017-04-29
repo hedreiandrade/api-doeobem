@@ -1,12 +1,11 @@
 <?php
-
 require __DIR__ . '/../vendor/autoload.php';
 
 session_start();
 
 $app = new \Slim\App([
 	'settings' => [
-		'displayErrorDetails' => true,
+		'displayErrorDetails' => true ,
 		'db' => [
 			'driver' => 'mysql',
 			'host' => '127.0.0.1',
@@ -42,7 +41,7 @@ $container['view'] = function ($container) {
 	return $view;
 };
 
-$container['homeController'] = function ($container){
+$container['HomeController'] = function ($container){
 	return new \App\Controllers\HomeController($container);
 };
 
