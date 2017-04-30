@@ -20,10 +20,10 @@ class Users extends Model
         return $users;
     }
 
-    public function findById()
+    public function findById($id)
     {
     	$users = array();
-        $users = Users::where('id', 1)->first();
+        $users = Users::where('id', $id)->first();
 
         return $users;
     }

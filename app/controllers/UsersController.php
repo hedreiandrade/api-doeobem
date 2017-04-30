@@ -13,14 +13,10 @@ class UsersController extends AbstractController
     	$result = array();
 
     	if($id){
-    			$result = $users->findById();
+    			$result = $users->findById($id);
     	}else{
     		$result = $users->findAll();
     	}
-
-        //print_r( $this->db->table('users')->find(1) );
-        //print_r( Users::find(1)->name );
-        //die('---');
 
         return $this->respond($result);
     }
