@@ -21,7 +21,7 @@ abstract class AbstractController
 
     public function respond($value = array())
     {
-        header('Content-Type: application/json');
+        header('Content-Type: application/json; charset=utf-8');
         print json_encode($value);
     }
 }
