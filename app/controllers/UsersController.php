@@ -6,7 +6,7 @@ use App\Models\Users;
 
 class UsersController extends AbstractController
 {
-    // Lista de Usuarios(Com removal_date null)
+    // Lista de Usuarios(Com deleted_at null)
     public function index($request, $response)
     {
         $id = $request->getAttribute('id');
@@ -58,7 +58,7 @@ class UsersController extends AbstractController
 
         return $this->respond($users->save());
     }
-    // Seta a data de remoção(removal_date)
+    // Seta a data de remoção(deleted_at)
     public function delete($request, $response)
     {
         $id = $request->getAttribute('id');
