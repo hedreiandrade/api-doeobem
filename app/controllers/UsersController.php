@@ -13,11 +13,9 @@ class UsersController extends AbstractController
         $result = array();
         if ($id) {
             $result = Users::where('id', '=', $id)
-                           ->whereNull('deleted_at')
                            ->get();
         } else {
-            $result = Users::whereNull('deleted_at')
-                           ->get();
+            $result = Users::get();
         }
 
         return $this->respond($result);
