@@ -3,28 +3,41 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Users extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'users';
-
-     /*protected $fillable [
-		'name'
-	];*/
-
-    public function findAll()
-    {
-        $users = array();
-        $users = Users::all();
-
-        return $users;
-    }
-
-    public function findById($id)
-    {
-        $user = array();
-        $user = Users::where('id', $id)->first();
-
-        return $user;
-    }
+    protected $primaryKey = 'id';
+    protected $fillable = [
+        'name',
+        'nickname',
+        'phone1',
+        'has_whatsapp',
+        'phone2',
+        'email',
+        'password',
+        'postal_code',
+        'street',
+        'number',
+        'complement',
+        'neighborhood',
+        'city',
+        'state',
+        'country',
+        'recovery_key',
+        'first_access',
+        'last_access',
+        'access_count',
+        'receive_newsletter',
+        'active',
+        'userscol'
+    ];
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
 }
