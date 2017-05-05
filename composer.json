@@ -1,8 +1,10 @@
 {
     "require": {
-        "slim/slim": "~3.0",
+        "slim/slim": "^3.0",
         "phpmailer/phpmailer": "~5.2",
-        "illuminate/database": "^5.2"
+        "illuminate/database": "^5.2",
+        "illuminate/validation": "^5.1",
+        "itsgoingd/slim-services": "dev-master"
     },
 
     "autoload":{

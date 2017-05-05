@@ -21,7 +21,7 @@ $app->get('/users/{id}', function ($request, $response) {
 $app->post('/users', function ($request, $response) {
     $userController = new \App\Controllers\UsersController;
     $jsonUpdatedUser = $userController->insert($request, $response);
-
+    
     return $jsonUpdatedUser;
 });
 // Update user
