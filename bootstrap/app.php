@@ -18,22 +18,13 @@ $app = new \Slim\App([
             'host' => '127.0.0.1',
             'database' => 'donatethegood',
             'username' => 'root',
-            'password' => '',
+            'password' => 'ctuser01',
             'charset' => 'utf8',
             'collation' => 'utf8_general_ci',
             'prefix' => ''
         ]
     ]
 ]);
-
-$services = new SlimServices\ServiceManager( $app );
-$services->registerServices(array(
-  'Illuminate\Events\EventServiceProvider',
-  'Illuminate\Database\DatabaseServiceProvider',
-  'Illuminate\Filesystem\FilesystemServiceProvider',
-  'Illuminate\Translation\TranslationServiceProvider',
-  'Illuminate\Validation\ValidationServiceProvider'
-));
 
 $container = $app->getContainer();
 
@@ -45,11 +36,8 @@ $container['db'] = function ($container) use ($capsule) {
     return $capsule;
 };
 
-$container['UsersController'] = function ($container) {
-    return new \App\Controllers\UsersController($container);
+$container['UsersController'] = function ($app) {
+    return new App\Controllers\UsersController($app);
 };
-
-# === Slim Services
-//require __DIR__ . '/../app/config/services.php';
 
 require __DIR__ . '/../app/routes.php';

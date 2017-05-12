@@ -1,40 +1,26 @@
 <?php
-// Root
 $app->get('/', function ($request, $response) {
     return 'HOME';
 });
-// List all
-$app->get('/users', function ($request, $response) {
-    $userController = new \App\Controllers\UsersController;
-    $jsonUsers = $userController->index($request, $response);
 
-    return $jsonUsers;
-});
-// List by ID
-$app->get('/users/{id}', function ($request, $response) {
-    $userController = new \App\Controllers\UsersController;
-    $jsonUser = $userController->index($request, $response);
+//print_r($app);die;
 
-    return $jsonUser;
-});
-// Insert user
-$app->post('/users', function ($request, $response) {
-    $userController = new \App\Controllers\UsersController;
-    $jsonUpdatedUser = $userController->insert($request, $response);
-    
-    return $jsonUpdatedUser;
-});
-// Update user
-$app->put('/users/{id}', function ($request, $response) {
-    $userController = new \App\Controllers\UsersController;
-    $jsonUpdatedUser = $userController->update($request, $response);
+$app->group('/v1', function () use ($app) {
+    $app->get('/', function ($request, $response) {
+        return 'HOME V1';
+    });
 
-    return $jsonUpdatedUser;
-});
-// Delete user
-$app->delete('/users/{id}', function ($request, $response) {
-    $userController = new \App\Controllers\UsersController;
-    $jsonDeletedUser = $userController->delete($request, $response);
+    // Users
+    $app->get('/users', 'App\Controllers\UsersController:listing');
+    $app->get('/users/{id}', 'App\Controllers\UsersController:get');
+    $app->delete('/users/{id}', 'App\Controllers\UsersController:delete');
+    $app->post('/users', 'App\Controllers\UsersController:insert')
+        ->add(App\Controllers\UsersController::getValidators());
+    $app->put('/users/{id}', 'App\Controllers\UsersController:update')
+        ->add(App\Controllers\UsersController::getValidators());
 
-    return $jsonDeletedUser;
+    // Login
+    // Logout
+    // Esqueci a senha
+    // Resetar senha
 });
