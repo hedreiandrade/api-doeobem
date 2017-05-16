@@ -1,9 +1,8 @@
 <?php
+
 $app->get('/', function ($request, $response) {
     return 'HOME';
 });
-
-//print_r($app);die;
 
 $app->group('/v1', function () use ($app) {
     $app->get('/', function ($request, $response) {
