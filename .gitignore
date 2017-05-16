@@ -7,3 +7,4 @@ vendor/
 .LSOverride
 composer.lock
 TODOS.txt
+app/Config/db.php

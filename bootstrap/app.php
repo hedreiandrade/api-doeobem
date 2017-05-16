@@ -1,6 +1,8 @@
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
+// Configurações do Banco de Dados
+require __DIR__ . '/../app/Config/db.php';
 
 # === Para mostrar todos erros
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
@@ -14,13 +16,13 @@ $app = new \Slim\App([
   'settings' => [
         'displayErrorDetails' => true ,
         'db' => [
-            'driver' => 'mysql',
-            'host' => '127.0.0.1',
-            'database' => 'donatethegood',
-            'username' => 'root',
-            'password' => '',
-            'charset' => 'utf8',
-            'collation' => 'utf8_general_ci',
+            'driver' => DRIVER,
+            'host' => HOST,
+            'database' => DATABASE,
+            'username' => USERNAME,
+            'password' => PASSWORD,
+            'charset' => CHARSET,
+            'collation' => COLLATION,
             'prefix' => ''
         ]
     ]
