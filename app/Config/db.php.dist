@@ -2,6 +2,9 @@
 
 // Configurações do Banco de Dados
 const DRIVER = 'mysql';
+const HOST = '';
+const DATABASE = '';
+const USERNAME = '';
 const PASSWORD = '';
 const CHARSET = 'utf8';
 const COLLATION = 'utf8_general_ci';
