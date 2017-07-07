@@ -129,8 +129,9 @@ abstract class AbstractController
         }
         // Usar create para retornar id do registro
         $return = $this->activeModel->create($params);
+        $return = array('id' => $return->id);
 
-        return $this->respond(array('id' => $return->id));
+        return $this->respond($return);
     }
 
     /**
