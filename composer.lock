@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bbd8ffa6dbde333e8172529f47dca41a",
     "content-hash": "52cd26037d16d4c6fcfe0335dc50101b",
     "packages": [
         {
@@ -36,7 +35,7 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
-            "time": "2017-02-14 19:40:03"
+            "time": "2017-02-14T19:40:03+00:00"
         },
         {
             "name": "davidepastore/slim-validation",
@@ -86,7 +85,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2017-03-21 13:31:00"
+            "time": "2017-03-21T13:31:00+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -153,7 +152,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2015-11-06 14:35:42"
+            "time": "2015-11-06T14:35:42+00:00"
         },
         {
             "name": "illuminate/container",
@@ -196,7 +195,7 @@
             ],
             "description": "The Illuminate Container package.",
             "homepage": "https://laravel.com",
-            "time": "2017-04-16 13:32:45"
+            "time": "2017-04-16T13:32:45+00:00"
         },
         {
             "name": "illuminate/contracts",
@@ -238,7 +237,7 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2017-03-29 13:17:47"
+            "time": "2017-03-29T13:17:47+00:00"
         },
         {
             "name": "illuminate/database",
@@ -298,7 +297,7 @@
                 "orm",
                 "sql"
             ],
-            "time": "2017-04-11 22:53:18"
+            "time": "2017-04-11T22:53:18+00:00"
         },
         {
             "name": "illuminate/filesystem",
@@ -348,7 +347,7 @@
             ],
             "description": "The Illuminate Filesystem package.",
             "homepage": "https://laravel.com",
-            "time": "2017-04-07 19:38:05"
+            "time": "2017-04-07T19:38:05+00:00"
         },
         {
             "name": "illuminate/support",
@@ -405,7 +404,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2017-04-09 14:34:57"
+            "time": "2017-04-09T14:34:57+00:00"
         },
         {
             "name": "illuminate/translation",
@@ -450,7 +449,7 @@
             ],
             "description": "The Illuminate Translation package.",
             "homepage": "https://laravel.com",
-            "time": "2017-04-07 13:49:47"
+            "time": "2017-04-07T13:49:47+00:00"
         },
         {
             "name": "illuminate/validation",
@@ -500,7 +499,7 @@
             ],
             "description": "The Illuminate Validation package.",
             "homepage": "https://laravel.com",
-            "time": "2017-04-05 14:24:42"
+            "time": "2017-04-05T14:24:42+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -553,7 +552,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2017-01-16 07:55:07"
+            "time": "2017-01-16T07:55:07+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -596,7 +595,7 @@
                 "router",
                 "routing"
             ],
-            "time": "2017-01-19 11:35:12"
+            "time": "2017-01-19T11:35:12+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -644,7 +643,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2017-03-13 16:27:32"
+            "time": "2017-03-13T16:27:32+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -720,7 +719,7 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2017-03-15 19:32:56"
+            "time": "2017-03-15T19:32:56+00:00"
         },
         {
             "name": "pimple/pimple",
@@ -766,7 +765,7 @@
                 "container",
                 "dependency injection"
             ],
-            "time": "2015-09-11 15:10:35"
+            "time": "2015-09-11T15:10:35+00:00"
         },
         {
             "name": "psr/container",
@@ -815,7 +814,7 @@
                 "container-interop",
                 "psr"
             ],
-            "time": "2017-02-14 16:28:37"
+            "time": "2017-02-14T16:28:37+00:00"
         },
         {
             "name": "psr/http-message",
@@ -865,7 +864,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06 14:39:51"
+            "time": "2016-08-06T14:39:51+00:00"
         },
         {
             "name": "respect/validation",
@@ -930,7 +929,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2017-03-14 09:44:11"
+            "time": "2017-03-14T09:44:11+00:00"
         },
         {
             "name": "slim/slim",
@@ -1001,7 +1000,7 @@
                 "micro",
                 "router"
             ],
-            "time": "2017-03-19 17:55:20"
+            "time": "2017-03-19T17:55:20+00:00"
         },
         {
             "name": "symfony/finder",
@@ -1050,7 +1049,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-04-12 14:13:17"
+            "time": "2017-04-12T14:13:17+00:00"
         },
         {
             "name": "symfony/http-foundation",
@@ -1103,7 +1102,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2017-05-01 14:55:58"
+            "time": "2017-05-01T14:55:58+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -1162,7 +1161,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-11-14 01:06:16"
+            "time": "2016-11-14T01:06:16+00:00"
         },
         {
             "name": "symfony/translation",
@@ -1226,7 +1225,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2017-04-12 14:13:17"
+            "time": "2017-04-12T14:13:17+00:00"
         }
     ],
     "packages-dev": [],
