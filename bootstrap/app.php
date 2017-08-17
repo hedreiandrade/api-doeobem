@@ -14,7 +14,7 @@ session_start();
 
 $app = new \Slim\App([
   'settings' => [
-        'displayErrorDetails' => true ,
+        'displayErrorDetails' => true,
         'db' => [
             'driver' => DRIVER,
             'host' => HOST,

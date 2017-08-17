@@ -54,14 +54,14 @@ class UsersController extends AbstractController
 
         // Verifica se foi informado email e senha
         if (!isset($params['email']) || !isset($params['password'])) {
-            $return = array('response'=>"Por favor informar corretamente email e senha.");
+            $return = array('response'=>"Please, give me your email and password.");
         }
 
         // Verifica existencia do usuario
         $user = Users::where('email', $params['email'])->first();
         if (!$user) {
             $userEmail = $params['email'];
-            $return = array('response'=>"Usuário de email: $userEmail não cadastrado.");
+            $return = array('response'=>"The email you’ve entered: $userEmail doesn’t match any account. Sign up for an account.");
         }
 
         return $this->respond($return);
