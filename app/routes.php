@@ -17,7 +17,7 @@ $app->group('/v1', function () use ($app) {
     // Lista por Id
     $app->get('/users/{id}', 'App\Controllers\UsersController:get');
 
-    // Alteração do registro'
+    // Alteração do registro
     $app->put('/users/{id}', 'App\Controllers\UsersController:update')
         ->add(App\Controllers\UsersController::getValidators());
 

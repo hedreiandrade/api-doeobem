@@ -47,7 +47,7 @@ class UsersController extends AbstractController
      * @param   Response    $response   Objeto de resposta
      * @return Array
      */
-    public static function login($request, $response)
+    public function login($request, $response)
     {
         $return = array();
         $params = $request->getParams();

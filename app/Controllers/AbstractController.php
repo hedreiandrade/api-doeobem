@@ -99,7 +99,7 @@ abstract class AbstractController
         if (count($return) > 0) {
             return $this->respond($return);
         } else {
-            return $this->respond(array('response'=>"id: $id não encontado o mesmo pode ter sido deletado anteriormente"));
+            return $this->respond(array('response'=>"id: $id not found the same may have been previously deleted."));
         }
     }
 
@@ -154,7 +154,7 @@ abstract class AbstractController
         $id = $request->getAttribute('id');
         $model = $this->activeModel->find($id);
         if (!isset($model)) {
-            $result = array('response'=>"id: $id não encontado o mesmo pode ter sido deletado anteriormente");
+            $result = array('response'=>"id: $id not found the same may have been previously deleted.");
             return $this->respond($result);
         }
         // Verifica criterios para atualização
@@ -165,9 +165,9 @@ abstract class AbstractController
         }
         // Atualiza registro
         if ($model->save()) {
-            $return = array('response'=>"id: $id atualizado com sucesso.");
+            $return = array('response'=>"id: $id updated successfully.");
         } else {
-            $return = array('response'=>"ERRO: id: $id não pode ser atualizado.");
+            $return = array('response'=>"ERRO: id: $id can not be updated.");
         }
 
         return $this->respond($return);
@@ -188,14 +188,14 @@ abstract class AbstractController
         $id = $request->getAttribute('id');
         $model = $this->activeModel->find($id);
         if (!isset($model)) {
-            $return = array('response'=>"id: $id não encontado o mesmo pode ter sido deletado anteriormente");
+            $return = array('response'=>"id: $id not found the same may have been previously deleted.");
             return $this->respond($return);
         }
         // Deleta
         if ($model->delete()) {
-            $return = array('response'=>"id: $id deletado com sucesso.");
+            $return = array('response'=>"id: $id deleted successfully.");
         } else {
-            $return = array('response'=>"ERRO: id: $id não pode ser deletado.");
+            $return = array('response'=>"ERRO: id: $id can not be deleted.");
         }
 
         return $this->respond($return);
