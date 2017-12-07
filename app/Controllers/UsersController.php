@@ -57,11 +57,18 @@ class UsersController extends AbstractController
             $return = array('response'=>"Please, give me your email and password.");
         }
 
-        // Verifica existencia do usuario
+        // Busca usuário
         $user = Users::where('email', $params['email'])->first();
+
+        // Verifica email
         if (!$user) {
             $userEmail = $params['email'];
-            $return = array('response'=>"The email you’ve entered: $userEmail doesn’t match any account. Sign up for an account.");
+            $return = array('response'=>"The email you've entered: $userEmail doesn't match any account. Sign up for an account.");
+        }
+
+        // Verifica senha
+        if(isset($user->password) && !password_verify($params['password'], $user->password)){
+            $return = array('response'=>"Incorrect password. Try again.");
         }
 
         return $this->respond($return);
