@@ -51,25 +51,52 @@ class UsersController extends AbstractController
     {
         $return = array();
         $params = $request->getParams();
-
         // Verifica se foi informado email e senha
         if (!isset($params['email']) || !isset($params['password'])) {
             $return = array('response'=>"Please, give me your email and password.");
         }
-
         // Busca usuário
         $user = Users::where('email', $params['email'])->first();
-
         // Verifica email
         if (!$user) {
             $userEmail = $params['email'];
             $return = array('response'=>"The email you've entered: $userEmail doesn't match any account. Sign up for an account.");
         }
-
         // Verifica senha
         if(isset($user->password) && !password_verify($params['password'], $user->password)){
             $return = array('response'=>"Incorrect password. Try again.");
+        }else{
+            // Seta sessão
+            if(isset($user->password) && isset($user->email)){
+                session_start();
+                session_cache_limiter(false);
+                $_SESSION['user'] = $user->id;
+                session_write_close();
+                $return = array('response'=>"User: $user->id logged in successfully.");
+            }
         }
+
+        return $this->respond($return);
+    }
+
+    /**
+     * Logout
+     * @param   Request     $request    Objeto de requisição
+     * @param   Response    $response   Objeto de resposta
+     * @return Array
+     */
+    public function logout($request, $response)
+    {
+        session_start();
+        // Verifica se usuário está logado. Caso sim, realiza o logout
+        if(isset($_SESSION['user'])){
+            $return = array('response'=>'User: '.$_SESSION['user'].' successfully logged off.');
+            unset($_SESSION['user']);
+        }else{ 
+            // Nunca logou
+            $return = array('response'=>'User was not logged in.');
+        }
+        session_write_close();
 
         return $this->respond($return);
     }

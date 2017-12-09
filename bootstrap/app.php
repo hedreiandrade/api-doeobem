@@ -1,16 +1,13 @@
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
+
 // Configurações do Banco de Dados
 require __DIR__ . '/../app/Config/db.php';
 
 # === Para mostrar todos erros
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 ini_set('display_errors', 'On');
-
-# === Session
-session_cache_limiter(false);
-session_start();
 
 $app = new \Slim\App([
   'settings' => [

@@ -91,8 +91,8 @@ abstract class AbstractController
      */
     public function get($request, $response)
     {
-        $id = $request->getAttribute('id', false);
         $return = array();
+        $id = $request->getAttribute('id', false);
         if ($id) {
             $return = $this->activeModel->where('id', '=', $id)->get();
         }

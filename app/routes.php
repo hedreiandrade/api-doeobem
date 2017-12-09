@@ -31,11 +31,11 @@ $app->group('/v1', function () use ($app) {
     // Login
     $app->post('/login', 'App\Controllers\UsersController:login');
 
-    /*
-
     // Logout
-    $app->post('/user', 'App\Controllers\UsersController:logout')
+    $app->post('/logout', 'App\Controllers\UsersController:logout')
         ->add(App\Controllers\UsersController::getValidators());
+
+    /*
 
     //Recuperação de Senha - Na verdade envia md5 para alterar senha
     $app->get('/user/password-recovery', 'App\Controllers\UsersController:passwordRecovery')
@@ -46,4 +46,5 @@ $app->group('/v1', function () use ($app) {
         ->add(App\Controllers\UsersController::getValidators());
 
     */
+        
 });
