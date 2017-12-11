@@ -43,6 +43,7 @@ class UsersController extends AbstractController
 
     /**
      * Retorna chave de autenticação do usuario logado
+     *
      * @param   Request     $request    Objeto de requisição
      * @param   Response    $response   Objeto de resposta
      * @return Array
@@ -76,7 +77,7 @@ class UsersController extends AbstractController
             }
         }
 
-        return $this->respond($return);
+        $this->respond($return);
     }
 
     /**
@@ -98,6 +99,6 @@ class UsersController extends AbstractController
         }
         session_write_close();
 
-        return $this->respond($return);
+        $this->respond($return);
     }
 }

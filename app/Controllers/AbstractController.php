@@ -77,8 +77,14 @@ abstract class AbstractController
      */
     public function listing($request, $response)
     {
-        $result = $this->activeModel->get();
-        return $this->respond($result);
+        $return = $this->activeModel->get();
+
+        // Caso não encontre nenhum registro
+        if(count($return) == 0){
+            $return = array('response'=>"No Users Found.");
+        }
+        
+        $this->respond($return);
     }
 
     /**
@@ -97,9 +103,9 @@ abstract class AbstractController
             $return = $this->activeModel->where('id', '=', $id)->get();
         }
         if (count($return) > 0) {
-            return $this->respond($return);
+            $this->respond($return);
         } else {
-            return $this->respond(array('response'=>"id: $id not found the same may have been previously deleted."));
+            $this->respond(array('response'=>"id: $id not found the same may have been previously deleted."));
         }
     }
 
@@ -119,6 +125,10 @@ abstract class AbstractController
         if (isset($params['password'])) {
             $params['password'] = $this->hidePassword($params['password']);
         }
+        // Verifica formação básica de email
+        // Não setado ou errado fica por conta do fill
+        if(isset($params['email']))
+            $this->checkEmail($params['email']);
         // Verifica criterios para inserção
         $this->activeModel->fill($params);
         if ($request->getAttribute('has_errors')) {
@@ -131,7 +141,7 @@ abstract class AbstractController
         $return = $this->activeModel->create($params);
         $return = array('id' => $return->id);
 
-        return $this->respond($return);
+        $this->respond($return);
     }
 
     /**
@@ -150,12 +160,15 @@ abstract class AbstractController
         if (isset($params['password'])) {
             $params['password'] = $this->hidePassword($params['password']);
         }
+        // Verifica formação básica de email
+        if(isset($params['email']))
+            $this->checkEmail($params['email']);
         // Verifica existencia do registro
         $id = $request->getAttribute('id');
         $model = $this->activeModel->find($id);
         if (!isset($model)) {
             $result = array('response'=>"id: $id not found the same may have been previously deleted.");
-            return $this->respond($result);
+            $this->respond($result);
         }
         // Verifica criterios para atualização
         $model->fill($params);
@@ -170,7 +183,7 @@ abstract class AbstractController
             $return = array('response'=>"ERRO: id: $id can not be updated.");
         }
 
-        return $this->respond($return);
+        $this->respond($return);
     }
 
     /**
@@ -189,7 +202,7 @@ abstract class AbstractController
         $model = $this->activeModel->find($id);
         if (!isset($model)) {
             $return = array('response'=>"id: $id not found the same may have been previously deleted.");
-            return $this->respond($return);
+            $this->respond($return);
         }
         // Deleta
         if ($model->delete()) {
@@ -198,6 +211,50 @@ abstract class AbstractController
             $return = array('response'=>"ERRO: id: $id can not be deleted.");
         }
 
-        return $this->respond($return);
+        $this->respond($return);
+    }
+
+    /**
+     * Chama verificação básica para email
+     *
+     * @param   email     email a ser validado
+     *
+     * @return  boolean
+     */
+    public function checkEmail($email = '')
+    {
+        $validatedEmail = $this->errorEmail($email);
+        if(!$validatedEmail['flEmail']){
+            $this->respond(array('response'=>$validatedEmail['response']));
+        }
+
+        return true;
+    }
+
+    /**
+     * Verifica validações básicas para email
+     *
+     * @param   email     email a ser validado
+     *
+     * @return  Array
+     */
+    public function errorEmail($email)
+    {
+        $return = array();
+
+        if(!isset($email)){
+            $return = array('response'=>"Email address '$email' is considered invalid.",
+                            'flEmail'=>0);
+        }
+
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $return = array('response'=>"Email address '$email' is considered valid.",
+                            'flEmail'=>1);
+        } else {
+            $return = array('response'=>"Email address '$email' is considered invalid.",
+                            'flEmail'=>0);
+        }
+
+        return $return;
     }
 }

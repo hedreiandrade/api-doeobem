@@ -25,8 +25,9 @@ $app->group('/v1', function () use ($app) {
     $app->post('/users', 'App\Controllers\UsersController:insert')
         ->add(App\Controllers\UsersController::getValidators());
 
-    // Deleta registro
-    $app->delete('/users/{id}', 'App\Controllers\UsersController:delete');
+    // Alterar Senha
+    $app->post('/user/change-password', 'App\Controllers\UsersController:changePassword')
+        ->add(App\Controllers\UsersController::getValidators());
 
     // Login
     $app->post('/login', 'App\Controllers\UsersController:login');
@@ -35,14 +36,17 @@ $app->group('/v1', function () use ($app) {
     $app->post('/logout', 'App\Controllers\UsersController:logout')
         ->add(App\Controllers\UsersController::getValidators());
 
+    // Deleta registro
+    $app->delete('/users/{id}', 'App\Controllers\UsersController:delete');
+
     /*
 
     //Recuperação de Senha - Na verdade envia md5 para alterar senha
-    $app->get('/user/password-recovery', 'App\Controllers\UsersController:passwordRecovery')
+    $app->post('/user/password-recovery', 'App\Controllers\UsersController:passwordRecovery')
         ->add(App\Controllers\UsersController::getValidators());
-
-    // Alterar Senha
-    $app->put('/user/password-reset', 'App\Controllers\UsersController:passwordReset')
+    
+    // Logar com a API do facebook
+    $app->post('/user/login-facebook', 'App\Controllers\UsersController:loginFacebook')
         ->add(App\Controllers\UsersController::getValidators());
 
     */
