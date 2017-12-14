@@ -25,14 +25,6 @@ abstract class AbstractController
     }
 
     /**
-     * Retorna um objeto \DavidePastore\Slim\Validation\Validation,
-     * com as regras de validação default do controller.
-     *
-     * @return \DavidePastore\Slim\Validation\Validation
-     */
-    //abstract public static function getValidators();
-
-    /**
      * Factory que gera uma instância do controller
      *
      * @return  AbstractController
@@ -102,11 +94,12 @@ abstract class AbstractController
         if ($id) {
             $return = $this->activeModel->where('id', '=', $id)->get();
         }
-        if (count($return) > 0) {
-            $this->respond($return);
-        } else {
-            $this->respond(array('response'=>"id: $id not found the same may have been previously deleted."));
+
+        if(count($return) == 0){
+            $return = array('response'=>"id: $id not found the same may have been previously deleted.");
         }
+
+        $this->respond($return);
     }
 
     /**
@@ -121,23 +114,19 @@ abstract class AbstractController
     {
         $return = array();
         $params = $request->getParams();
+        // Validações fornecidas no controller
+        if ($request->getAttribute('has_errors')) {
+            $return = $request->getAttribute('errors');
+            $this->respond($return);
+        }
         // Apenas para inserção de senhas
         if (isset($params['password'])) {
             $params['password'] = $this->hidePassword($params['password']);
         }
-        // Verifica formação básica de email
-        // Não setado ou errado fica por conta do fill
+        // Verifica formatação básica de email
         if(isset($params['email']))
             $this->checkEmail($params['email']);
-        // Verifica criterios para inserção
-        $this->activeModel->fill($params);
-        if ($request->getAttribute('has_errors')) {
-            $return = $request->getAttribute('errors');
-            $this->respond($return);
-        } else {
-          //No errors-return
-        }
-        // Usar create para retornar id do registro
+        // Realiza inserção retornando id
         $return = $this->activeModel->create($params);
         $return = array('id' => $return->id);
 
@@ -156,6 +145,11 @@ abstract class AbstractController
     {
         $return = array();
         $params = $request->getParams();
+        // Validações pre-definidas no controller
+        if ($request->getAttribute('has_errors')) {
+            $return = $request->getAttribute('errors');
+            $this->respond($return);
+        }
         // Apenas para inserção de senhas
         if (isset($params['password'])) {
             $params['password'] = $this->hidePassword($params['password']);
@@ -170,14 +164,9 @@ abstract class AbstractController
             $result = array('response'=>"id: $id not found the same may have been previously deleted.");
             $this->respond($result);
         }
-        // Verifica criterios para atualização
+        // Enche model com os dados para o save
         $model->fill($params);
-        if ($request->getAttribute('has_errors')) {
-            $return = $request->getAttribute('errors');
-            $this->respond($return);
-        }
-        // Atualiza registro
-        if ($model->save()) {
+        if ($model->save()) { // Atualiza registro
             $return = array('response'=>"id: $id updated successfully.");
         } else {
             $return = array('response'=>"ERRO: id: $id can not be updated.");
@@ -257,4 +246,5 @@ abstract class AbstractController
 
         return $return;
     }
+    
 }

@@ -34,7 +34,7 @@ class UsersController extends AbstractController
                 'name' => v::notEmpty(),
                 'nickname' => v::alnum()->noWhitespace()->length(1, 40),
                 'email' => v::notEmpty()->noWhitespace()->length(1, 200),
-                'password' => v::notEmpty()->noWhitespace()->length(1, 200),
+                'password' => v::notEmpty()->noWhitespace()->length(1, 200)
                 //'state' => v::noWhitespace()->length(1, 3),
                 //'country' => v::noWhitespace()->length(1, 2)
             ]
@@ -55,6 +55,7 @@ class UsersController extends AbstractController
         // Verifica se foi informado email e senha
         if (!isset($params['email']) || !isset($params['password'])) {
             $return = array('response'=>"Please, give me your email and password.");
+            $this->respond($return);
         }
         // Busca usuário
         $user = Users::where('email', $params['email'])->first();
@@ -62,10 +63,11 @@ class UsersController extends AbstractController
         if (!$user) {
             $userEmail = $params['email'];
             $return = array('response'=>"The email you've entered: $userEmail doesn't match any account. Sign up for an account.");
+            $this->respond($return);
         }
         // Verifica senha
         if(isset($user->password) && !password_verify($params['password'], $user->password)){
-            $return = array('response'=>"Incorrect password. Try again.");
+            $return = array('response'=>"User: $user->id Incorrect password. Try again.");
         }else{
             // Seta sessão
             if(isset($user->password) && isset($user->email)){
@@ -74,6 +76,9 @@ class UsersController extends AbstractController
                 $_SESSION['user'] = $user->id;
                 session_write_close();
                 $return = array('response'=>"User: $user->id logged in successfully.");
+            }else{
+                // Caso email ou senha seja deletado do banco ???
+                $return = array('response'=>"User: $user->id can not be logged. inconsistent database, please contact our support.");
             }
         }
 
@@ -101,4 +106,50 @@ class UsersController extends AbstractController
 
         $this->respond($return);
     }
+
+    /**
+     * Altera password
+     * @param   Request     $request    Objeto de requisição
+     * @param   Response    $response   Objeto de resposta
+     * @return Array
+     */
+    public function changePassword($request, $response)
+    {
+        $return = array();
+        $params = $request->getParams();
+        // Verifica se foi informado email, senha e nova senha
+        if (!isset($params['email']) || !isset($params['password']) || !isset($params['newPassword']) || !$params['newPassword']){
+            $return = array('response'=>"Please, give me your email, password and the new password.");
+            $this->respond($return);
+        }
+        // Verifica cadastro do email
+        $user = Users::where('email', $params['email'])->first();
+        if (!$user) { 
+            $userEmail = $params['email'];
+            $return = array('response'=>"The email you've entered: $userEmail doesn't match any account. Sign up for an account.");
+            $this->respond($return);
+        }
+        // Verifica a velha senha
+        if(isset($user->password) && !password_verify($params['password'], $user->password)){
+            $return = array('response'=>"The old password is not correct. Try again.");
+        }else{ 
+            // Altera senha
+            if(isset($user->password) && isset($user->email) && ($user->email === $params['email'])){
+                // Verifica se velha senha está batendo
+                if(password_verify($params['password'], $user->password)){
+                    $user->password = $this->hidePassword($params['newPassword']);
+                    $user->save();
+                    $return = array('response'=>"User: $user->id password changed successfully."); 
+                }else{ // Caso senha antiga não esteja ok
+                    $return = array('response'=>"User: $user->id Incorrect old password. Try again.");
+                }
+            }else{
+                // Caso email ou senha seja deletado do banco ???
+                $return = array('response'=>"User: $user->id can not be changed. inconsistent database, please contact our support.");
+            }
+        }
+        
+        $this->respond($return);
+    }
+
 }
