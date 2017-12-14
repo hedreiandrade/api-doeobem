@@ -133,16 +133,11 @@ class UsersController extends AbstractController
         if(isset($user->password) && !password_verify($params['password'], $user->password)){
             $return = array('response'=>"The old password is not correct. Try again.");
         }else{ 
-            // Altera senha
+            // Verifica consistencia com o DB, antes de setar senha
             if(isset($user->password) && isset($user->email) && ($user->email === $params['email'])){
-                // Verifica se velha senha está batendo
-                if(password_verify($params['password'], $user->password)){
-                    $user->password = $this->hidePassword($params['newPassword']);
-                    $user->save();
-                    $return = array('response'=>"User: $user->id password changed successfully."); 
-                }else{ // Caso senha antiga não esteja ok
-                    $return = array('response'=>"User: $user->id Incorrect old password. Try again.");
-                }
+                $user->password = $this->hidePassword($params['newPassword']);
+                $user->save();
+                $return = array('response'=>"User: $user->id password changed successfully."); 
             }else{
                 // Caso email ou senha seja deletado do banco ???
                 $return = array('response'=>"User: $user->id can not be changed. inconsistent database, please contact our support.");
