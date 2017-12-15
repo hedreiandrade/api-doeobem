@@ -130,20 +130,28 @@ class UsersController extends AbstractController
             $this->respond($return);
         }
         // Verifica a velha senha
-        if(isset($user->password) && !password_verify($params['password'], $user->password)){
+        if(!password_verify($params['password'], $user->password)){
             $return = array('response'=>"The old password is not correct. Try again.");
-        }else{ 
-            // Verifica consistencia com o DB, antes de setar senha
-            if(isset($user->password) && isset($user->email) && ($user->email === $params['email'])){
-                $user->password = $this->hidePassword($params['newPassword']);
-                $user->save();
-                $return = array('response'=>"User: $user->id password changed successfully."); 
-            }else{
-                // Caso email ou senha seja deletado do banco ???
-                $return = array('response'=>"User: $user->id can not be changed. inconsistent database, please contact our support.");
-            }
+        }else{ // Seta nova
+            $user->password = $this->hidePassword($params['newPassword']);
+            $user->save();
+            $return = array('response'=>"User: $user->id password changed successfully."); 
         }
         
+        $this->respond($return);
+    }
+
+    /**
+     * Logar com o Facebook
+     * @param   Request     $request    Objeto de requisição
+     * @param   Response    $response   Objeto de resposta
+     * @return Array
+     */
+    public function loginFacebook($request, $response)
+    {
+        $return = array();
+        $params = $request->getParams();
+
         $this->respond($return);
     }
 

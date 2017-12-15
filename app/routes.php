@@ -37,6 +37,9 @@ $app->group('/v1', function () use ($app) {
     // Registry delete
     $app->delete('/user/{id}', 'App\Controllers\UsersController:delete');
 
+    // Login with Facebbok
+    $app->post('/user/loginFacebook', 'App\Controllers\UsersController:loginFacebook');
+
     /*
     
     // Logar com a API do facebook
