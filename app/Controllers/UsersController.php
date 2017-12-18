@@ -148,35 +148,6 @@ class UsersController extends AbstractController
         $return = array();
         $params = $request->getParams();
 
-		$fb = new \Facebook\Facebook([
-		  'app_id' => '684744511649755',
-		  'app_secret' => 'b628968b231e0dbd1fa64673693c410a',
-		  'default_graph_version' => 'v2.10'
-		  //'default_access_token' => '{access-token}', // optional
-		]);
-
-		$helper = $fb->getRedirectLoginHelper();
-		$accessToken = $helper->getAccessToken();
-		//print_r($accessToken->getValue());
-		print_r($helper);
-		print_r($fb->getRedirectLoginHelper());
-		//print_r($loginURL->getLoginUrl('https://example.com/fb-callback.php'));
-		die('--');
-		
-		try {
-		  // Get the \Facebook\GraphNodes\GraphUser object for the current user.
-		  // If you provided a 'default_access_token', the '{access-token}' is optional.
-		  $response = $fb->get('/me', '{access-token}');
-		} catch(\Facebook\Exceptions\FacebookResponseException $e) {
-		  // When Graph returns an error
-		  echo 'Graph returned an error: ' . $e->getMessage();
-		  exit;
-		} catch(\Facebook\Exceptions\FacebookSDKException $e) {
-		  // When validation fails or other local issues
-		  echo 'Facebook SDK returned an error: ' . $e->getMessage();
-		  exit;
-		}
-
         $this->respond($return);
     }
 
