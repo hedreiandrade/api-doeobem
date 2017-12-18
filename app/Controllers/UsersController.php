@@ -66,15 +66,15 @@ class UsersController extends AbstractController
             $this->respond($return);
         }
         // Verifica senha
-        if(isset($user->password) && !password_verify($params['password'], $user->password)){
+        if(!password_verify($params['password'], $user->password)){
             $return = array('response'=>"User: $user->id Incorrect password. Try again.");
         }else{
-        	// Inicia sessão
-	        session_start();
-	        session_cache_limiter(false);
-	        $_SESSION['user'] = $user->id;
-	        session_write_close();
-	        $return = array('response'=>"User: $user->id logged in successfully.");
+			// Inicia sessão
+			session_start();
+			session_cache_limiter(false);
+			$_SESSION['user'] = $user->id;
+			session_write_close();
+			$return = array('response'=>"User: $user->id logged in successfully.");
         }
 
         $this->respond($return);
@@ -147,7 +147,6 @@ class UsersController extends AbstractController
     {
         $return = array();
         $params = $request->getParams();
-
 
         $this->respond($return);
     }
