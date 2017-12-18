@@ -69,12 +69,12 @@ class UsersController extends AbstractController
         if(!password_verify($params['password'], $user->password)){
             $return = array('response'=>"User: $user->id Incorrect password. Try again.");
         }else{
-			// Inicia sessão
-			session_start();
+            // Inicia sessão
+            session_start();
 			session_cache_limiter(false);
-			$_SESSION['user'] = $user->id;
-			session_write_close();
-			$return = array('response'=>"User: $user->id logged in successfully.");
+            $_SESSION['user'] = $user->id;
+            session_write_close();
+            $return = array('response'=>"User: $user->id logged in successfully.");
         }
 
         $this->respond($return);
@@ -128,7 +128,7 @@ class UsersController extends AbstractController
         if(!password_verify($params['password'], $user->password)){
             $return = array('response'=>"The old password is not correct. Try again.");
         }else{ 
-        	// Seta nova
+            // Seta nova
             $user->password = $this->hidePassword($params['newPassword']);
             $user->save();
             $return = array('response'=>"User: $user->id password changed successfully."); 
