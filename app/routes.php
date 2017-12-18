@@ -38,13 +38,11 @@ $app->group('/v1', function () use ($app) {
     $app->delete('/user/{id}', 'App\Controllers\UsersController:delete');
 
     // Login with Facebbok
-    $app->post('/user/loginFacebook', 'App\Controllers\UsersController:loginFacebook');
+    $app->post('/loginFacebook', 'App\Controllers\UsersController:loginFacebook');
+
+    //$facebook->api('/me/feed/', 'post', array('message' => 'I want to display this message on my wall'));
 
     /*
-    
-    // Logar com a API do facebook
-    $app->post('/user/login-facebook', 'App\Controllers\UsersController:loginFacebook')
-        ->add(App\Controllers\UsersController::getValidators());
 
     //Recuperação de Senha - Na verdade envia md5 para alterar senha
     $app->post('/user/password-recovery', 'App\Controllers\UsersController:passwordRecovery')

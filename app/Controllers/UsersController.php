@@ -46,7 +46,7 @@ class UsersController extends AbstractController
      *
      * @param   Request     $request    Objeto de requisição
      * @param   Response    $response   Objeto de resposta
-     * @return Array
+     * @return  Json
      */
     public function login($request, $response)
     {
@@ -69,17 +69,12 @@ class UsersController extends AbstractController
         if(isset($user->password) && !password_verify($params['password'], $user->password)){
             $return = array('response'=>"User: $user->id Incorrect password. Try again.");
         }else{
-            // Seta sessão
-            if(isset($user->password) && isset($user->email)){
-                session_start();
-                session_cache_limiter(false);
-                $_SESSION['user'] = $user->id;
-                session_write_close();
-                $return = array('response'=>"User: $user->id logged in successfully.");
-            }else{
-                // Caso email ou senha seja deletado do banco ???
-                $return = array('response'=>"User: $user->id can not be logged. inconsistent database, please contact our support.");
-            }
+        	// Inicia sessão
+	        session_start();
+	        session_cache_limiter(false);
+	        $_SESSION['user'] = $user->id;
+	        session_write_close();
+	        $return = array('response'=>"User: $user->id logged in successfully.");
         }
 
         $this->respond($return);
@@ -89,7 +84,7 @@ class UsersController extends AbstractController
      * Logout
      * @param   Request     $request    Objeto de requisição
      * @param   Response    $response   Objeto de resposta
-     * @return Array
+     * @return  Json
      */
     public function logout($request, $response)
     {
@@ -111,7 +106,7 @@ class UsersController extends AbstractController
      * Altera password
      * @param   Request     $request    Objeto de requisição
      * @param   Response    $response   Objeto de resposta
-     * @return Array
+     * @return  Json
      */
     public function changePassword($request, $response)
     {
@@ -132,7 +127,8 @@ class UsersController extends AbstractController
         // Verifica a velha senha
         if(!password_verify($params['password'], $user->password)){
             $return = array('response'=>"The old password is not correct. Try again.");
-        }else{ // Seta nova
+        }else{ 
+        	// Seta nova
             $user->password = $this->hidePassword($params['newPassword']);
             $user->save();
             $return = array('response'=>"User: $user->id password changed successfully."); 
@@ -145,12 +141,13 @@ class UsersController extends AbstractController
      * Logar com o Facebook
      * @param   Request     $request    Objeto de requisição
      * @param   Response    $response   Objeto de resposta
-     * @return Array
+     * @return  Json
      */
     public function loginFacebook($request, $response)
     {
         $return = array();
         $params = $request->getParams();
+
 
         $this->respond($return);
     }
