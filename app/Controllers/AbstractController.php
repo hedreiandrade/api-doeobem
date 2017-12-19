@@ -72,7 +72,7 @@ abstract class AbstractController
         $return = $this->activeModel->get();
 
         // Caso não encontre nenhum registro
-        if(count($return) == 0){
+        if (count($return) == 0) {
             $return = array('response'=>"No Users Found.");
         }
         
@@ -95,7 +95,7 @@ abstract class AbstractController
             $return = $this->activeModel->where('id', '=', $id)->get();
         }
 
-        if(count($return) == 0){
+        if (count($return) == 0) {
             $return = array('response'=>"id: $id not found the same may have been previously deleted.");
         }
 
@@ -124,8 +124,9 @@ abstract class AbstractController
             $params['password'] = $this->hidePassword($params['password']);
         }
         // Verifica formatação básica de email
-        if(isset($params['email']))
+        if (isset($params['email'])) {
             $this->checkEmail($params['email']);
+        }
         // Realiza inserção retornando id
         $return = $this->activeModel->create($params);
         $return = array('id' => $return->id);
@@ -155,8 +156,9 @@ abstract class AbstractController
             $params['password'] = $this->hidePassword($params['password']);
         }
         // Verifica formação básica de email
-        if(isset($params['email']))
+        if (isset($params['email'])) {
             $this->checkEmail($params['email']);
+        }
         // Verifica existencia do registro
         $id = $request->getAttribute('id');
         $model = $this->activeModel->find($id);
@@ -213,7 +215,7 @@ abstract class AbstractController
     public function checkEmail($email = '')
     {
         $validatedEmail = $this->errorEmail($email);
-        if(!$validatedEmail['flEmail']){
+        if (!$validatedEmail['flEmail']) {
             $this->respond(array('response'=>$validatedEmail['response']));
         }
 
@@ -231,7 +233,7 @@ abstract class AbstractController
     {
         $return = array();
 
-        if(!isset($email)){
+        if (!isset($email)) {
             $return = array('response'=>"Email address '$email' is considered invalid.",
                             'flEmail'=>0);
         }
@@ -246,5 +248,4 @@ abstract class AbstractController
 
         return $return;
     }
-    
 }

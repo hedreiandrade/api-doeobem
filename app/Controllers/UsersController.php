@@ -7,7 +7,6 @@ use Respect\Validation\Validator as v;
 
 class UsersController extends AbstractController
 {
-
     /**
      * Construtor
      *
@@ -66,12 +65,12 @@ class UsersController extends AbstractController
             $this->respond($return);
         }
         // Verifica senha
-        if(!password_verify($params['password'], $user->password)){
+        if (!password_verify($params['password'], $user->password)) {
             $return = array('response'=>"User: $user->id Incorrect password. Try again.");
-        }else{
+        } else {
             // Inicia sessão
             session_start();
-			session_cache_limiter(false);
+            session_cache_limiter(false);
             $_SESSION['user'] = $user->id;
             session_write_close();
             $return = array('response'=>"User: $user->id logged in successfully.");
@@ -90,10 +89,10 @@ class UsersController extends AbstractController
     {
         session_start();
         // Verifica se usuário está logado. Caso sim, realiza o logout
-        if(isset($_SESSION['user'])){
+        if (isset($_SESSION['user'])) {
             $return = array('response'=>'User: '.$_SESSION['user'].' successfully logged off.');
             unset($_SESSION['user']);
-        }else{ 
+        } else {
             // Nunca logou
             $return = array('response'=>'User was not logged in.');
         }
@@ -113,25 +112,25 @@ class UsersController extends AbstractController
         $return = array();
         $params = $request->getParams();
         // Verifica se foi informado email, senha e nova senha
-        if (!isset($params['email']) || !isset($params['password']) || !isset($params['newPassword']) || !$params['newPassword']){
+        if (!isset($params['email']) || !isset($params['password']) || !isset($params['newPassword']) || !$params['newPassword']) {
             $return = array('response'=>"Please, give me your email, password and the new password.");
             $this->respond($return);
         }
         // Verifica cadastro do email
         $user = Users::where('email', $params['email'])->first();
-        if (!$user) { 
+        if (!$user) {
             $userEmail = $params['email'];
             $return = array('response'=>"The email you've entered: $userEmail doesn't match any account. Sign up for an account.");
             $this->respond($return);
         }
         // Verifica a velha senha
-        if(!password_verify($params['password'], $user->password)){
+        if (!password_verify($params['password'], $user->password)) {
             $return = array('response'=>"The old password is not correct. Try again.");
-        }else{ 
+        } else {
             // Seta nova
             $user->password = $this->hidePassword($params['newPassword']);
             $user->save();
-            $return = array('response'=>"User: $user->id password changed successfully."); 
+            $return = array('response'=>"User: $user->id password changed successfully.");
         }
         
         $this->respond($return);
@@ -148,7 +147,7 @@ class UsersController extends AbstractController
         $return = array();
         $params = $request->getParams();
 
+
         $this->respond($return);
     }
-
 }
