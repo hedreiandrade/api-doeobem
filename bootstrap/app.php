@@ -2,8 +2,11 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-// Configurações do Banco de Dados
+// Config do Banco de Dados
 require __DIR__ . '/../app/Config/db.php';
+
+// Config para acesso APIs do google
+require __DIR__ . '/../app/Config/google.php';
 
 # === Para mostrar todos erros
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);

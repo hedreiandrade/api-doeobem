@@ -146,7 +146,20 @@ class UsersController extends AbstractController
     {
         $return = array();
         $params = $request->getParams();
+ 
+        $this->respond($return);
+    }
 
+    /**
+     * Logar com o Gmail
+     * @param   Request     $request    Objeto de requisição
+     * @param   Response    $response   Objeto de resposta
+     * @return  Json
+     */
+    public function loginGmail($request, $response)
+    {
+        $return = array();
+        $params = $request->getParams();
 
         $this->respond($return);
     }
