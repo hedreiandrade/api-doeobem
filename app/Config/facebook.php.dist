@@ -1,0 +1,5 @@
+<?php
+
+// Configurações para acesso as APIs do facebook
+const APPID = '';
+const APPSECRET = '';

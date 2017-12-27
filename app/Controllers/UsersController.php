@@ -146,7 +146,7 @@ class UsersController extends AbstractController
     {
         $return = array();
         $params = $request->getParams();
- 
+
         $this->respond($return);
     }
 
