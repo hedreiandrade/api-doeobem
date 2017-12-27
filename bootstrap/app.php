@@ -2,11 +2,11 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-// Config do Banco de Dados
+// Config para acessar o Banco de Dados
+// e as APIs de login do google/Facebook
 require __DIR__ . '/../app/Config/db.php';
-
-// Config para acesso APIs do google
 require __DIR__ . '/../app/Config/google.php';
+require __DIR__ . '/../app/Config/facebook.php';
 
 # === Para mostrar todos erros
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
