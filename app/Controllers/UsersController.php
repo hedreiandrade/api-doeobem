@@ -97,7 +97,6 @@ class UsersController extends AbstractController
             // Inicia sessão
             session_start();
             session_cache_limiter(false);
-            session_set_cookie_params(3600);
             $_SESSION['user'] = $user->id;
             session_write_close();
             $return = array('response'=>"User: $user->id logged in successfully.");
