@@ -118,7 +118,7 @@ class UsersController extends AbstractController
         // Verifica se usuário está logado. Caso sim, realiza o logout
         if (isset($_SESSION['user'])) {
             $return = array('response'=>'User: '.$_SESSION['user'].' successfully logged off.');
-            unset($_SESSION['user']);
+            session_unset();
         } else {
             // Nunca logou
             $return = array('response'=>'User was not logged in.');
