@@ -41,30 +41,6 @@ class UsersController extends AbstractController
     }
 
     /**
-     * Controla tempo da sessão de login
-     * session.gc_maxlifetime doesn’t work ?
-     *
-     * @return  void
-     */
-    public function checkSessionTime() {
-        session_start();
-        $timeout = 3600; // Segundos
-        // Verifica se existe o parametro timeout
-        if(isset($_SESSION['timeout'])) {
-            // Calcula o tempo da sessão
-            $duration = time() - (int) $_SESSION['timeout'];
-            // Verifica se expirou
-            if($duration > $timeout) {
-                session_unset();
-                session_destroy();
-            }
-        }
-        // Atualiza o timeout.
-        $_SESSION['timeout'] = time();
-        session_write_close();
-    }
-
-    /**
      * Retorna chave de autenticação do usuario logado
      *
      * @param   Request     $request    Objeto de requisição
@@ -75,8 +51,6 @@ class UsersController extends AbstractController
     {
         $return = array();
         $params = $request->getParams();
-        // Verifica e seta timeout 
-        $this->checkSessionTime();
         // Verifica se foi informado email e senha
         if (!isset($params['email']) || !isset($params['password'])) {
             $return = array('response'=>"Please, give me your email and password.");
@@ -98,9 +72,10 @@ class UsersController extends AbstractController
             session_start();
             session_cache_limiter(false);
             $_SESSION['user'] = $user->id;
-            session_write_close();
+            $_SESSION['timeout'] = time();
             $return = array('response'=>"User: $user->id logged in successfully.");
         }
+        session_write_close();
 
         $this->respond($return);
     }
@@ -128,7 +103,7 @@ class UsersController extends AbstractController
     }
 
     /**
-     * Altera password
+     * Altera password, precisar estar logado para poder alterar
      * @param   Request     $request    Objeto de requisição
      * @param   Response    $response   Objeto de resposta
      * @return  Json

@@ -18,10 +18,30 @@ abstract class AbstractController
      *
      * @param   Slim\Container    $Container    Container da aplicação
      *
-     * @return  null
+     * @return  
      */
     public function __construct($container)
     {
+        $route = $container->request->getUri()->getPath();
+        if(isset($route) && $route === '/v1/logout'){
+            //session_start();
+            session_unset();
+            session_destroy();
+            session_write_close();
+        }else{
+            // Login deixa passar
+            if(isset($route) && $route === '/v1/login'){
+                return;
+            }
+            // Outros metodos verifica o tempo de login
+            if($this->checkSessionTime()) {
+                // Login ainda valido
+                return;
+            }else {
+                // Expirado
+                $this->respond(array('response'=>'Please log in to access Login API.'));
+            }
+        }
     }
 
     /**
@@ -39,6 +59,30 @@ abstract class AbstractController
         header('Content-type: application/json');
         print json_encode($value);
         die;
+    }
+
+    /**
+     * Controla tempo da sessão de login
+     * session.gc_maxlifetime doesn’t work ?
+     *
+     * @return boolean
+     */
+    public function checkSessionTime() {
+        $timeOutDuration = 30; // Segundos 3600
+        session_start();
+        if(!isset($_SESSION['timeout'])) {
+            return false;
+        }
+        // Calcula o tempo da sessão
+        $timeOfExistence = time() - (int) $_SESSION['timeout'];
+        if($timeOfExistence > $timeOutDuration) {
+            session_unset();
+            session_destroy();
+            return false;
+        }else { 
+            // Sessão ainda é valida
+            return true;
+        }
     }
 
     /**
