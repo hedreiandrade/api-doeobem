@@ -3,7 +3,7 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 // Config para acessar o Banco de Dados
-// e as APIs de login do google/Facebook
+// e as APIs de login do Google|Facebook
 require __DIR__ . '/../app/Config/db.php';
 require __DIR__ . '/../app/Config/google.php';
 require __DIR__ . '/../app/Config/facebook.php';

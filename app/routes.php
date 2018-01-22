@@ -11,17 +11,17 @@ $app->group('/v1', function () use ($app) {
         return 'HOME V1';
     });
 
-    // List all
+    // List All
     $app->get('/users', 'App\Controllers\UsersController:listing');
 
     // List by Id
     $app->get('/user/{id}', 'App\Controllers\UsersController:get');
 
-    // Registry insert
+    // Registry Insert
     $app->post('/users', 'App\Controllers\UsersController:insert')
         ->add(App\Controllers\UsersController::getValidators());
 
-    // Registry update
+    // Registry Update
     $app->put('/user/{id}', 'App\Controllers\UsersController:update')
         ->add(App\Controllers\UsersController::getValidators());
 
@@ -34,7 +34,7 @@ $app->group('/v1', function () use ($app) {
     // Logout
     $app->post('/logout', 'App\Controllers\UsersController:logout');
 
-    // Registry delete
+    // Registry Delete
     $app->delete('/user/{id}', 'App\Controllers\UsersController:delete');
 
     // Login with Facebbok
@@ -42,14 +42,5 @@ $app->group('/v1', function () use ($app) {
 
     // Login with Gmail
     $app->post('/loginGmail', 'App\Controllers\UsersController:loginGmail');
-
-    /*
-
-    //$facebook->api('/me/feed/', 'post', array('message' => 'I want to display this message on my wall'));
-
-    //Recuperação de Senha - Na verdade envia md5 para alterar senha
-    $app->post('/user/password-recovery', 'App\Controllers\UsersController:passwordRecovery')
-        ->add(App\Controllers\UsersController::getValidators());
-
-    */
+    
 });
