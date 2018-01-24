@@ -70,8 +70,7 @@ abstract class AbstractController
      *
      * @return boolean
      */
-    public function checkSessionTime() 
-    {
+    public function checkSessionTime() {
         $timeOutDuration = 3600; // Segundos 3600
         session_start();
         if(!isset($_SESSION['timeout'])) {
