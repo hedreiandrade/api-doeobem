@@ -23,14 +23,17 @@ abstract class AbstractController
     public function __construct($container)
     {
         $route = $container->request->getUri()->getPath();
-        if(isset($route) && $route === '/v1/logout'){
+        if(isset($route) && $route === '/v1/logout') {
             //session_start();
             session_unset();
-            session_destroy();
+            // Bug session_destroy
+            if(isset($_SESSION['user'])) { 
+                session_destroy();
+            }
             session_write_close();
-        }else{
+        } else {
             // Login deixa passar
-            if(isset($route) && $route === '/v1/login'){
+            if(isset($route) && $route === '/v1/login') {
                 return;
             }
             // Outros metodos verifica o tempo de login
@@ -67,8 +70,9 @@ abstract class AbstractController
      *
      * @return boolean
      */
-    public function checkSessionTime() {
-        $timeOutDuration = 30; // Segundos 3600
+    public function checkSessionTime() 
+    {
+        $timeOutDuration = 3600; // Segundos 3600
         session_start();
         if(!isset($_SESSION['timeout'])) {
             return false;
@@ -114,7 +118,6 @@ abstract class AbstractController
     public function listing($request, $response)
     {
         $return = $this->activeModel->get();
-
         // Caso não encontre nenhum registro
         if (count($return) == 0) {
             $return = array('response'=>"No Users Found.");
@@ -138,7 +141,6 @@ abstract class AbstractController
         if ($id) {
             $return = $this->activeModel->where('id', '=', $id)->get();
         }
-
         if (count($return) == 0) {
             $return = array('response'=>"id: $id not found the same may have been previously deleted.");
         }
@@ -158,11 +160,8 @@ abstract class AbstractController
     {
         $return = array();
         $params = $request->getParams();
-        // Validações fornecidas no controller
-        if ($request->getAttribute('has_errors')) {
-            $return = $request->getAttribute('errors');
-            $this->respond($return);
-        }
+        // Validações pre-definidas no controller
+        $this->getAttributeErrors($request);
         // Apenas para inserção de senhas
         if (isset($params['password'])) {
             $params['password'] = $this->hidePassword($params['password']);
@@ -191,10 +190,7 @@ abstract class AbstractController
         $return = array();
         $params = $request->getParams();
         // Validações pre-definidas no controller
-        if ($request->getAttribute('has_errors')) {
-            $return = $request->getAttribute('errors');
-            $this->respond($return);
-        }
+        $this->getAttributeErrors($request);
         // Apenas para inserção de senhas
         if (isset($params['password'])) {
             $params['password'] = $this->hidePassword($params['password']);
@@ -203,7 +199,7 @@ abstract class AbstractController
         if (isset($params['email'])) {
             $this->checkEmail($params['email']);
         }
-        // Verifica existencia do registro
+        // Verifica existência do registro
         $id = $request->getAttribute('id');
         $model = $this->activeModel->find($id);
         if (!isset($model)) {
@@ -250,11 +246,29 @@ abstract class AbstractController
     }
 
     /**
+     * Verifica erros da validação
+     * Validações pre-definidas no controller
+     *
+     * @return boolean|json 
+     */
+    public function getAttributeErrors($request)
+    {
+        $return = array();
+        // Erros
+        if ($request->getAttribute('has_errors')) {
+            $return = $request->getAttribute('errors');
+            $this->respond($return);
+        }
+
+        return true;
+    }
+
+    /**
      * Chama verificação básica para email
      *
      * @param   email     email a ser validado
      *
-     * @return  boolean
+     * @return  boolean|json 
      */
     public function checkEmail($email = '')
     {
@@ -276,12 +290,10 @@ abstract class AbstractController
     public function errorEmail($email)
     {
         $return = array();
-
         if (!isset($email)) {
             $return = array('response'=>"Email address '$email' is considered invalid.",
                             'flEmail'=>0);
         }
-
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $return = array('response'=>"Email address '$email' is considered valid.",
                             'flEmail'=>1);
