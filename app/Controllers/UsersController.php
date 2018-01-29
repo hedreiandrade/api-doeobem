@@ -82,6 +82,7 @@ class UsersController extends AbstractController
 
     /**
      * Logout
+     *
      * @param   Request     $request    Objeto de requisição
      * @param   Response    $response   Objeto de resposta
      * @return  Json
@@ -104,6 +105,7 @@ class UsersController extends AbstractController
 
     /**
      * Altera password, precisar estar logado para poder alterar
+     *
      * @param   Request     $request    Objeto de requisição
      * @param   Response    $response   Objeto de resposta
      * @return  Json
@@ -139,6 +141,7 @@ class UsersController extends AbstractController
 
     /**
      * Logar com o Facebook
+     *
      * @param   Request     $request    Objeto de requisição
      * @param   Response    $response   Objeto de resposta
      * @return  Json
@@ -148,11 +151,24 @@ class UsersController extends AbstractController
         $return = array();
         $params = $request->getParams();
 
+        try {
+          $fbClient = new \Facebook\Facebook([
+          'app_id' => APPID,
+          'app_secret' => APPSECRET,
+          'default_graph_version' => 'v2.10'
+          //'default_access_token' => '{access-token}', // optional
+          ]);
+          // continue
+        } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+          $return = array('response'=>'Facebook SDK returned an error: ' . $e->getMessage());
+        }
+
         $this->respond($return);
     }
 
     /**
      * Logar com o Gmail
+     *
      * @param   Request     $request    Objeto de requisição
      * @param   Response    $response   Objeto de resposta
      * @return  Json
@@ -161,7 +177,13 @@ class UsersController extends AbstractController
     {
         $return = array();
         $params = $request->getParams();
+        
+        $googleClient = new \Google_Client();
+        $googleClient->setClientId(CLIENTID);
+        $googleClient->setClientSecret(CLIENTSECRETID);
 
+        // continue
+        
         $this->respond($return);
     }
 }

@@ -24,7 +24,6 @@ abstract class AbstractController
     {
         $route = $container->request->getUri()->getPath();
         if(isset($route) && $route === '/v1/logout') {
-            //session_start();
             session_unset();
             // Bug session_destroy
             if(isset($_SESSION['user'])) { 
@@ -40,7 +39,7 @@ abstract class AbstractController
             if($this->checkSessionTime()) {
                 // Login ainda valido
                 return;
-            }else {
+            } else {
                 // Expirado
                 $this->respond(array('response'=>'Please log in to access Login API.'));
             }
@@ -83,7 +82,7 @@ abstract class AbstractController
             session_unset();
             session_destroy();
             return false;
-        }else { 
+        } else { 
             // Sessão ainda é valida
             return true;
         }
