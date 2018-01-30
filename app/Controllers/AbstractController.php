@@ -138,7 +138,9 @@ abstract class AbstractController
         $return = array();
         $id = $request->getAttribute('id', false);
         if ($id) {
-            $return = $this->activeModel->where('id', '=', $id)->get();
+            $return = $this->activeModel->whereKey($id)
+                                        ->get()
+                                        ->first();
         }
         if (count($return) == 0) {
             $return = array('response'=>"id: $id not found the same may have been previously deleted.");

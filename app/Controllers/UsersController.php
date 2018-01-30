@@ -150,17 +150,18 @@ class UsersController extends AbstractController
     {
         $return = array();
         $params = $request->getParams();
-
         try {
-          $fbClient = new \Facebook\Facebook([
-          'app_id' => APPID,
-          'app_secret' => APPSECRET,
-          'default_graph_version' => 'v2.10'
-          //'default_access_token' => '{access-token}', // optional
-          ]);
+            $fbClient = new \Facebook\Facebook([
+              'app_id' => APPID,
+              'app_secret' => APPSECRET,
+              'default_graph_version' => 'v2.10'
+              //'default_access_token' => '{access-token}', // optional
+            ]);
+
           // continue
+
         } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-          $return = array('response'=>'Facebook SDK returned an error: ' . $e->getMessage());
+            $return = array('response'=>'Facebook SDK returned an error: ' . $e->getMessage());
         }
 
         $this->respond($return);
@@ -178,12 +179,18 @@ class UsersController extends AbstractController
         $return = array();
         $params = $request->getParams();
         
-        $googleClient = new \Google_Client();
-        $googleClient->setClientId(CLIENTID);
-        $googleClient->setClientSecret(CLIENTSECRETID);
+        try {
+          $googleClient = new \Google_Client();
+          $googleClient->setClientId(CLIENTID);
+          $googleClient->setClientSecret(CLIENTSECRETID);
 
-        // continue
+          // continue
+
+        } catch(Exception $e) {
+            $return = array('response'=>'Gmail SDK returned an error: ' . $e->getMessage());
+        }
         
         $this->respond($return);
     }
+
 }
