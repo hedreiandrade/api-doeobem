@@ -139,7 +139,7 @@ class UsersController extends AbstractController
         $this->respond($return);
     }
 
- 	/**
+/**
      * Logar com o Facebook
      *
      * @param   Request     $request    Objeto de requisição
@@ -161,7 +161,6 @@ class UsersController extends AbstractController
 		} catch(\Facebook\Exceptions\FacebookSDKException $e) {
 			$return = array('response'=>'Facebook SDK returned an error: ' . $e->getMessage());
 		}
-
 		$this->respond($return);
     }
 
@@ -176,7 +175,6 @@ class UsersController extends AbstractController
     {
 		$return = array();
 		$params = $request->getParams();
-
 		try {
 			$googleClient = new \Google_Client();
 			$googleClient->setClientId(CLIENTID);
@@ -188,4 +186,5 @@ class UsersController extends AbstractController
         
         $this->respond($return);
     }
+
 }
