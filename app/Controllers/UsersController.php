@@ -126,7 +126,7 @@ class UsersController extends AbstractController
             $return = array('response'=>"The email you've entered: $userEmail doesn't match any account. Sign up for an account.");
             $this->respond($return);
         }
-        // Verifica a velha senha
+          // Verifica a velha senha
         if (!password_verify($params['password'], $user->password)) {
             $return = array('response'=>"The old password is not correct. Try again.");
         } else {
@@ -139,7 +139,7 @@ class UsersController extends AbstractController
         $this->respond($return);
     }
 
-    /**
+ 	/**
      * Logar com o Facebook
      *
      * @param   Request     $request    Objeto de requisição
@@ -148,23 +148,21 @@ class UsersController extends AbstractController
      */
     public function loginFacebook($request, $response)
     {
-        $return = array();
-        $params = $request->getParams();
-        try {
-            $fbClient = new \Facebook\Facebook([
-              'app_id' => APPID,
-              'app_secret' => APPSECRET,
-              'default_graph_version' => 'v2.10'
-              //'default_access_token' => '{access-token}', // optional
-            ]);
+		$return = array();
+		$params = $request->getParams();
+		try {
+			$fbClient = new \Facebook\Facebook([
+				'app_id' => APPID,
+				'app_secret' => APPSECRET,
+				'default_graph_version' => 'v2.10'
+				//'default_access_token' => '{access-token}', // optional
+			]);
+			// continue
+		} catch(\Facebook\Exceptions\FacebookSDKException $e) {
+			$return = array('response'=>'Facebook SDK returned an error: ' . $e->getMessage());
+		}
 
-          // continue
-
-        } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-            $return = array('response'=>'Facebook SDK returned an error: ' . $e->getMessage());
-        }
-
-        $this->respond($return);
+		$this->respond($return);
     }
 
     /**
@@ -176,21 +174,18 @@ class UsersController extends AbstractController
      */
     public function loginGmail($request, $response)
     {
-        $return = array();
-        $params = $request->getParams();
-        
-        try {
-          $googleClient = new \Google_Client();
-          $googleClient->setClientId(CLIENTID);
-          $googleClient->setClientSecret(CLIENTSECRETID);
+		$return = array();
+		$params = $request->getParams();
 
-          // continue
-
-        } catch(Exception $e) {
-            $return = array('response'=>'Gmail SDK returned an error: ' . $e->getMessage());
-        }
+		try {
+			$googleClient = new \Google_Client();
+			$googleClient->setClientId(CLIENTID);
+			$googleClient->setClientSecret(CLIENTSECRETID);
+			// continue
+		} catch(Exception $e) {
+			$return = array('response'=>'Gmail SDK returned an error: ' . $e->getMessage());
+		}
         
         $this->respond($return);
     }
-
 }
