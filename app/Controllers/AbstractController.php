@@ -139,7 +139,6 @@ abstract class AbstractController
         $id = $request->getAttribute('id', false);
         if ($id) {
             $return = $this->activeModel->whereKey($id)
-                                        ->get()
                                         ->first();
         }
         if (count($return) == 0) {
