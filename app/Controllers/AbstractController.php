@@ -117,10 +117,6 @@ abstract class AbstractController
     public function listing($request, $response)
     {
         $return = $this->activeModel->get();
-        // Caso não encontre nenhum registro
-        if (count($return) == 0) {
-            $return = array('response'=>"No Users Found.");
-        }
         
         $this->respond($return);
     }
@@ -140,9 +136,11 @@ abstract class AbstractController
         if ($id) {
             $return = $this->activeModel->whereKey($id)
                                         ->first();
-        }
-        if (count($return) == 0) {
-            $return = array('response'=>"id: $id not found the same may have been previously deleted.");
+            // Retorna vazio casa não exista
+            // Passo para array []
+            if(!$return){
+                $return = [];
+            }
         }
 
         $this->respond($return);
