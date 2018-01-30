@@ -136,7 +136,7 @@ abstract class AbstractController
         if ($id) {
             $return = $this->activeModel->whereKey($id)
                                         ->first();
-            // Retorna vazio casa não exista
+            // Retorna null caso não exista
             // Passo para array []
             if(!$return){
                 $return = [];
