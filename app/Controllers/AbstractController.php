@@ -2,8 +2,12 @@
 
 namespace App\Controllers;
 
+use Datetime;
+use Firebase\JWT\JWT;
+
 abstract class AbstractController
 {
+    
     /**
      * Construtor
      *
@@ -22,27 +26,79 @@ abstract class AbstractController
      */
     public function __construct($container)
     {
+        $token = '';
         $route = $container->request->getUri()->getPath();
         if(isset($route) && $route === '/v1/logout') {
-            session_unset();
-            // Bug session_destroy
-            if(isset($_SESSION['user'])) { 
-                session_destroy();
-            }
-            session_write_close();
+            return;
         } else {
             // Login deixa passar
             if(isset($route) && $route === '/v1/login') {
                 return;
             }
-            // Outros metodos verifica o tempo de login
-            if($this->checkSessionTime()) {
-                // Login ainda valido
-                return;
-            } else {
-                // Expirado
-                $this->respond(array('response'=>'Please log in to access Login API.'));
+            // Baerer Token ou OAuth 2.0
+            if(isset($container->request->getHeaders()['HTTP_AUTHORIZATION'][0])){
+                $token = $container->request->getHeaders()['HTTP_AUTHORIZATION'][0];
+            } 
+            // Pega token
+            if(isset(explode('Bearer ', $token)[1])){
+                $token = explode('Bearer ', $token)[1];
             }
+            // Verifica validade do token
+            // Caso não expirou continua
+            $this->verifyToken($token);
+        }
+    }
+
+    /**
+     * Verifica token fornecido
+     * Usar tipos Baerer Token ou OAuth 2.0
+     *
+     * @param   String     $token    Token
+     *
+     * @return Json
+     */
+    public function verifyToken($token = '') {
+        $return = '';
+        if( $token === '') {
+            $return = array('response'=>'Please give me a token authorization.');
+            $this->respond($return);
+        }
+        try {
+            /* 
+                Erros que podem ser retornados no decode
+                caso token esteja com erro de digitação:
+                UnexpectedValueException | Message: Wrong number of segments
+                DomainException | Message: Unexpected control character found
+                Retorno apenas o de ExpiredException
+            */
+            JWT::decode($token, JWT_SECRET, array('HS256'));
+        } catch (\Firebase\JWT\ExpiredException $e) { 
+            // Expirou JWT
+            $return = array('response'=>$e->getMessage());
+            $this->respond($return);
+        }
+    }
+
+    /**
+     * Cria um novo token
+     *
+     * @return string|Json
+     */
+    public function createToken() {
+        $return = array();
+        JWT::$leeway = LEE_WAY;
+        try {
+            $payLoad = $this->payLoad();
+            $return['token'] = JWT::encode($payLoad, JWT_SECRET);
+            $return['expire'] = $payLoad['exp'];
+            // Como realizar logout do token JWT
+            session_start();
+            $_SESSION['token'] = $return['token'];
+            session_write_close();
+            return $return;
+        } catch (\Firebase\JWT\ExpiredException $e) { // Expirou JWT
+            $return = array('response'=>$e->getMessage());
+            $this->respond($return);
         }
     }
 
@@ -64,32 +120,7 @@ abstract class AbstractController
     }
 
     /**
-     * Controla tempo da sessão de login
-     * session.gc_maxlifetime doesn’t work ?
-     *
-     * @return boolean
-     */
-    public function checkSessionTime() 
-    {
-        $timeOutDuration = 3600; // Segundos 3600
-        session_start();
-        if(!isset($_SESSION['timeout'])) {
-            return false;
-        }
-        // Calcula o tempo da sessão
-        $timeOfExistence = time() - (int) $_SESSION['timeout'];
-        if($timeOfExistence > $timeOutDuration) {
-            session_unset();
-            session_destroy();
-            return false;
-        } else { 
-            // Sessão ainda é valida
-            return true;
-        }
-    }
-
-    /**
-     * Criar Hash para esconder senhas
+     * Esconder senhas
      *
      * @param   string     $password    Senha
      *
@@ -97,13 +128,7 @@ abstract class AbstractController
      */
     public function hidePassword($password)
     {
-        $hiddenPassword = '';
-        // Apenas para inserção de senhas
-        if (isset($password)) {
-            $hiddenPassword = password_hash($password, PASSWORD_DEFAULT);
-        }
-
-        return $hiddenPassword;
+        return password_hash($password, PASSWORD_DEFAULT);
     }
 
     /**
@@ -160,14 +185,10 @@ abstract class AbstractController
         $params = $request->getParams();
         // Validações pre-definidas no controller
         $this->getAttributeErrors($request);
-        // Apenas para inserção de senhas
-        if (isset($params['password'])) {
-            $params['password'] = $this->hidePassword($params['password']);
-        }
+        // Esconde senhas
+        $params['password'] = $this->hidePassword($params['password']);
         // Verifica formatação básica de email
-        if (isset($params['email'])) {
-            $this->checkEmail($params['email']);
-        }
+        $this->checkEmail($params['email']);
         // Realiza inserção retornando id
         $return = $this->activeModel->create($params);
         $return = array('id' => $return->id);
@@ -189,14 +210,10 @@ abstract class AbstractController
         $params = $request->getParams();
         // Validações pre-definidas no controller
         $this->getAttributeErrors($request);
-        // Apenas para inserção de senhas
-        if (isset($params['password'])) {
-            $params['password'] = $this->hidePassword($params['password']);
-        }
+        // Esconde senhas
+        $params['password'] = $this->hidePassword($params['password']);
         // Verifica formação básica de email
-        if (isset($params['email'])) {
-            $this->checkEmail($params['email']);
-        }
+        $this->checkEmail($params['email']);
         // Verifica existência do registro
         $id = $request->getAttribute('id');
         $model = $this->activeModel->find($id);
@@ -302,4 +319,25 @@ abstract class AbstractController
 
         return $return;
     }
+
+    /**
+     * Retorna array padrão para geração encode JWT
+     *
+     * @return  Array
+     */
+    public function payLoad() {
+        $now = new DateTime();
+        $future = new DateTime();
+        $exp = new DateTime('+ 10 minutes');
+        $payLoad = array(
+            'iss' => 'http://github.com/hedreiandrade',
+            'aud' => "http://twitter.com",
+            'iat' => $now->getTimeStamp(),
+            'nbf' => $future->getTimeStamp(),
+            'exp' => $exp->getTimeStamp()
+        );
+
+        return $payLoad;
+    }
+
 }

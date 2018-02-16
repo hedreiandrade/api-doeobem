@@ -18,7 +18,7 @@ $app->group('/v1', function () use ($app) {
     $app->get('/user/{id}', 'App\Controllers\UsersController:get');
 
     // Registry Insert
-    $app->post('/users', 'App\Controllers\UsersController:insert')
+    $app->post('/user', 'App\Controllers\UsersController:insert')
         ->add(App\Controllers\UsersController::getValidators());
 
     // Registry Update

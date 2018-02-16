@@ -1,4 +1,7 @@
 <?php
 
 // Senha secreta para geração do token
-const JWTSECRET = '';
+const JWT_SECRET = '';
+
+// Diferença de tempo entre servidores
+const LEE_WAY = ''; // in seconds

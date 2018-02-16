@@ -3,8 +3,9 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 // Config para acessar o Banco de Dados
-// e as APIs de login do Google|Facebook
+// JWT(secret) e as APIs de login do Google|Facebook
 require __DIR__ . '/../app/Config/db.php';
+require __DIR__ . '/../app/Config/jwt.php';
 require __DIR__ . '/../app/Config/google.php';
 require __DIR__ . '/../app/Config/facebook.php';
 
@@ -18,8 +19,8 @@ $app = new \Slim\App([
         'db' => [
             'driver' => DRIVER,
             'host' => HOST,
-            'database' => DATABASE,
-            'username' => USERNAME,
+            'database' => DATA_BASE,
+            'username' => USER_NAME,
             'password' => PASSWORD,
             'charset' => CHARSET,
             'collation' => COLLATION,

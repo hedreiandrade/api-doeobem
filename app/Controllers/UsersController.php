@@ -4,9 +4,11 @@ namespace App\Controllers;
 
 use App\Models\Users;
 use Respect\Validation\Validator as v;
+use Firebase\JWT\JWT;
 
 class UsersController extends AbstractController
 {
+
     /**
      * Construtor
      *
@@ -68,15 +70,11 @@ class UsersController extends AbstractController
         if (!password_verify($params['password'], $user->password)) {
             $return = array('response'=>"User: $user->id Incorrect password. Try again.");
         } else {
-            // Inicia sessão
-            session_start();
-            session_cache_limiter(false);
-            $_SESSION['user'] = $user->id;
-            $_SESSION['timeout'] = time();
-            $return = array('response'=>"User: $user->id logged in successfully.");
+            // Gera Token
+            $token = $this->createToken();
+            $return = array('response' => $token);
         }
         session_write_close();
-
         $this->respond($return);
     }
 
@@ -91,15 +89,14 @@ class UsersController extends AbstractController
     {
         session_start();
         // Verifica se usuário está logado. Caso sim, realiza o logout
-        if (isset($_SESSION['user'])) {
-            $return = array('response'=>'User: '.$_SESSION['user'].' successfully logged off.');
+        if (isset($_SESSION['token'])) {
+            $return = array('response'=>'UserToken: '.$_SESSION['token'].' successfully logged off.');
             session_unset();
         } else {
             // Nunca logou
             $return = array('response'=>'User was not logged in.');
         }
         session_write_close();
-
         $this->respond($return);
     }
 
@@ -161,10 +158,8 @@ class UsersController extends AbstractController
         } catch(\Facebook\Exceptions\FacebookSDKException $e) {
             $return = array('response'=>'Facebook SDK returned an error: ' . $e->getMessage());
         }
-
         $this->respond($return);
     }
-
     /**
     * Logar com o Gmail
     *
@@ -184,8 +179,7 @@ class UsersController extends AbstractController
         } catch(Exception $e) {
             $return = array('response'=>'Gmail SDK returned an error: ' . $e->getMessage());
         }
-
         $this->respond($return);
     }
-
+    
 }
