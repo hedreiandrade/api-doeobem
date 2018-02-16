@@ -69,6 +69,7 @@ abstract class AbstractController
                 caso token esteja com erro de digitação:
                 UnexpectedValueException | Message: Wrong number of segments
                 DomainException | Message: Unexpected control character found
+                SignatureInvalidException | Message: Signature verification failed
                 Retorno apenas o de ExpiredException
             */
             JWT::decode($token, JWT_SECRET, array('HS256'));
@@ -93,7 +94,7 @@ abstract class AbstractController
             $return['expire'] = $payLoad['exp'];
             // Como realizar logout do token JWT
             session_start();
-            $_SESSION['token'] = $return['token'];
+            $_SESSION['token'] = '-.-';
             session_write_close();
             return $return;
         } catch (\Firebase\JWT\ExpiredException $e) { // Expirou JWT

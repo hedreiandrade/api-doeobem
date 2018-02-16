@@ -90,7 +90,7 @@ class UsersController extends AbstractController
         session_start();
         // Verifica se usuário está logado. Caso sim, realiza o logout
         if (isset($_SESSION['token'])) {
-            $return = array('response'=>'UserToken: '.$_SESSION['token'].' successfully logged off.');
+            $return = array('response'=>'UserToken successfully logged off.');
             session_unset();
         } else {
             // Nunca logou
@@ -160,6 +160,7 @@ class UsersController extends AbstractController
         }
         $this->respond($return);
     }
+    
     /**
     * Logar com o Gmail
     *
