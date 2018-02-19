@@ -329,7 +329,7 @@ abstract class AbstractController
     public function payLoad() {
         $now = new DateTime();
         $future = new DateTime();
-        $exp = new DateTime('+ 10 minutes');
+        $exp = new DateTime('+ 1 minutes');
         $payLoad = array(
             'iss' => 'http://github.com/hedreiandrade',
             'aud' => "http://twitter.com",

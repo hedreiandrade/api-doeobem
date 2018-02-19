@@ -74,7 +74,6 @@ class UsersController extends AbstractController
             $token = $this->createToken();
             $return = array('response' => $token);
         }
-        session_write_close();
         $this->respond($return);
     }
 
