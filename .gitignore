@@ -11,3 +11,5 @@ app/Config/db.php
 app/Config/google.php
 app/Config/facebook.php
 app/Config/jwt.php
+.idea/api-doeobem.iml
+.idea/modules.xml

@@ -53,6 +53,7 @@ class UsersController extends AbstractController
     {
         $return = array();
         $params = $request->getParams();
+        $this->checkEmail($params['email']);
         // Verifica se foi informado email e senha
         if (!isset($params['email']) || !isset($params['password'])) {
             $return = array('response'=>"Please, give me your email and password.");
