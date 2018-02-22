@@ -92,7 +92,6 @@ abstract class AbstractController
             $payLoad = $this->payLoad();
             $return['token'] = JWT::encode($payLoad, JWT_SECRET);
             $return['expire'] = $payLoad['exp'];
-            // Como realizar logout do token JWT
             session_start();
             $_SESSION['token'] = '-.-';
             session_write_close();
