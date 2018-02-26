@@ -28,13 +28,10 @@ abstract class AbstractController
     {
         $token = '';
         $route = $container->request->getUri()->getPath();
-        if(isset($route) && $route === '/v1/logout') {
+        // Login deixa passar
+        if(isset($route) && $route === '/v1/login') {
             return;
         } else {
-            // Login deixa passar
-            if(isset($route) && $route === '/v1/login') {
-                return;
-            }
             // Baerer Token ou OAuth 2.0
             if(isset($container->request->getHeaders()['HTTP_AUTHORIZATION'][0])){
                 $token = $container->request->getHeaders()['HTTP_AUTHORIZATION'][0];
@@ -47,6 +44,35 @@ abstract class AbstractController
             // Caso não expirou continua
             $this->verifyToken($token);
         }
+    }
+
+    /**
+     * Factory que gera uma instância do controller
+     *
+     * @return  AbstractController
+     */
+    public static function make()
+    {
+        return new static;
+    }
+
+    public function respond($value = array())
+    {
+        header('Content-type: application/json');
+        print json_encode($value);
+        die;
+    }
+
+    /**
+     * Esconder senhas
+     *
+     * @param   string     $password    Senha
+     *
+     * @return  string
+     */
+    public function hidePassword($password)
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
     }
 
     /**
@@ -96,39 +122,11 @@ abstract class AbstractController
             $_SESSION['token'] = '-.-';
             session_write_close();
             return $return;
-        } catch (\Firebase\JWT\ExpiredException $e) { // Expirou JWT
+        } catch (\Firebase\JWT\DomainException $e) { 
+            // Expirou JWT ou ?
             $return = array('response'=>$e->getMessage());
             $this->respond($return);
         }
-    }
-
-    /**
-     * Factory que gera uma instância do controller
-     *
-     * @return  AbstractController
-     */
-    public static function make()
-    {
-        return new static;
-    }
-
-    public function respond($value = array())
-    {
-        header('Content-type: application/json');
-        print json_encode($value);
-        die;
-    }
-
-    /**
-     * Esconder senhas
-     *
-     * @param   string     $password    Senha
-     *
-     * @return  string
-     */
-    public function hidePassword($password)
-    {
-        return password_hash($password, PASSWORD_DEFAULT);
     }
 
     /**
@@ -331,7 +329,7 @@ abstract class AbstractController
         $exp = new DateTime('+ 1 minutes');
         $payLoad = array(
             'iss' => 'http://github.com/hedreiandrade',
-            'aud' => "http://twitter.com",
+            'aud' => 'http://twitter.com',
             'iat' => $now->getTimeStamp(),
             'nbf' => $future->getTimeStamp(),
             'exp' => $exp->getTimeStamp()

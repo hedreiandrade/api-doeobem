@@ -182,5 +182,5 @@ class UsersController extends AbstractController
         }
         $this->respond($return);
     }
-    
+
 }
