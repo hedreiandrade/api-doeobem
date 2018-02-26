@@ -119,11 +119,13 @@ abstract class AbstractController
             $return['token'] = JWT::encode($payLoad, JWT_SECRET);
             $return['expire'] = $payLoad['exp'];
             session_start();
+            // Talvez seja errado fornecer token 
+            // verdadeiro via session
+            // JWT controla token por aplicação ?
             $_SESSION['token'] = '-.-';
             session_write_close();
             return $return;
         } catch (\Firebase\JWT\DomainException $e) { 
-            // Expirou JWT ou ?
             $return = array('response'=>$e->getMessage());
             $this->respond($return);
         }
