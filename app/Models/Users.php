@@ -1,5 +1,8 @@
 <?php
-
+/*
+ * @author Hedrei Andrade <hedreiandrade@gmail.com>
+ * @Version 1.0.0
+ */
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;

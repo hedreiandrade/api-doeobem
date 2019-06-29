@@ -1,5 +1,9 @@
 <?php
-
+/*
+ * @author Hedrei Andrade 
+ # hedreiandrade@gmail.com
+ * @Version 1.0.0
+ */
 require __DIR__ . '/../vendor/autoload.php';
 
 // Config para acessar o Banco de Dados

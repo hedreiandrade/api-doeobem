@@ -1,9 +1,13 @@
 <?php
-
+/*
+ * @author Hedrei Andrade <hedreiandrade@gmail.com>
+ * @Version 1.0.0
+ */
 namespace App\Controllers;
 
 use Datetime;
 use Firebase\JWT\JWT;
+use App\Models\Users;
 
 abstract class AbstractController
 {
@@ -33,11 +37,11 @@ abstract class AbstractController
             return;
         } else {
             // Baerer Token ou OAuth 2.0
-            if(isset($container->request->getHeaders()['HTTP_AUTHORIZATION'][0])){
+            if(isset($container->request->getHeaders()['HTTP_AUTHORIZATION'][0])) {
                 $token = $container->request->getHeaders()['HTTP_AUTHORIZATION'][0];
             } 
             // Pega token
-            if(isset(explode('Bearer ', $token)[1])){
+            if(isset(explode('Bearer ', $token)[1])) {
                 $token = explode('Bearer ', $token)[1];
             }
             // Verifica validade do token
@@ -89,6 +93,7 @@ abstract class AbstractController
             $return = array('response'=>'Please give me a token authorization.');
             $this->respond($return);
         }
+        session_start();
         try {
             /* 
                 Erros que podem ser retornados no decode
@@ -99,11 +104,20 @@ abstract class AbstractController
                 Retorno apenas o de ExpiredException
             */
             JWT::decode($token, JWT_SECRET, array('HS256'));
-        } catch (\Firebase\JWT\ExpiredException $e) { 
+            // Verifica senão foi realizado logout
+            // Pode travar aplicação caso hacker delete essa sessão token
+            // Resolver com variavel privada, true false para login || session token !
+            // Quando for deletado o token session .. seta privada tb ?
+            if (!isset($_SESSION['token'])) {
+                $this->respond(array('response'=>'User never logged in.'));
+            }
+        } catch (\Firebase\JWT\ExpiredException $e) {
+            session_unset();
             // Expirou JWT
             $return = array('response'=>$e->getMessage());
             $this->respond($return);
         }
+        session_write_close();
     }
 
     /**
@@ -120,8 +134,7 @@ abstract class AbstractController
             $return['expire'] = $payLoad['exp'];
             session_start();
             // Talvez seja errado fornecer token 
-            // verdadeiro via session
-            // JWT controla token por aplicação ?
+            // via session
             $_SESSION['token'] = '-.-';
             session_write_close();
             return $return;
@@ -163,7 +176,7 @@ abstract class AbstractController
                                         ->first();
             // Retorna null caso não exista
             // Passo para array []
-            if(!$return){
+            if(!$return) {
                 $return = [];
             }
         }
@@ -185,9 +198,11 @@ abstract class AbstractController
         $params = $request->getParams();
         // Validações pre-definidas no controller
         $this->getAttributeErrors($request);
+        // Verifica se e-mail já não está registrado
+        $this->CheckEmailRegistered($params['email']);
         // Esconde senhas
         $params['password'] = $this->hidePassword($params['password']);
-        // Verifica formatação básica de email
+        // Verifica formatação básica de e-mail
         $this->checkEmail($params['email']);
         // Realiza inserção retornando id
         $return = $this->activeModel->create($params);
@@ -210,9 +225,11 @@ abstract class AbstractController
         $params = $request->getParams();
         // Validações pre-definidas no controller
         $this->getAttributeErrors($request);
+        // Verifica se e-mail já não está registrado
+        $this->CheckEmailRegistered($params['email']);
         // Esconde senhas
         $params['password'] = $this->hidePassword($params['password']);
-        // Verifica formação básica de email
+        // Verifica formação básica de e-mail
         $this->checkEmail($params['email']);
         // Verifica existência do registro
         $id = $request->getAttribute('id');
@@ -243,7 +260,7 @@ abstract class AbstractController
     public function delete($request, $response)
     {
         $return = array();
-        // Verifica existencia do registro
+        // Verifica existência do registro
         $id = $request->getAttribute('id');
         $model = $this->activeModel->find($id);
         if (!isset($model)) {
@@ -279,9 +296,29 @@ abstract class AbstractController
     }
 
     /**
-     * Chama verificação básica para email
+     * Verifica se e-mail já não está registrado
+     * Pode dar erro de senha pq pega o 1º e-mail
+     * e poderia ter o mesmo e-mail com outra senha
+     * se não existice essa conferencia =)
      *
-     * @param   email     email a ser validado
+     * @param   e-mail para verificar existência
+     *
+     * @return  boolean|json 
+     */
+    public function CheckEmailRegistered($email = '')
+    {
+        $user = Users::where('email', $email)->first();
+        if($user) {
+            $result = array('response'=>"There is an account for this e-mail, try to recover your password.");
+            $this->respond($result);
+        }
+        return true;
+    }
+
+    /**
+     * Chama verificação básica para e-mail
+     *
+     * @param   e-mail a ser validado
      *
      * @return  boolean|json 
      */
@@ -296,9 +333,9 @@ abstract class AbstractController
     }
 
     /**
-     * Verifica validações básicas para email
+     * Verifica validações básicas para e-mail
      *
-     * @param   email     email a ser validado
+     * @param   e-mail     e-mail a ser validado
      *
      * @return  Array
      */
@@ -306,14 +343,14 @@ abstract class AbstractController
     {
         $return = array();
         if (!isset($email)) {
-            $return = array('response'=>"Email address '$email' is considered invalid.",
+            $return = array('response'=>"E-mail address '$email' is considered invalid.",
                             'flEmail'=>0);
         }
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $return = array('response'=>"Email address '$email' is considered valid.",
+            $return = array('response'=>"E-mail address '$email' is considered valid.",
                             'flEmail'=>1);
         } else {
-            $return = array('response'=>"Email address '$email' is considered invalid.",
+            $return = array('response'=>"E-mail address '$email' is considered invalid.",
                             'flEmail'=>0);
         }
 
@@ -328,7 +365,7 @@ abstract class AbstractController
     public function payLoad() {
         $now = new DateTime();
         $future = new DateTime();
-        $exp = new DateTime('+ 1 minutes');
+        $exp = new DateTime('+ 30 minutes');
         $payLoad = array(
             'iss' => 'http://github.com/hedreiandrade',
             'aud' => 'http://twitter.com',

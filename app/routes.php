@@ -1,5 +1,8 @@
 <?php
-
+/*
+ * @author Hedrei Andrade <hedreiandrade@gmail.com>
+ * @Version 1.0.0
+ */
 $app->get('/', function ($request, $response) {
     return 'HOME';
 });
@@ -7,9 +10,7 @@ $app->get('/', function ($request, $response) {
 $app->group('/v1', function () use ($app) {
 
     // Home
-    $app->get('/', function ($request, $response) {
-        return 'HOME V1';
-    });
+    $app->get('/', function ($request, $response) { return 'HOME V1';});
 
     // List All
     $app->get('/users', 'App\Controllers\UsersController:listing');
@@ -25,6 +26,9 @@ $app->group('/v1', function () use ($app) {
     $app->put('/user/{id}', 'App\Controllers\UsersController:update')
         ->add(App\Controllers\UsersController::getValidators());
 
+    // Registry Delete
+    $app->delete('/user/{id}', 'App\Controllers\UsersController:delete');
+
     // Change Password
     $app->post('/changePassword', 'App\Controllers\UsersController:changePassword');
 
@@ -33,9 +37,6 @@ $app->group('/v1', function () use ($app) {
 
     // Logout
     $app->post('/logout', 'App\Controllers\UsersController:logout');
-
-    // Registry Delete
-    $app->delete('/user/{id}', 'App\Controllers\UsersController:delete');
 
     // Login with Facebbok
     $app->post('/loginFacebook', 'App\Controllers\UsersController:loginFacebook');

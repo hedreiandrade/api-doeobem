@@ -1,5 +1,8 @@
 <?php
-
+/*
+ * @author Hedrei Andrade <hedreiandrade@gmail.com>
+ * @Version 1.0.0
+ */
 namespace App\Controllers;
 
 use App\Models\Users;
@@ -59,7 +62,7 @@ class UsersController extends AbstractController
             $return = array('response'=>"Please, give me your email and password.");
             $this->respond($return);
         }
-        // Busca usuário
+        // Busca primeiro usuário com esse e-mail
         $user = Users::where('email', $params['email'])->first();
         // Verifica email
         if (!$user) {
@@ -87,14 +90,14 @@ class UsersController extends AbstractController
      */
     public function logout($request, $response)
     {
-        session_start();
+        //session_start();
         // Verifica se usuário está logado. Caso sim, realiza o logout
         if (isset($_SESSION['token'])) {
             $return = array('response'=>'UserToken successfully logged off.');
             session_unset();
         } else {
             // Nunca logou
-            $return = array('response'=>'User was not logged in.');
+            $return = array('response'=>'User never logged in.');
         }
         session_write_close();
         $this->respond($return);
