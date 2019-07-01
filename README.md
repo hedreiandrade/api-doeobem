@@ -10,6 +10,6 @@ Configure api-doeobem\app\Config
 - db.php
 - jwt.php
 
-Test by Postman
+Test by Postman import the configuration(api-login.postman_collection.json) in attached
 
 Enjoy.
