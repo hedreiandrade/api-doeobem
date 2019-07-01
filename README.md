@@ -1,6 +1,11 @@
 
 Login API with SLIM 3, Composer, JWT security and CRUD for your new Models, you can use PostMan for test this API.
 
-Run the attached sql file(dblLoginAPI.sql)
+Clone the project (git clone https://github.com/hedreiandrade/api-doeobem.git)
+RUN (composer update) at the root of the project in your directory
+
+Run the attached sql file(dblLoginAPI.sql).
+
+Test by Postman
 
 Enjoy.
