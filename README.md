@@ -6,6 +6,10 @@ RUN (composer update) at the root of the project in your directory
 
 Run the attached sql file(dblLoginAPI.sql).
 
+Configure api-doeobem\app\Config
+- db.php
+- jwt.php
+
 Test by Postman
 
 Enjoy.
