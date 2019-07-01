@@ -1,0 +1,405 @@
+{
+	"info": {
+		"_postman_id": "bc73688b-9cb7-4652-82b2-f242efe26f1f",
+		"name": "api-login",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "listing/api-doeobem/v1/users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://api-doeobem/v1/users",
+					"protocol": "http",
+					"host": [
+						"api-doeobem"
+					],
+					"path": [
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getOne/api-doeobem/v1/user/1",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://api-doeobem/v1/user/1",
+					"protocol": "http",
+					"host": [
+						"api-doeobem"
+					],
+					"path": [
+						"v1",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "insert/api-doeobem/v1/user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Hedrei Andrade\",\r\n    \"nickname\": \"hedreiandrade\",\r\n    \"phone1\": null,\r\n    \"has_whatsapp\": 0,\r\n    \"phone2\": null,\r\n    \"email\": \"hedreiandrade@gmail.com\",\r\n    \"password\": \"394hca\",\r\n    \"postal_code\": null,\r\n    \"street\": null,\r\n    \"number\": null,\r\n    \"complement\": null,\r\n    \"neighborhood\": null,\r\n    \"city\": null,\r\n    \"state\": null,\r\n    \"country\": null,\r\n    \"recovery_key\": null,\r\n    \"first_access\": null,\r\n    \"last_access\": null,\r\n    \"access_count\": null,\r\n    \"receive_newsletter\": 0,\r\n    \"active\": 1,\r\n    \"created_at\": \"2018-01-23 12:48:01\",\r\n    \"updated_at\": \"2018-01-30 16:45:49\",\r\n    \"deleted_at\": null,\r\n    \"userscol\": null\r\n}"
+				},
+				"url": {
+					"raw": "http://api-doeobem/v1/user",
+					"protocol": "http",
+					"host": [
+						"api-doeobem"
+					],
+					"path": [
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login/api-doeobem/v1/login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"admin@user.com\",\n\t\"password\":\"123\"\n}"
+				},
+				"url": {
+					"raw": "http://api-doeobem/v1/login",
+					"protocol": "http",
+					"host": [
+						"api-doeobem"
+					],
+					"path": [
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout/api-doeobem/v1/logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://api-doeobem/v1/logout",
+					"protocol": "http",
+					"host": [
+						"api-doeobem"
+					],
+					"path": [
+						"v1",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update/api-doeobem/v1/user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1,\n\t\"name\": \"Hedrei\",\n\t\"nickname\": \"hdr\",\n\t\"email\": \"admin@user.com\",\n\t\"password\": \"123\"\n}\n"
+				},
+				"url": {
+					"raw": "http://api-doeobem/v1/user/1",
+					"protocol": "http",
+					"host": [
+						"api-doeobem"
+					],
+					"path": [
+						"v1",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete/api-doeobem/v1/user/15",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://api-doeobem/v1/user/28",
+					"protocol": "http",
+					"host": [
+						"api-doeobem"
+					],
+					"path": [
+						"v1",
+						"user",
+						"28"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ChangP/api-doeobem/v1/changePassword",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"hedreiandrade@gmail.com\",\n\t\"password\":\"394hca\",\n\t\"newPassword\":\"394hcaB\"\n}"
+				},
+				"url": {
+					"raw": "http://api-doeobem/v1/changePassword",
+					"protocol": "http",
+					"host": [
+						"api-doeobem"
+					],
+					"path": [
+						"v1",
+						"changePassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "gmailLog/api-doeobem/v1/loginGmail",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"hedreiandrade@gmail.com\",\n\t\"password\":\"394hca\"\n}"
+				},
+				"url": {
+					"raw": "http://api-doeobem/v1/loginGmail",
+					"protocol": "http",
+					"host": [
+						"api-doeobem"
+					],
+					"path": [
+						"v1",
+						"loginGmail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "faceLog/api-doeobem/v1/loginFacebook",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"hedreiandrade@gmail.com\",\n\t\"password\":\"394hca\"\n}"
+				},
+				"url": {
+					"raw": "http://api-doeobem/v1/loginFacebook",
+					"protocol": "http",
+					"host": [
+						"api-doeobem"
+					],
+					"path": [
+						"v1",
+						"loginFacebook"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "dcc0bdaa-db6c-497c-aadb-d257a73b69c1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "2a9ae950-54bd-4a15-a0a3-fd12a3ed97ab",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
