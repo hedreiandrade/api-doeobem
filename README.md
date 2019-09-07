@@ -12,4 +12,11 @@ Configure \api-doeobem\app\Config
 
 Test by Postman import the configuration(api-login.postman_collection.json) in attached
 
+Login
+
+{
+	"email":"admin@user.com",
+	"password":"123"
+}
+
 Enjoy.
