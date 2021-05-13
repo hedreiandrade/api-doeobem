@@ -60,6 +60,7 @@ class UsersController extends AbstractController
         // Verifica se foi informado email e senha
         if (!isset($params['email']) || !isset($params['password'])) {
             $return = array('response'=>"Please, give me your email and password.");
+            http_response_code(401);
             $this->respond($return);
         }
         // Busca primeiro usuário com esse e-mail
@@ -68,16 +69,21 @@ class UsersController extends AbstractController
         if (!$user) {
             $userEmail = $params['email'];
             $return = array('response'=>"The email you've entered: $userEmail doesn't match any account. Sign up for an account.");
+            http_response_code(401);
             $this->respond($return);
         }
+
         // Verifica senha
         if (!password_verify($params['password'], $user->password)) {
             $return = array('response'=>"User: $user->id Incorrect password. Try again.");
+            http_response_code(401);
         } else {
             // Gera Token
             $token = $this->createToken();
             $return = array('response' => $token);
+            http_response_code(200);
         }
+
         $this->respond($return);
     }
 
@@ -100,6 +106,7 @@ class UsersController extends AbstractController
             $return = array('response'=>'User never logged in.');
         }
         session_write_close();
+        http_response_code(200);
         $this->respond($return);
     }
 
@@ -136,6 +143,7 @@ class UsersController extends AbstractController
             $return = array('response'=>"User: $user->id password changed successfully.");
         }
         
+        http_response_code(200);
         $this->respond($return);
     }
 
@@ -161,6 +169,8 @@ class UsersController extends AbstractController
         } catch(\Facebook\Exceptions\FacebookSDKException $e) {
             $return = array('response'=>'Facebook SDK returned an error: ' . $e->getMessage());
         }
+
+        http_response_code(200);
         $this->respond($return);
     }
     
@@ -183,6 +193,8 @@ class UsersController extends AbstractController
         } catch(Exception $e) {
             $return = array('response'=>'Gmail SDK returned an error: ' . $e->getMessage());
         }
+
+        http_response_code(200);
         $this->respond($return);
     }
 

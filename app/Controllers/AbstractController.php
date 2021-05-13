@@ -91,6 +91,7 @@ abstract class AbstractController
         $return = '';
         if( $token === '') {
             $return = array('response'=>'Please give me a token authorization.');
+            http_response_code(401);
             $this->respond($return);
         }
         session_start();
@@ -109,12 +110,14 @@ abstract class AbstractController
             // Resolver com variavel privada, true false para login || session token !
             // Quando for deletado o token session .. seta privada tb ?
             if (!isset($_SESSION['token'])) {
+                http_response_code(401);
                 $this->respond(array('response'=>'User never logged in.'));
             }
         } catch (\Firebase\JWT\ExpiredException $e) {
             session_unset();
             // Expirou JWT
             $return = array('response'=>$e->getMessage());
+            http_response_code(401);
             $this->respond($return);
         }
         session_write_close();
@@ -140,6 +143,7 @@ abstract class AbstractController
             return $return;
         } catch (\Firebase\JWT\DomainException $e) { 
             $return = array('response'=>$e->getMessage());
+            http_response_code(200);
             $this->respond($return);
         }
     }
@@ -155,7 +159,7 @@ abstract class AbstractController
     public function listing($request, $response)
     {
         $return = $this->activeModel->get();
-        
+        http_response_code(200);
         $this->respond($return);
     }
 
@@ -180,7 +184,7 @@ abstract class AbstractController
                 $return = [];
             }
         }
-
+        http_response_code(200);
         $this->respond($return);
     }
 
@@ -207,7 +211,7 @@ abstract class AbstractController
         // Realiza inserção retornando id
         $return = $this->activeModel->create($params);
         $return = array('id' => $return->id);
-
+        http_response_code(201);
         $this->respond($return);
     }
 
@@ -246,6 +250,7 @@ abstract class AbstractController
             $return = array('response'=>"ERRO: id: $id can not be updated.");
         }
 
+        http_response_code(200);
         $this->respond($return);
     }
 
@@ -274,6 +279,7 @@ abstract class AbstractController
             $return = array('response'=>"ERRO: id: $id can not be deleted.");
         }
 
+        http_response_code(200);
         $this->respond($return);
     }
 
