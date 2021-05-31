@@ -54,7 +54,7 @@ class UsersController extends AbstractController
      */
     public function login($request, $response)
     {
-        $return = array();
+        $return = [];
         $params = $request->getParams();
         $this->checkEmail($params['email']);
         // Verifica se foi informado email e senha
@@ -119,7 +119,7 @@ class UsersController extends AbstractController
      */
     public function changePassword($request, $response)
     {
-        $return = array();
+        $return = [];
         $params = $request->getParams();
         // Verifica se foi informado email, senha e nova senha
         if (!isset($params['email']) || !isset($params['password']) || !isset($params['newPassword']) || !$params['newPassword']) {
@@ -156,7 +156,7 @@ class UsersController extends AbstractController
     */
     public function loginFacebook($request, $response)
     {
-        $return = array();
+        $return = [];
         $params = $request->getParams();
         try {
             $fbClient = new \Facebook\Facebook([
@@ -183,7 +183,7 @@ class UsersController extends AbstractController
     */
     public function loginGmail($request, $response)
     {
-        $return = array();
+        $return = [];
         $params = $request->getParams();
         try {
             $googleClient = new \Google_Client();

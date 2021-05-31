@@ -88,7 +88,7 @@ abstract class AbstractController
      * @return Json
      */
     public function verifyToken($token = '') {
-        $return = '';
+        $return = [];
         if( $token === '') {
             $return = array('response'=>'Please give me a token authorization.');
             http_response_code(401);
@@ -129,7 +129,7 @@ abstract class AbstractController
      * @return string|Json
      */
     public function createToken() {
-        $return = array();
+        $return = [];
         JWT::$leeway = LEE_WAY;
         try {
             $payLoad = $this->payLoad();
@@ -173,7 +173,7 @@ abstract class AbstractController
      */
     public function get($request, $response)
     {
-        $return = array();
+        $return = [];
         $id = $request->getAttribute('id', false);
         if ($id) {
             $return = $this->activeModel->whereKey($id)
@@ -198,7 +198,7 @@ abstract class AbstractController
      */
     public function insert($request, $response)
     {
-        $return = array();
+        $return = [];
         $params = $request->getParams();
         // Validações pre-definidas no controller
         $this->getAttributeErrors($request);
@@ -225,7 +225,7 @@ abstract class AbstractController
      */
     public function update($request, $response)
     {
-        $return = array();
+        $return =[];
         $params = $request->getParams();
         // Validações pre-definidas no controller
         $this->getAttributeErrors($request);
@@ -264,7 +264,7 @@ abstract class AbstractController
      */
     public function delete($request, $response)
     {
-        $return = array();
+        $return = [];
         // Verifica existência do registro
         $id = $request->getAttribute('id');
         $model = $this->activeModel->find($id);
@@ -347,7 +347,7 @@ abstract class AbstractController
      */
     public function errorEmail($email)
     {
-        $return = array();
+        $return = [];
         if (!isset($email)) {
             $return = array('response'=>"E-mail address '$email' is considered invalid.",
                             'flEmail'=>0);
