@@ -356,7 +356,7 @@ abstract class AbstractController
     public function errorEmail($email)
     {
         $return = [];
-        
+
         if (!isset($email)) {
             $return = array('response'=>"E-mail address '$email' is considered invalid.",
                             'flEmail'=>0);
