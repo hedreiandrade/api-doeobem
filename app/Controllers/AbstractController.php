@@ -31,6 +31,7 @@ abstract class AbstractController
     public function __construct($container)
     {
         $token = '';
+
         $route = $container->request->getUri()->getPath();
         // Login deixa passar
         if(isset($route) && $route === '/v1/login') {
@@ -89,6 +90,7 @@ abstract class AbstractController
      */
     public function verifyToken($token = '') {
         $return = [];
+
         if( $token === '') {
             $return = array('response'=>'Please give me a token authorization.');
             http_response_code(401);
@@ -130,6 +132,7 @@ abstract class AbstractController
      */
     public function createToken() {
         $return = [];
+
         JWT::$leeway = LEE_WAY;
         try {
             $payLoad = $this->payLoad();
@@ -174,6 +177,7 @@ abstract class AbstractController
     public function get($request, $response)
     {
         $return = [];
+
         $id = $request->getAttribute('id', false);
         if ($id) {
             $return = $this->activeModel->whereKey($id)
@@ -199,6 +203,7 @@ abstract class AbstractController
     public function insert($request, $response)
     {
         $return = [];
+
         $params = $request->getParams();
         // Validações pre-definidas no controller
         $this->getAttributeErrors($request);
@@ -225,7 +230,8 @@ abstract class AbstractController
      */
     public function update($request, $response)
     {
-        $return =[];
+        $return = [];
+
         $params = $request->getParams();
         // Validações pre-definidas no controller
         $this->getAttributeErrors($request);
@@ -265,6 +271,7 @@ abstract class AbstractController
     public function delete($request, $response)
     {
         $return = [];
+
         // Verifica existência do registro
         $id = $request->getAttribute('id');
         $model = $this->activeModel->find($id);
@@ -291,7 +298,8 @@ abstract class AbstractController
      */
     public function getAttributeErrors($request)
     {
-        $return = array();
+        $return = [];
+
         // Erros
         if ($request->getAttribute('has_errors')) {
             $return = $request->getAttribute('errors');
@@ -348,6 +356,7 @@ abstract class AbstractController
     public function errorEmail($email)
     {
         $return = [];
+        
         if (!isset($email)) {
             $return = array('response'=>"E-mail address '$email' is considered invalid.",
                             'flEmail'=>0);
