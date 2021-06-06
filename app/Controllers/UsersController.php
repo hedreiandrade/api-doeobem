@@ -77,7 +77,7 @@ class UsersController extends AbstractController
         // Verifica senha
         if (!password_verify($params['password'], $user->password)) {
             $return = array('response'=>"User: $user->id Incorrect password. Try again.");
-            //http_response_code(401);
+            http_response_code(401);
         } else {
             // Gera Token
             $token = $this->createToken();
