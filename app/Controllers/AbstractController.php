@@ -161,15 +161,17 @@ abstract class AbstractController
      */
     public function listing($request, $response)
     {
-        $return = $this->activeModel->get();
-        http_response_code(200);
+        $page = $request->getAttribute('page', false);
+        $perPage = $request->getAttribute('perPage', false);
+
+        $return = $this->activeModel->paginate($perPage, $columns = ['*'], 'page', $page);
+
         $this->respond($return);
     }
 
     /**
      * Obtém um registro específico
-     *
-     * @param   Request     $request    Objeto de requisição
+          * @param   Request     $request    Objeto de requisição
      * @param   Response    $response   Objeto de resposta
      *
      * @return  Json

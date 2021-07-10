@@ -6,14 +6,14 @@
 	},
 	"item": [
 		{
-			"name": "listing/api-doeobem/v1/users",
+			"name": "listing/api-doeobem/v1/users/1/5",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE2MjU5MjA0NzUsIm5iZiI6MTYyNTkyMDQ3NSwiZXhwIjoxNjI1OTIyMjc1fQ.ka0_gphlfgS-8tTDaa_Oj_KCuE7A_wfSIk7DWk95G3w",
 							"type": "string"
 						}
 					]
@@ -26,14 +26,16 @@
 					}
 				],
 				"url": {
-					"raw": "http://api-doeobem/v1/users",
+					"raw": "http://api-doeobem/v1/users/1/5",
 					"protocol": "http",
 					"host": [
 						"api-doeobem"
 					],
 					"path": [
 						"v1",
-						"users"
+						"users",
+						"1",
+						"5"
 					]
 				}
 			},
@@ -43,16 +45,11 @@
 			"name": "getOne/api-doeobem/v1/user/1",
 			"request": {
 				"auth": {
-					"type": "oauth2",
-					"oauth2": [
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "accessToken",
-							"value": "",
-							"type": "string"
-						},
-						{
-							"key": "addTokenTo",
-							"value": "header",
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE2MjA1NzQwNDksIm5iZiI6MTYyMDU3NDA0OSwiZXhwIjoxNjIwNTc1ODQ5fQ.k96E5ecrBiTAKW6pGIjPKHtzKFnc7QRfuKoAunn6XnY",
 							"type": "string"
 						}
 					]
@@ -121,7 +118,14 @@
 			"name": "login/api-doeobem/v1/login",
 			"request": {
 				"auth": {
-					"type": "noauth"
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE1OTU3NzI2MzYsIm5iZiI6MTU5NTc3MjYzNiwiZXhwIjoxNTk1Nzc0NDM2fQ.Fvv-zGTBweWgJDtfOX02w4otmxUGUucDypTaXQKb0so",
+							"type": "string"
+						}
+					]
 				},
 				"method": "POST",
 				"header": [
@@ -132,7 +136,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\":\"admin@user.com\",\n\t\"password\":\"123\"\n}"
+					"raw": "{\n\t\"email\":\"hedreiandrade@gmail.com\",\n\t\"password\":\"123\"\n}"
 				},
 				"url": {
 					"raw": "http://api-doeobem/v1/login",
@@ -190,7 +194,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE2MjI1NTc4NjcsIm5iZiI6MTYyMjU1Nzg2NywiZXhwIjoxNjIyNTU5NjY3fQ.irC5mL7Rjf-9iPsvn-_Qy89zPi0pGdkTOR98E_VLYWo",
 							"type": "string"
 						}
 					]
@@ -204,10 +208,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": 1,\n\t\"name\": \"Hedrei\",\n\t\"nickname\": \"hdr\",\n\t\"email\": \"admin@user.com\",\n\t\"password\": \"123\"\n}\n"
+					"raw": "{\n\t\"id\": 38,\n\t\"name\": \"Hedrei\",\n\t\"nickname\": \"hdr\",\n\t\"email\": \"admin@user.com\",\n\t\"password\": \"123\"\n}\n"
 				},
 				"url": {
-					"raw": "http://api-doeobem/v1/user/1",
+					"raw": "http://api-doeobem/v1/user/38",
 					"protocol": "http",
 					"host": [
 						"api-doeobem"
@@ -215,7 +219,7 @@
 					"path": [
 						"v1",
 						"user",
-						"1"
+						"38"
 					]
 				}
 			},
@@ -384,7 +388,6 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "dcc0bdaa-db6c-497c-aadb-d257a73b69c1",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -394,7 +397,6 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "2a9ae950-54bd-4a15-a0a3-fd12a3ed97ab",
 				"type": "text/javascript",
 				"exec": [
 					""
