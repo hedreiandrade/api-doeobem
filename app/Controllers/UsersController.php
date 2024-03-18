@@ -37,8 +37,8 @@ class UsersController extends AbstractController
             [
                 'name' => v::notEmpty(),
                 'nickname' => v::alnum()->noWhitespace()->length(1, 40),
-                'email' => v::notEmpty()->noWhitespace()->length(1, 200),
-                'password' => v::notEmpty()->noWhitespace()->length(1, 200)
+                'password' => v::notEmpty()->noWhitespace()->length(1, 200),
+                'email' => v::notEmpty()->noWhitespace()->length(1, 200) 
                 //'state' => v::noWhitespace()->length(1, 3),
                 //'country' => v::noWhitespace()->length(1, 2)
             ]
