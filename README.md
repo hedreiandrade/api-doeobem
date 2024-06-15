@@ -1,12 +1,13 @@
 Run By Docker 
 
 Clone the project (git clone https://github.com/hedreiandrade/api-doeobem.git)
-RUN (composer update) at the root of the project in your directory
 
 Inside your project api-doeobem, run :
 docker-compose up -d --build
 
-Run the attached sql file(dblLoginAPI.sql) inside mysql container(mysqlslim) container.
+Run the attached sql file(dblLoginAPI.sql) inside mysql in container(mysqlslim).
+
+RUN composer update at the root of the project, inside the container(api-doeobem)
 
 Configure in app/Config/db.php :
 
