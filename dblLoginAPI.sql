@@ -1,13 +1,27 @@
 -- --------------------------------------------------------
 -- Servidor:                     localhost
--- Versão do servidor:           5.7.14 - MySQL Community Server (GPL)
+-- Versão do servidor:           5.7.36 - MySQL Community Server (GPL)
 -- OS do Servidor:               Win64
--- HeidiSQL Versão:              9.5.0.5196
+-- HeidiSQL Versão:              11.3.0.6295
 -- --------------------------------------------------------
 
--- Create a DataBase(The name can be db_login) 
--- After running this creation table below
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+-- Copiando estrutura do banco de dados para api-doeobem
+CREATE DATABASE IF NOT EXISTS `api-doeobem` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `api-doeobem`;
+
+-- Copiando dados para a tabela api-doeobem.carros: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `carros` DISABLE KEYS */;
+/*!40000 ALTER TABLE `carros` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela api-doeobem.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(200) COLLATE utf8_bin DEFAULT NULL,
@@ -36,14 +50,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `userscol` varchar(45) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-DELETE FROM `users`;
+-- Copiando dados para a tabela api-doeobem.users: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`id`, `name`, `nickname`, `phone1`, `has_whatsapp`, `phone2`, `email`, `password`, `postal_code`, `street`, `number`, `complement`, `neighborhood`, `city`, `state`, `country`, `recovery_key`, `first_access`, `last_access`, `access_count`, `receive_newsletter`, `active`, `created_at`, `updated_at`, `deleted_at`, `userscol`) VALUES
+	(1, 'Admin', 'AdminUser', NULL, 0, NULL, 'admin@user.com', '$2y$10$DBajroqcjwLBfcHXvPEQk.6Mcv.3c0eOQcVQUPDLmI6RVi0Jtb13G', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2019-06-30 17:50:22', '2019-06-30 17:50:22', NULL, NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
--- RUN this SQL for create the first admin user, after this you can login and get a token to test this API
--- E-mail: admin@user.com
--- Password: 123
-
-INSERT INTO `users` (`id`, `name`, `nickname`, `phone1`, `has_whatsapp`, `phone2`, `email`, `password`, `postal_code`, `street`, `number`, `complement`, `neighborhood`, `city`, `state`, `country`, `recovery_key`, `first_access`, `last_access`, `access_count`, `receive_newsletter`, `active`, `created_at`, `updated_at`, `deleted_at`, `userscol`) VALUES (1, 'Admin', 'AdminUser', NULL, 0, NULL, 'admin@user.com', '$2y$10$DBajroqcjwLBfcHXvPEQk.6Mcv.3c0eOQcVQUPDLmI6RVi0Jtb13G', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2019-06-30 17:50:22', '2019-06-30 17:50:22', NULL, NULL);
-
--- RUN API BY POSTMAN
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
