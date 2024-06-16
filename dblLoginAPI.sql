@@ -17,10 +17,6 @@
 CREATE DATABASE IF NOT EXISTS `api-doeobem` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `api-doeobem`;
 
--- Copiando dados para a tabela api-doeobem.carros: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `carros` DISABLE KEYS */;
-/*!40000 ALTER TABLE `carros` ENABLE KEYS */;
-
 -- Copiando estrutura para tabela api-doeobem.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -55,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Copiando dados para a tabela api-doeobem.users: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `name`, `nickname`, `phone1`, `has_whatsapp`, `phone2`, `email`, `password`, `postal_code`, `street`, `number`, `complement`, `neighborhood`, `city`, `state`, `country`, `recovery_key`, `first_access`, `last_access`, `access_count`, `receive_newsletter`, `active`, `created_at`, `updated_at`, `deleted_at`, `userscol`) VALUES
-	(1, 'Admin', 'AdminUser', NULL, 0, NULL, 'admin@user.com', '$2y$10$DBajroqcjwLBfcHXvPEQk.6Mcv.3c0eOQcVQUPDLmI6RVi0Jtb13G', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2019-06-30 17:50:22', '2019-06-30 17:50:22', NULL, NULL);
+  (1, 'Admin', 'AdminUser', NULL, 0, NULL, 'admin@user.com', '$2y$10$DBajroqcjwLBfcHXvPEQk.6Mcv.3c0eOQcVQUPDLmI6RVi0Jtb13G', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2019-06-30 17:50:22', '2019-06-30 17:50:22', NULL, NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
