@@ -13,9 +13,11 @@ Run the attached sql file(dblLoginAPI.sql) inside mysql in container(mysqlslim).
 
 RUN composer update at the root of the project, inside the container(api-doeobem)
 
-Configure \api-doeobem\app\Config
+Create files and Configure \api-doeobem\app\Config
 - db.php
 - jwt.php
+- facebook.php
+- google.php
 
 Configure in app/Config/db.php :
 
@@ -45,9 +47,11 @@ RUN (composer update) at the root of the project in your directory
 
 Run the attached sql file(dblLoginAPI.sql).
 
-Configure \api-doeobem\app\Config
+Create files and Configure \api-doeobem\app\Config
 - db.php
 - jwt.php
+- facebook.php
+- google.php
 
 Test by Postman import the configuration(api-login.postman_collection.json) in attached
 
