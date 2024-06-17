@@ -4,7 +4,7 @@ Login API with Docker, SLIM 3, Composer, JWT security and CRUD for your new Mode
 
 RUN By Docker : 
 
-Clone the project 
+Clone the project :
 
 ```
 git clone https://github.com/hedreiandrade/api-doeobem.git
