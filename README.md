@@ -4,14 +4,17 @@ Login API with Docker, SLIM 3, Composer, JWT security and CRUD for your new Mode
 
 Run By Docker : 
 
-Clone the project (git clone https://github.com/hedreiandrade/api-doeobem.git)
+Clone the project ```git clone https://github.com/hedreiandrade/api-doeobem.git```
 
 Inside your project api-doeobem, run :
+
+```
 docker-compose up -d --build
+```
 
 Run the attached sql file(dblLoginAPI.sql) inside mysql in container(mysqlslim).
 
-RUN composer update at the root of the project, inside the container(api-doeobem)
+RUN ```composer update``` at the root of the project, inside the container(api-doeobem)
 
 Create files and Configure \api-doeobem\app\Config
 - db.php
@@ -42,8 +45,8 @@ Login
 
 Run By Wamp64/Xampp/Linux :
 
-Clone the project (git clone https://github.com/hedreiandrade/api-doeobem.git)
-RUN (composer update) at the root of the project in your directory
+Clone the project ``` git clone https://github.com/hedreiandrade/api-doeobem.git ```
+RUN ```composer update``` at the root of the project in your directory
 
 Run the attached sql file(dblLoginAPI.sql).
 
