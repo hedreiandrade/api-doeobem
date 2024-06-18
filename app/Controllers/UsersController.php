@@ -165,8 +165,8 @@ class UsersController extends AbstractController
         $params = $request->getParams();
         try {
             $fbClient = new \Facebook\Facebook([
-                'app_id' => APPID,
-                'app_secret' => APPSECRET,
+                'app_id' => APP_ID,
+                'app_secret' => APP_SECRET,
                 'default_graph_version' => 'v2.10'
                 //'default_access_token' => '{access-token}', // optional
             ]);
@@ -192,8 +192,8 @@ class UsersController extends AbstractController
         $params = $request->getParams();
         try {
             $googleClient = new \Google_Client();
-            $googleClient->setClientId(CLIENTID);
-            $googleClient->setClientSecret(CLIENTSECRETID);
+            $googleClient->setClientId(CLIENT_ID);
+            $googleClient->setClientSecret(CLIENT_SECRET_ID);
             // continue
         } catch(Exception $e) {
             $return = array('response'=>'Gmail SDK returned an error: ' . $e->getMessage());
