@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "bc73688b-9cb7-4652-82b2-f242efe26f1f",
+		"_postman_id": "4205a16e-4a32-49c5-834f-a976c186f2ed",
 		"name": "api-login",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2055362"
 	},
 	"item": [
 		{
@@ -13,7 +14,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE2MjU5MjA0NzUsIm5iZiI6MTYyNTkyMDQ3NSwiZXhwIjoxNjI1OTIyMjc1fQ.ka0_gphlfgS-8tTDaa_Oj_KCuE7A_wfSIk7DWk95G3w",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3MTk1NTc0NjUsIm5iZiI6MTcxOTU1NzQ2NSwiZXhwIjoxNzE5NTU5MjY1fQ.0GbYGlu5nSKjIDJ-IuXFqx3ceat4JshzG4NS7Vb6Rag",
 							"type": "string"
 						}
 					]
@@ -26,12 +27,14 @@
 					}
 				],
 				"url": {
-					"raw": "http://api-doeobem/v1/users/1/5",
+					"raw": "http://localhost:8009/public/v1/users/1/5",
 					"protocol": "http",
 					"host": [
-						"api-doeobem"
+						"localhost"
 					],
+					"port": "8009",
 					"path": [
+						"public",
 						"v1",
 						"users",
 						"1",
@@ -62,12 +65,14 @@
 					}
 				],
 				"url": {
-					"raw": "http://api-doeobem/v1/user/1",
+					"raw": "http://localhost:8009/public/v1/user/1",
 					"protocol": "http",
 					"host": [
-						"api-doeobem"
+						"localhost"
 					],
+					"port": "8009",
 					"path": [
+						"public",
 						"v1",
 						"user",
 						"1"
@@ -101,12 +106,14 @@
 					"raw": "{\r\n    \"name\": \"Hedrei Andrade\",\r\n    \"nickname\": \"hedreiandrade\",\r\n    \"phone1\": null,\r\n    \"has_whatsapp\": 0,\r\n    \"phone2\": null,\r\n    \"email\": \"hedreiandrade@gmail.com\",\r\n    \"password\": \"394hca\",\r\n    \"postal_code\": null,\r\n    \"street\": null,\r\n    \"number\": null,\r\n    \"complement\": null,\r\n    \"neighborhood\": null,\r\n    \"city\": null,\r\n    \"state\": null,\r\n    \"country\": null,\r\n    \"recovery_key\": null,\r\n    \"first_access\": null,\r\n    \"last_access\": null,\r\n    \"access_count\": null,\r\n    \"receive_newsletter\": 0,\r\n    \"active\": 1,\r\n    \"created_at\": \"2018-01-23 12:48:01\",\r\n    \"updated_at\": \"2018-01-30 16:45:49\",\r\n    \"deleted_at\": null,\r\n    \"userscol\": null\r\n}"
 				},
 				"url": {
-					"raw": "http://api-doeobem/v1/user",
+					"raw": "http://localhost:8009/public/v1/user",
 					"protocol": "http",
 					"host": [
-						"api-doeobem"
+						"localhost"
 					],
+					"port": "8009",
 					"path": [
+						"public",
 						"v1",
 						"user"
 					]
@@ -118,14 +125,7 @@
 			"name": "login/api-doeobem/v1/login",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE1OTU3NzI2MzYsIm5iZiI6MTU5NTc3MjYzNiwiZXhwIjoxNTk1Nzc0NDM2fQ.Fvv-zGTBweWgJDtfOX02w4otmxUGUucDypTaXQKb0so",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [
@@ -136,15 +136,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\":\"hedreiandrade@gmail.com\",\n\t\"password\":\"123\"\n}"
+					"raw": "{\n\t\"email\":\"admin@user.com\",\n\t\"password\":\"123\"\n}"
 				},
 				"url": {
-					"raw": "http://api-doeobem/v1/login",
+					"raw": "http://localhost:8009/public/v1/login",
 					"protocol": "http",
 					"host": [
-						"api-doeobem"
+						"localhost"
 					],
+					"port": "8009",
 					"path": [
+						"public",
 						"v1",
 						"login"
 					]
@@ -173,12 +175,14 @@
 					}
 				],
 				"url": {
-					"raw": "http://api-doeobem/v1/logout",
+					"raw": "http://localhost:8009/public/v1/logout",
 					"protocol": "http",
 					"host": [
-						"api-doeobem"
+						"localhost"
 					],
+					"port": "8009",
 					"path": [
+						"public",
 						"v1",
 						"logout"
 					]
@@ -211,12 +215,14 @@
 					"raw": "{\n\t\"id\": 38,\n\t\"name\": \"Hedrei\",\n\t\"nickname\": \"hdr\",\n\t\"email\": \"admin@user.com\",\n\t\"password\": \"123\"\n}\n"
 				},
 				"url": {
-					"raw": "http://api-doeobem/v1/user/38",
+					"raw": "http://localhost:8009/public/v1/user/38",
 					"protocol": "http",
 					"host": [
-						"api-doeobem"
+						"localhost"
 					],
+					"port": "8009",
 					"path": [
+						"public",
 						"v1",
 						"user",
 						"38"
@@ -250,12 +256,14 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://api-doeobem/v1/user/28",
+					"raw": "http://localhost:8009/public/v1/user/28",
 					"protocol": "http",
 					"host": [
-						"api-doeobem"
+						"localhost"
 					],
+					"port": "8009",
 					"path": [
+						"public",
 						"v1",
 						"user",
 						"28"
@@ -289,12 +297,14 @@
 					"raw": "{\n\t\"email\":\"hedreiandrade@gmail.com\",\n\t\"password\":\"394hca\",\n\t\"newPassword\":\"394hcaB\"\n}"
 				},
 				"url": {
-					"raw": "http://api-doeobem/v1/changePassword",
+					"raw": "http://localhost:8009/public/v1/changePassword",
 					"protocol": "http",
 					"host": [
-						"api-doeobem"
+						"localhost"
 					],
+					"port": "8009",
 					"path": [
+						"public",
 						"v1",
 						"changePassword"
 					]
@@ -332,12 +342,14 @@
 					"raw": "{\n\t\"email\":\"hedreiandrade@gmail.com\",\n\t\"password\":\"394hca\"\n}"
 				},
 				"url": {
-					"raw": "http://api-doeobem/v1/loginGmail",
+					"raw": "http://localhost:8009/public/v1/loginGmail",
 					"protocol": "http",
 					"host": [
-						"api-doeobem"
+						"localhost"
 					],
+					"port": "8009",
 					"path": [
+						"public",
 						"v1",
 						"loginGmail"
 					]
@@ -370,12 +382,14 @@
 					"raw": "{\n\t\"email\":\"hedreiandrade@gmail.com\",\n\t\"password\":\"394hca\"\n}"
 				},
 				"url": {
-					"raw": "http://api-doeobem/v1/loginFacebook",
+					"raw": "http://localhost:8009/public/v1/loginFacebook",
 					"protocol": "http",
 					"host": [
-						"api-doeobem"
+						"localhost"
 					],
+					"port": "8009",
 					"path": [
+						"public",
 						"v1",
 						"loginFacebook"
 					]
