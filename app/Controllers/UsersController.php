@@ -55,15 +55,22 @@ class UsersController extends AbstractController
     public function login($request, $response)
     {
         $return = [];
-
         $params = $request->getParams();
-        $this->checkEmail($params['email']);
+
         // Verifica se foi informado email e senha
         if (!isset($params['email']) || !isset($params['password'])) {
             $return = array('response'=>"Please, give me your email and password.");
             //http_response_code(401);
             $this->respond($return);
         }
+        if(!empty($params['email']) && !empty($params['password'])){
+            $this->checkEmail($params['email']);
+        }else{
+            $return = array('response'=>"Please, give me your email and password.");
+            //http_response_code(401);
+            $this->respond($return);
+        }
+
         // Busca primeiro usuário com esse e-mail
         $user = Users::where('email', $params['email'])->first();
         // Verifica email
@@ -76,8 +83,8 @@ class UsersController extends AbstractController
 
         // Verifica senha
         if (!password_verify($params['password'], $user->password)) {
-            $return = array('response'=>"User: $user->id Incorrect password. Try again.");
-            http_response_code(401);
+            $return = array('response'=>"Incorrect password. Try again.");
+            //http_response_code(401);
         } else {
             // Gera Token
             $token = $this->createToken();
