@@ -76,6 +76,6 @@ Login
 
 ---------------------------------------------------------------------------------------------
 
-Now, RUN the project [github.com/hedreiandrade/login_react_api-doeobem]
+Now, RUN the project github.com/hedreiandrade/login_react_api-doeobem
 
 Enjoy.
