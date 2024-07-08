@@ -44,4 +44,7 @@ $app->group('/v1', function () use ($app) {
     // Login with Gmail
     $app->post('/loginGmail', 'App\Controllers\UsersController:loginGmail');
 
+    // Verify token
+    $app->post('/verifyTokenRedirect', 'App\Controllers\JWTRedirectController:verifyTokenRedirect');
+
 });
