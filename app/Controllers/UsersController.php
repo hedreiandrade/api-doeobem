@@ -46,7 +46,7 @@ class UsersController extends AbstractController
     }
 
     /**
-     * Retorna chave de autenticação do usuario logado
+     * Retorna chave de autenticação do usuário logado
      *
      * @param   Request     $request    Objeto de requisição
      * @param   Response    $response   Objeto de resposta

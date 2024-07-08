@@ -11,6 +11,12 @@ use Firebase\JWT\Key;
 class JWTRedirectController
 {
 
+    /**
+     * Retorna 200 para token valido e 401 para expirado ou inválido.
+     *
+     * @param   Request     $request    Objeto de requisição
+     * @return  Json
+     */
     public function verifyTokenRedirect($request) {
         $params = $request->getParams();
         if($params['token'] == ''){
