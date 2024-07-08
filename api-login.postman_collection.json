@@ -14,7 +14,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3MTk1NTc0NjUsIm5iZiI6MTcxOTU1NzQ2NSwiZXhwIjoxNzE5NTU5MjY1fQ.0GbYGlu5nSKjIDJ-IuXFqx3ceat4JshzG4NS7Vb6Rag",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3MjAwNDMwNzEsIm5iZiI6MTcyMDA0MzA3MSwiZXhwIjoxNzIwMDQ0ODcxfQ.I8ADpzv7skbW-EbSWN-IsMsS-QoShr6G6RcFAHqyPRc",
 							"type": "string"
 						}
 					]
@@ -52,7 +52,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE2MjA1NzQwNDksIm5iZiI6MTYyMDU3NDA0OSwiZXhwIjoxNjIwNTc1ODQ5fQ.k96E5ecrBiTAKW6pGIjPKHtzKFnc7QRfuKoAunn6XnY",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3MTk3NDk0MDYsIm5iZiI6MTcxOTc0OTQwNiwiZXhwIjoxNzE5NzUxMjA2fQ.dVx62R15T_HIA8W4EGiiTUy6FXLMhiWbI1UdzOBUY0g",
 							"type": "string"
 						}
 					]
@@ -89,7 +89,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3MTk3NDk0MDYsIm5iZiI6MTcxOTc0OTQwNiwiZXhwIjoxNzE5NzUxMjA2fQ.dVx62R15T_HIA8W4EGiiTUy6FXLMhiWbI1UdzOBUY0g",
 							"type": "string"
 						}
 					]
@@ -103,7 +103,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Hedrei Andrade\",\r\n    \"nickname\": \"hedreiandrade\",\r\n    \"phone1\": null,\r\n    \"has_whatsapp\": 0,\r\n    \"phone2\": null,\r\n    \"email\": \"hedreiandrade@gmail.com\",\r\n    \"password\": \"394hca\",\r\n    \"postal_code\": null,\r\n    \"street\": null,\r\n    \"number\": null,\r\n    \"complement\": null,\r\n    \"neighborhood\": null,\r\n    \"city\": null,\r\n    \"state\": null,\r\n    \"country\": null,\r\n    \"recovery_key\": null,\r\n    \"first_access\": null,\r\n    \"last_access\": null,\r\n    \"access_count\": null,\r\n    \"receive_newsletter\": 0,\r\n    \"active\": 1,\r\n    \"created_at\": \"2018-01-23 12:48:01\",\r\n    \"updated_at\": \"2018-01-30 16:45:49\",\r\n    \"deleted_at\": null,\r\n    \"userscol\": null\r\n}"
+					"raw": "{\r\n    \"name\": \"Hedrei Andrade 2\",\r\n    \"nickname\": \"hedreiandrade2\",\r\n    \"phone1\": null,\r\n    \"has_whatsapp\": 0,\r\n    \"phone2\": null,\r\n    \"email\": \"hedreiandrade3@gmail.com\",\r\n    \"password\": \"394hca\",\r\n    \"postal_code\": null,\r\n    \"street\": null,\r\n    \"number\": null,\r\n    \"complement\": null,\r\n    \"neighborhood\": null,\r\n    \"city\": null,\r\n    \"state\": null,\r\n    \"country\": null,\r\n    \"recovery_key\": null,\r\n    \"first_access\": null,\r\n    \"last_access\": null,\r\n    \"access_count\": null,\r\n    \"receive_newsletter\": 0,\r\n    \"active\": 1,\r\n    \"created_at\": \"2018-01-23 12:48:01\",\r\n    \"updated_at\": \"2018-01-30 16:45:49\",\r\n    \"deleted_at\": null,\r\n    \"userscol\": null\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8009/public/v1/user",
@@ -162,7 +162,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3MTk3NDk0MDYsIm5iZiI6MTcxOTc0OTQwNiwiZXhwIjoxNzE5NzUxMjA2fQ.dVx62R15T_HIA8W4EGiiTUy6FXLMhiWbI1UdzOBUY0g",
 							"type": "string"
 						}
 					]
@@ -198,7 +198,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE2MjI1NTc4NjcsIm5iZiI6MTYyMjU1Nzg2NywiZXhwIjoxNjIyNTU5NjY3fQ.irC5mL7Rjf-9iPsvn-_Qy89zPi0pGdkTOR98E_VLYWo",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3MTk3NDk0MDYsIm5iZiI6MTcxOTc0OTQwNiwiZXhwIjoxNzE5NzUxMjA2fQ.dVx62R15T_HIA8W4EGiiTUy6FXLMhiWbI1UdzOBUY0g",
 							"type": "string"
 						}
 					]
@@ -212,10 +212,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": 38,\n\t\"name\": \"Hedrei\",\n\t\"nickname\": \"hdr\",\n\t\"email\": \"admin@user.com\",\n\t\"password\": \"123\"\n}\n"
+					"raw": "{\n\t\"name\": \"Hedrei\",\n\t\"nickname\": \"hdr\",\n\t\"email\": \"hedreiandrade2@gmail.com\",\n\t\"password\": \"394hca\"\n}\n"
 				},
 				"url": {
-					"raw": "http://localhost:8009/public/v1/user/38",
+					"raw": "http://localhost:8009/public/v1/user/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -225,7 +225,7 @@
 						"public",
 						"v1",
 						"user",
-						"38"
+						"2"
 					]
 				}
 			},
@@ -239,7 +239,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3MTk3NDk0MDYsIm5iZiI6MTcxOTc0OTQwNiwiZXhwIjoxNzE5NzUxMjA2fQ.dVx62R15T_HIA8W4EGiiTUy6FXLMhiWbI1UdzOBUY0g",
 							"type": "string"
 						}
 					]
@@ -256,7 +256,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8009/public/v1/user/28",
+					"raw": "http://localhost:8009/public/v1/user/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -266,7 +266,7 @@
 						"public",
 						"v1",
 						"user",
-						"28"
+						"3"
 					]
 				}
 			},
@@ -280,7 +280,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3MTk3NDk0MDYsIm5iZiI6MTcxOTc0OTQwNiwiZXhwIjoxNzE5NzUxMjA2fQ.dVx62R15T_HIA8W4EGiiTUy6FXLMhiWbI1UdzOBUY0g",
 							"type": "string"
 						}
 					]
@@ -294,7 +294,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\":\"hedreiandrade@gmail.com\",\n\t\"password\":\"394hca\",\n\t\"newPassword\":\"394hcaB\"\n}"
+					"raw": "{\n\t\"email\":\"hedreiandrade2@gmail.com\",\n\t\"password\":\"394hca\",\n\t\"newPassword\":\"394hcaB\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8009/public/v1/changePassword",
@@ -392,6 +392,51 @@
 						"public",
 						"v1",
 						"loginFacebook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VerifyToken/api-doeobem/public/v1/verifyTokenRedirect",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3MjA0MzE4NDgsIm5iZiI6MTcyMDQzMTg0OCwiZXhwIjoxNzIwNDMxODU4fQ.aivsgGzNGxoyV06Cv4oGIn9T6zNfzo9GglPMFGK4c3w\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8009/public/v1/verifyTokenRedirect",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8009",
+					"path": [
+						"public",
+						"v1",
+						"verifyTokenRedirect"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzExNTU0NDUwLCJuYmYiOjE3MTE1NTQ0NTAsImV4cCI6MTcxMTU1Nzk5MH0.IEJyUPRgWileIBYx5N1Q_WAZ6fHqBNjmLY5VbrP4TlE",
+							"disabled": true
+						}
 					]
 				}
 			},
