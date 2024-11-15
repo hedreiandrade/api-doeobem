@@ -315,7 +315,7 @@ abstract class AbstractController
      * Verifica se e-mail já não está registrado
      * Pode dar erro de senha pq pega o 1º e-mail
      * e poderia ter o mesmo e-mail com outra senha
-     * se não existice essa conferencia =)
+     * se não existisse essa conferencia =)
      *
      * @param   e-mail para verificar existência
      *
