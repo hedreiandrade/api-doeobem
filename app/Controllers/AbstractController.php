@@ -106,19 +106,20 @@ abstract class AbstractController
                 SignatureInvalidException | Message: Signature verification failed
                 Retorno apenas o de ExpiredException
             */
+
             JWT::decode($token, JWT_SECRET, array('HS256'));
             // Verifica senão foi realizado logout
             // Pode travar aplicação caso hacker delete essa sessão token
             // Resolver com variavel privada, true false para login || session token !
             // Quando for deletado o token session .. seta privada tb ?
-            if (!isset($_SESSION['token'])) {
+            /*if (!isset($_SESSION['token'])) {
                 http_response_code(401);
                 $this->respond(array('response'=>'User never logged in.'));
-            }
-        } catch (\Firebase\JWT\ExpiredException $e) {
+            }*/
+        } catch (\Exception $e) {
             session_unset();
             // Expirou JWT
-            $return = array('response'=>$e->getMessage());
+            $return = array('response'=> 'Invalid Token');
             http_response_code(401);
             $this->respond($return);
         }
@@ -382,7 +383,7 @@ abstract class AbstractController
     public function payLoad() {
         $now = new DateTime();
         $future = new DateTime();
-        $exp = new DateTime('+ 30 minutes');
+        $exp = new DateTime('+ 2 hours');
         $payLoad = array(
             'iss' => 'http://github.com/hedreiandrade',
             'aud' => 'http://twitter.com',
