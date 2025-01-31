@@ -2,7 +2,7 @@ Login API with PHP, Docker, SLIM 3, Composer, JWT security and CRUD for your new
 
 ---------------------------------------------------------------------------------------------
 
-RUN By Docker : 
+RUN by Docker : 
 
 Clone the project :
 
@@ -20,7 +20,7 @@ RUN the attached sql file(dblLoginAPI.sql) inside mysql in container(mysqlslim).
 
 RUN ```composer update``` at the root of the project, inside the container(api-doeobem)
 
-Create files and Configure \api-doeobem\app\Config
+Create files and configure \api-doeobem\app\Config
 - db.php
 - jwt.php
 - facebook.php
@@ -47,7 +47,7 @@ Login
 
 ---------------------------------------------------------------------------------------------
 
-RUN By Wamp64/Xampp/Linux :
+RUN by Wamp64/Xampp/Linux :
 
 Clone the project, RUN :
 
