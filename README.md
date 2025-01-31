@@ -10,7 +10,7 @@ Clone the project :
 git clone https://github.com/hedreiandrade/api-doeobem.git
 ```
 
-Inside your project api-doeobem, RUN :
+Inside your project api-doeobem, run :
 
 ```
 docker-compose up -d --build
