@@ -1,4 +1,4 @@
-Login API with PHP, Docker, SLIM 3, Composer, JWT security and CRUD for your new Models, you can use PostMan for test this API.
+Login API with PHP, Docker, SLIM 3,Composer, JWT security and CRUD for your new Models, you can use PostMan for test this API.
 
 ---------------------------------------------------------------------------------------------
 
@@ -16,9 +16,9 @@ Inside your project api-doeobem, RUN :
 docker-compose up -d --build
 ```
 
-RUN the attached sql file(dblLoginAPI.sql) inside mysql in container(mysqlslim).
+Run the attached sql file(dblLoginAPI.sql) inside mysql in container(mysqlslim).
 
-RUN ```composer update``` at the root of the project, inside the container(api-doeobem)
+Run ```composer update``` at the root of the project, inside the container(api-doeobem)
 
 Create files and configure \api-doeobem\app\Config
 - db.php
@@ -47,15 +47,15 @@ Login
 
 ---------------------------------------------------------------------------------------------
 
-RUN by Wamp64/Xampp/Linux :
+Run by Wamp64/Xampp/Linux :
 
-Clone the project, RUN :
+Clone the project, run :
 
 ```
 git clone https://github.com/hedreiandrade/api-doeobem.git 
 ```
 
-RUN ```composer update``` at the root of the project in your directory
+Run ```composer update``` at the root of the project in your directory
 
 Run the attached sql file(dblLoginAPI.sql).
 
@@ -76,7 +76,7 @@ Login
 
 ---------------------------------------------------------------------------------------------
 
-Now, RUN the project https://github.com/hedreiandrade/login_react_apidoeobem
+Now, run the project https://github.com/hedreiandrade/login_react_apidoeobem
 
 ---------------------------------------------------------------------------------------------
 
