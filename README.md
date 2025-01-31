@@ -38,7 +38,7 @@ Configure in app/Config/db.php :
 
 Test by Postman import the configuration(api-login.postman_collection.json) in attached
 
-Login
+Login:
 
 {
 	"email":"admin@user.com",
@@ -67,7 +67,7 @@ Create files and Configure \api-doeobem\app\Config
 
 Test by Postman import the configuration(api-login.postman_collection.json) in attached
 
-Login
+Login:
 
 {
 	"email":"admin@user.com",
