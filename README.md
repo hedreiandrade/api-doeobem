@@ -2,7 +2,7 @@ Login API with PHP, Docker, SLIM 3, Composer, JWT security and CRUD for your new
 
 ---------------------------------------------------------------------------------------------
 
-RUN by Docker : 
+Run by Docker : 
 
 Clone the project :
 
