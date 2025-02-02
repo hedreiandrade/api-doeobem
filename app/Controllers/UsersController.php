@@ -36,7 +36,7 @@ class UsersController extends AbstractController
         return new \DavidePastore\Slim\Validation\Validation(
             [
                 'name' => v::notEmpty(),
-                'nickname' => v::alnum()->noWhitespace()->length(1, 40),
+                //'nickname' => v::alnum()->noWhitespace()->length(1, 40),
                 'password' => v::notEmpty()->noWhitespace()->length(1, 200),
                 'email' => v::notEmpty()->noWhitespace()->length(1, 200) 
                 //'state' => v::noWhitespace()->length(1, 3),

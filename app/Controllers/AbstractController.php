@@ -34,7 +34,7 @@ abstract class AbstractController
 
         $route = $container->request->getUri()->getPath();
         // Login deixa passar
-        if(isset($route) && $route === 'v1/login') {
+        if(isset($route) && $route === 'v1/login' || $route === 'v1/user') {
             return;
         } else {
             // Baerer Token ou OAuth 2.0
