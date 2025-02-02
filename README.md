@@ -2,7 +2,7 @@ Login API with PHP, Docker, SLIM 3, Composer, JWT security and CRUD for your new
 
 ---------------------------------------------------------------------------------------------
 
-RUN By Docker : 
+Run by Docker : 
 
 Clone the project :
 
@@ -10,17 +10,17 @@ Clone the project :
 git clone https://github.com/hedreiandrade/api-doeobem.git
 ```
 
-Inside your project api-doeobem, RUN :
+Inside your project api-doeobem, run :
 
 ```
 docker-compose up -d --build
 ```
 
-RUN the attached sql file(dblLoginAPI.sql) inside mysql in container(mysqlslim).
+Run the attached sql file(dblLoginAPI.sql) inside mysql in container(mysqlslim).
 
-RUN ```composer update``` at the root of the project, inside the container(api-doeobem)
+Run ```composer update``` at the root of the project, inside the container(api-doeobem)
 
-Create files and Configure \api-doeobem\app\Config
+Create files and configure \api-doeobem\app\Config
 - db.php
 - jwt.php
 - facebook.php
@@ -38,7 +38,7 @@ Configure in app/Config/db.php :
 
 Test by Postman import the configuration(api-login.postman_collection.json) in attached
 
-Login
+Login:
 
 {
 	"email":"admin@user.com",
@@ -47,15 +47,15 @@ Login
 
 ---------------------------------------------------------------------------------------------
 
-RUN By Wamp64/Xampp/Linux :
+Run by Wamp64/Xampp/Linux :
 
-Clone the project, RUN :
+Clone the project, run :
 
 ```
 git clone https://github.com/hedreiandrade/api-doeobem.git 
 ```
 
-RUN ```composer update``` at the root of the project in your directory
+Run ```composer update``` at the root of the project in your directory
 
 Run the attached sql file(dblLoginAPI.sql).
 
@@ -67,7 +67,7 @@ Create files and Configure \api-doeobem\app\Config
 
 Test by Postman import the configuration(api-login.postman_collection.json) in attached
 
-Login
+Login:
 
 {
 	"email":"admin@user.com",
@@ -76,7 +76,7 @@ Login
 
 ---------------------------------------------------------------------------------------------
 
-Now, RUN the project https://github.com/hedreiandrade/login_react_apidoeobem
+Now, run the project https://github.com/hedreiandrade/login_react_apidoeobem
 
 ---------------------------------------------------------------------------------------------
 
