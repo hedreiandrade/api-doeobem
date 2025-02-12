@@ -37,7 +37,7 @@ class UsersController extends AbstractController
             [
                 'name' => v::notEmpty(),
                 //'nickname' => v::alnum()->noWhitespace()->length(1, 40),
-                'password' => v::notEmpty()->noWhitespace()->length(1, 200),
+                'password' => v::notEmpty()->noWhitespace()->length(8, 200)->regex('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/')->setTemplate('Enter a stronger password, with uppercase letters, lowercase letters, numbers and a special character.'),
                 'email' => v::notEmpty()->noWhitespace()->length(1, 200) 
                 //'state' => v::noWhitespace()->length(1, 3),
                 //'country' => v::noWhitespace()->length(1, 2)
