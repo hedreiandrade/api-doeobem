@@ -36,7 +36,8 @@ class Users extends Model
         'access_count',
         'receive_newsletter',
         'active',
-        'userscol'
+        'userscol',
+        'photo'
     ];
     protected $dates = [
         'created_at',

@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
 -- Servidor:                     localhost
--- Versão do servidor:           5.7.36 - MySQL Community Server (GPL)
--- OS do Servidor:               Win64
+-- Versão do servidor:           5.7.22 - MySQL Community Server (GPL)
+-- OS do Servidor:               Linux
 -- HeidiSQL Versão:              11.3.0.6295
 -- --------------------------------------------------------
 
@@ -45,13 +45,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `userscol` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+  `photo` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Copiando dados para a tabela api-doeobem.users: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela api-doeobem.users: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `name`, `nickname`, `phone1`, `has_whatsapp`, `phone2`, `email`, `password`, `postal_code`, `street`, `number`, `complement`, `neighborhood`, `city`, `state`, `country`, `recovery_key`, `first_access`, `last_access`, `access_count`, `receive_newsletter`, `active`, `created_at`, `updated_at`, `deleted_at`, `userscol`) VALUES
-  (1, 'Admin', 'AdminUser', NULL, 0, NULL, 'admin@user.com', '$2y$10$wqVR63xk9sCfdEamji2VGeaafDxN.rguEdQseKtts//u2v4eSNCRC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2019-06-30 17:50:22', '2019-06-30 17:50:22', NULL, NULL);
+INSERT INTO `users` (`id`, `name`, `nickname`, `phone1`, `has_whatsapp`, `phone2`, `email`, `password`, `postal_code`, `street`, `number`, `complement`, `neighborhood`, `city`, `state`, `country`, `recovery_key`, `first_access`, `last_access`, `access_count`, `receive_newsletter`, `active`, `created_at`, `updated_at`, `deleted_at`, `userscol`, `photo`) VALUES
+  (43, 'Admin', NULL, NULL, 0, NULL, 'admin@user.com', '$2y$10$pq4AKQq3ERUX7M9zfVM/z.Z2iFXwg2h0wdGuKdbbgHHV0YQ.yAsHq', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-02-15 19:24:22', '2025-02-15 19:24:22', NULL, NULL, 'http://localhost:8009/public/images/profile/2016949700eu.jpg');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
