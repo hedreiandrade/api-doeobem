@@ -88,6 +88,7 @@ class UsersController extends AbstractController
         } else {
             // Gera Token
             $token = $this->createToken();
+            $token['photo'] = $user->photo;
             $return = array('response' => $token);
             http_response_code(200);
         }
