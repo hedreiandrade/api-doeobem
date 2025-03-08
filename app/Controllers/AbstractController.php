@@ -251,9 +251,13 @@ abstract class AbstractController
         // Validações pre-definidas no controller
         $this->getAttributeErrors($request);
         // Verifica se e-mail já não está registrado
-        $this->CheckEmailRegistered($params['email']);
+        if(isset($params['email'])){
+            $this->CheckEmailRegistered($params['email']);
+        }
         // Esconde senhas
-        $params['password'] = $this->hidePassword($params['password']);
+        if(isset($params['password'])){
+            $params['password'] = $this->hidePassword($params['password']);
+        }
         if(isset($_FILES['photo'])){
             $directory = '/var/www/html/public/images/profile';
             if (!is_dir($directory)) {
@@ -265,7 +269,9 @@ abstract class AbstractController
             $params['photo'] = 'http://localhost:8009/public/images/profile/'.$imageName;
         }
         // Verifica formação básica de e-mail
-        $this->checkEmail($params['email']);
+        if(isset($params['email'])){
+            $this->checkEmail($params['email']);
+        }
         // Verifica existência do registro
         $id = $request->getAttribute('id');
         $model = $this->activeModel->find($id);
