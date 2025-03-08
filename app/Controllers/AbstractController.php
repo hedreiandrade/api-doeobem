@@ -246,10 +246,7 @@ abstract class AbstractController
     public function update($request, $response)
     {
         $return = [];
-
         $params = $request->getParams();
-        // Validações pre-definidas no controller
-        $this->getAttributeErrors($request);
         // Verifica se e-mail já não está registrado
         if(isset($params['email'])){
             $this->CheckEmailRegistered($params['email']);
