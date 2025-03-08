@@ -23,7 +23,7 @@ $app->group('/v1', function () use ($app) {
         ->add(App\Controllers\UsersController::getValidators());
 
     // Registry Update
-    $app->put('/user/{id}', 'App\Controllers\UsersController:update')
+    $app->post('/user/{id}', 'App\Controllers\UsersController:update')
         ->add(App\Controllers\UsersController::getValidators());
 
     // Registry Delete

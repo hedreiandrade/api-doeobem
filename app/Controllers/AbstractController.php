@@ -279,7 +279,7 @@ abstract class AbstractController
         // Enche model com os dados para o save
         $model->fill($params);
         if ($model->save()) { // Atualiza registro
-            $return = array('response'=>"id: $id updated successfully.");
+            $return = $model->toArray();
         } else {
             $return = array('response'=>"ERRO: id: $id can not be updated.");
         }
