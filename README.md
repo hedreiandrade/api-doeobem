@@ -1,4 +1,4 @@
-This is a micro-service API to login, login with another accounts, register, update profile, change password, etc. With PHP, Docker, SLIM 3, Composer, JWT security and CRUD for your new Models, you can use PostMan for test this API.
+This is a micro-service API to login, login with another accounts, register, update profile, change password, etc. With PHP, Docker, SLIM 3, Composer, JWT security and CRUD for your new models, you can use Postman for test this API.
 
 ---------------------------------------------------------------------------------------------
 
@@ -59,7 +59,7 @@ Run ```composer update``` at the root of the project in your directory
 
 Run the attached sql file(dblLoginAPI.sql).
 
-Create files and Configure \api-doeobem\app\Config
+Create files and configure \api-doeobem\app\Config
 - db.php
 - jwt.php
 - facebook.php
