@@ -26,6 +26,11 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 COPY . /var/www/html 
 
+# Configurações do PHP para aumentar limites de upload
+RUN echo "upload_max_filesize = 100M" > /usr/local/etc/php/conf.d/uploads.ini && \
+    echo "post_max_size = 100M" >> /usr/local/etc/php/conf.d/uploads.ini && \
+    echo "memory_limit = 300M" >> /usr/local/etc/php/conf.d/uploads.ini  # Ajuste opcional
+
 RUN a2enmod rewrite
 
 # Create system user to run Composer and Artisan Commands

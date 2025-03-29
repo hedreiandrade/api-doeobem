@@ -12,6 +12,13 @@ services:
       - ./:/var/www/html
     ports:
       - 8009:80
+    environment:
+      # Variáveis de ambiente para PHP (opcional, mas recomendado)
+      PHP_UPLOAD_MAX_FILESIZE: 100M
+      PHP_POST_MAX_SIZE: 100M
+      PHP_MEMORY_LIMIT: 300M
+    depends_on:
+      - mysqlslim
 
   mysqlslim:
     container_name: mysqlslim
