@@ -2,7 +2,7 @@ This is a micro-service API to login, login with another accounts, register, upd
 
 ---------------------------------------------------------------------------------------------
 
-![alt text](postman.png)
+![alt text](postman.jpg)
 
 Run by Docker : 
 
