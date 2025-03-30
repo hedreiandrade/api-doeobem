@@ -53,14 +53,14 @@ CREATE TABLE IF NOT EXISTS `posts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela api-doeobem.posts: ~3 rows (aproximadamente)
+-- Copiando dados para a tabela api-doeobem.posts: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
 INSERT INTO `posts` (`id`, `description`, `media_link`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'Desse FDS', 'http://localhost:8009/public/images/profile/286959604euuu.jpg', '2025-03-30 03:10:07', NULL, NULL),
-	(2, 'Bom dia pessoal, tem novidades no meu instagram', 'http://localhost:8009/public/images/profile/286959604euuu.jpg', '2025-03-30 03:11:18', NULL, NULL),
-	(3, 'Nossa hj está muito calor ', 'http://localhost:8009/public/images/profile/286959604euuu.jpg', '2025-03-30 03:12:19', NULL, NULL),
-	(4, 'Olá', 'http://localhost:8009/public/images/profile/286959604euuu.jpg', '2025-03-30 03:19:18', NULL, NULL),
-	(5, 'Oie', 'http://localhost:8009/public/images/profile/286959604euuu.jpg', '2025-03-30 03:19:27', NULL, NULL);
+	(2, 'Bom dia pessoal, tem novidades no meu instagram', 'http://localhost:8009/public/images/profile/286959604euu.jpg', '2025-03-30 03:11:18', NULL, NULL),
+	(3, 'Nossa hj está muito calor ', 'http://localhost:8009/public/images/profile/286959604eu.jpg', '2025-03-30 03:12:19', NULL, NULL),
+	(4, 'Olá', 'http://localhost:8009/public/images/profile/2869594euuu.jpg', '2025-03-30 03:19:18', NULL, NULL),
+	(5, 'Oie', 'http://localhost:8009/public/images/profile/2869604euuu.jpg', '2025-03-30 03:19:27', NULL, NULL);
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela api-doeobem.posts_users
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `posts_users` (
   CONSTRAINT `FK__users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela api-doeobem.posts_users: ~3 rows (aproximadamente)
+-- Copiando dados para a tabela api-doeobem.posts_users: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `posts_users` DISABLE KEYS */;
 INSERT INTO `posts_users` (`id`, `user_id`, `post_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 85, 1, '2025-03-30 03:10:36', NULL, NULL),
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Copiando dados para a tabela api-doeobem.users: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela api-doeobem.users: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `name`, `nickname`, `phone1`, `has_whatsapp`, `phone2`, `email`, `password`, `postal_code`, `street`, `number`, `complement`, `neighborhood`, `city`, `state`, `country`, `recovery_key`, `first_access`, `last_access`, `access_count`, `receive_newsletter`, `active`, `created_at`, `updated_at`, `deleted_at`, `userscol`, `photo`) VALUES
 	(60, 'admin@user.com', NULL, NULL, 0, NULL, 'admin@user.com', '$2y$10$DBRiDXdHGicq9HJYnKxODOXsQvWDLc0rU4rUuqfOr/SRNukwS06NC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-03-08 19:02:15', '2025-03-08 19:02:15', NULL, NULL, 'http://localhost:8009/public/images/profile/978727390euuu.jpg'),
