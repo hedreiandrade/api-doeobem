@@ -12,7 +12,7 @@ $app->group('/v1', function () use ($app) {
     // Home
     $app->get('/', function ($request, $response) { return 'HOME V1';});
 
-    // List All
+    // List with page and perPage
     $app->get('/users/{page}/{perPage}', 'App\Controllers\UsersController:listing');
 
     // List by Id
