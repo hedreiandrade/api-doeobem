@@ -3,7 +3,7 @@ version: "3.7"
 services:
 
   app:
-    container_name: api-doeobem
+    container_name: api-doeobem-feed
     build: 
       context: .
       dockerfile: Dockerfile
@@ -11,7 +11,7 @@ services:
     volumes:
       - ./:/var/www/html
     ports:
-      - 8009:80
+      - 8015:80
     environment:
       # Variáveis de ambiente para PHP (opcional, mas recomendado)
       PHP_UPLOAD_MAX_FILESIZE: 100M
@@ -21,7 +21,7 @@ services:
       - mysqlslim
 
   mysqlslim:
-    container_name: mysqlslim
+    container_name: mysqlslim-feed
     image: mysql:5.7.22
     restart: unless-stopped
     environment:
@@ -32,14 +32,4 @@ services:
     volumes:
       - ./.docker/mysql/dbdata:/var/lib/mysql
     ports:
-      - 3308:3306
-
-  phpmyadminslim:
-      image: phpmyadmin/phpmyadmin
-      restart: unless-stopped
-      ports:
-        - "8090:80"
-      environment:
-          PMA_HOST: mysql
-          PMA_PORT: 3306
-          MYSQL_ROOT_PASSWORD: 123
+      - 3315:3306
