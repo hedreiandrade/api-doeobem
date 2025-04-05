@@ -211,7 +211,7 @@ abstract class AbstractController
         // Validações pre-definidas no controller
         $this->getAttributeErrors($request);
         // Verifica se e-mail já não está registrado
-        $this->CheckEmailRegistered($params['email']);
+        $this->checkEmailRegistered($params['email']);
         // Esconde senhas
         if(isset($params['password'])){
             $params['password'] = $this->hidePassword($params['password']);     
@@ -343,7 +343,7 @@ abstract class AbstractController
      *
      * @return  boolean|json 
      */
-    public function CheckEmailRegistered($email = '')
+    public function checkEmailRegistered($email = '')
     {
         $user = Users::where('email', $email)->first();
         if($user) {
