@@ -1,5 +1,0 @@
-<?php
-
-// Configurações para acesso as APIs do google
-const CLIENT_ID = '';
-const CLIENT_SECRET_ID = '';
