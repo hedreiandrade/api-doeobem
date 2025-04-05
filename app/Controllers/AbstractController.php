@@ -247,10 +247,6 @@ abstract class AbstractController
     {
         $return = [];
         $params = $request->getParams();
-        // Verifica se e-mail já não está registrado
-        if(isset($params['email'])){
-            $this->CheckEmailRegistered($params['email']);
-        }
         // Esconde senhas
         if(isset($params['password'])){
             $params['password'] = $this->hidePassword($params['password']);
