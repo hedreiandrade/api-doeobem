@@ -1,28 +1,32 @@
-This is a micro-service API to feed, followers, posts etc. With PHP, Docker, SLIM 3, Composer, JWT security, you can use Postman for test this API, but first, run the project https://github.com/hedreiandrade/api-doeobem
+This is a micro-service API to login, login with another accounts, register, update profile, change password, etc. With PHP, Docker, SLIM 3, Composer, JWT security and CRUD for your new models, you can use Postman for test this API.
 
 ---------------------------------------------------------------------------------------------
+
+![alt text](postman.png)
 
 Run by Docker : 
 
 Clone the project :
 
 ```
-git clone https://github.com/hedreiandrade/api-doeobem-feed.git
+git clone https://github.com/hedreiandrade/api-doeobem.git
 ```
 
-Inside your project api-doeobem-feed, run :
+Inside your project api-doeobem, run :
 
 ```
 docker-compose up -d --build
 ```
 
-After run the attached sql file(dblLoginAPI.sql) in api-doeobem inside mysql in container(mysqlslim).
+Run the attached sql file(dblLoginAPI.sql) inside mysql in container(mysqlslim).
 
-Run ```composer update``` at the root of the project, inside the container(api-doeobem-feed)
+Run ```composer update``` at the root of the project, inside the container(api-doeobem)
 
 Create files and configure \api-doeobem\app\Config
 - db.php
 - jwt.php
+- facebook.php
+- google.php
 
 Configure in app/Config/db.php :
 
@@ -36,6 +40,13 @@ Configure in app/Config/db.php :
 
 Test by Postman import the configuration(api-login.postman_collection.json) in attached
 
+Login:
+
+{
+	"email":"admin@user.com",
+	"password":"2024Login@"
+}
+
 ---------------------------------------------------------------------------------------------
 
 Run by Wamp64/Xampp/Linux :
@@ -43,18 +54,27 @@ Run by Wamp64/Xampp/Linux :
 Clone the project, run :
 
 ```
-git clone https://github.com/hedreiandrade/api-doeobem-feed.git 
+git clone https://github.com/hedreiandrade/api-doeobem.git 
 ```
 
 Run ```composer update``` at the root of the project in your directory
 
-Run the attached sql file(dblLoginAPI.sql) in api-doeobem.
+Run the attached sql file(dblLoginAPI.sql).
 
 Create files and configure \api-doeobem\app\Config
 - db.php
 - jwt.php
+- facebook.php
+- google.php
 
-Test by Postman import the configuration(api-feed.postman_collection.json) in attached
+Test by Postman import the configuration(api-login.postman_collection.json) in attached
+
+Login:
+
+{
+	"email":"admin@user.com",
+	"password":"2024Login@"
+}
 
 ---------------------------------------------------------------------------------------------
 
