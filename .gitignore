@@ -10,6 +10,8 @@ TODOS.txt
 /.docker
 app/Config/db.php
 app/Config/jwt.php
+app/Config/facebook.php
+app/Config/google.php
 .idea/api-doeobem.iml
 .idea/modules.xml
 public/images/
