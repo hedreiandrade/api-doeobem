@@ -78,7 +78,7 @@ Login:
 
 ---------------------------------------------------------------------------------------------
 
-Now, run the project https://github.com/hedreiandrade/login_react_apidoeobem
+Now, run the projects: https://github.com/hedreiandrade/api-doeobem-feed | https://github.com/hedreiandrade/login_react_apidoeobem
 
 ---------------------------------------------------------------------------------------------
 
