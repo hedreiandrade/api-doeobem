@@ -19,6 +19,8 @@ services:
       PHP_MEMORY_LIMIT: 300M
     depends_on:
       - mysqlslim
+    networks:
+      - api-doeobem
 
   mysqlslim:
     container_name: mysqlslim
@@ -33,6 +35,8 @@ services:
       - ./.docker/mysql/dbdata:/var/lib/mysql
     ports:
       - 3308:3306
+    networks:
+      - api-doeobem
 
   phpmyadminslim:
       image: phpmyadmin/phpmyadmin
@@ -40,6 +44,13 @@ services:
       ports:
         - "8090:80"
       environment:
-          PMA_HOST: mysql
+          PMA_HOST: mysqlslim
           PMA_PORT: 3306
           MYSQL_ROOT_PASSWORD: 123
+      networks:
+        - api-doeobem
+
+networks:
+  api-doeobem:
+    name: api-doeobem
+    driver: bridge
