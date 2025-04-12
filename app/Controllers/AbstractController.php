@@ -248,6 +248,9 @@ abstract class AbstractController
     {
         $return = [];
         $params = $request->getParams();
+        $id = $request->getAttribute('id');
+        // Verifica se e-mail já não está registrado
+        $this->checkEmailRegisteredUpdate($params['email'], $id);
         // Esconde senhas
         if(isset($params['password'])){
             $params['password'] = $this->hidePassword($params['password']);
@@ -267,7 +270,6 @@ abstract class AbstractController
             $this->checkEmail($params['email']);
         }
         // Verifica existência do registro
-        $id = $request->getAttribute('id');
         $model = $this->activeModel->find($id);
         if (!isset($model)) {
             $result = array('response'=>"id: $id not found the same may have been previously deleted.");
@@ -350,6 +352,34 @@ abstract class AbstractController
         if($user) {
             $result = array('response'=>"There is an account for this e-mail, try to recover your password.");
             $this->respond($result);
+        }
+        return true;
+    }
+
+        /**
+     * Verifica se e-mail já não está registrado
+     * Pode dar erro de senha pq pega o 1º e-mail
+     * e poderia ter o mesmo e-mail com outra senha
+     * se não existisse essa conferencia =)
+     *
+     * @param   e-mail para verificar existência
+     *
+     * @return  boolean|json 
+     */
+    public function checkEmailRegisteredUpdate($email = '', $id)
+    {
+        $user = Users::find($id);
+        if($user->email === $email){
+            return true;
+        }else{
+            $otherUser = Users::where('email', $email)->first();
+            if($otherUser){
+                http_response_code(401);
+                $result = array('response'=>"There is an account for this e-mail, try to recover your password.");
+                $this->respond($result);
+            }else{
+                return true;
+            }
         }
         return true;
     }
