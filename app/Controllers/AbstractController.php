@@ -137,7 +137,7 @@ abstract class AbstractController
         JWT::$leeway = LEE_WAY;
         try {
             $payLoad = $this->payLoad();
-            $return['token'] = JWT::encode($payLoad, JWT_SECRET);
+            $return['token'] = JWT::encode($payLoad, JWT_SECRET, 'HS256');
             $return['expire'] = $payLoad['exp'];
             session_start();
             // Talvez seja errado fornecer token 
