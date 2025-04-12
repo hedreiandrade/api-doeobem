@@ -374,7 +374,7 @@ abstract class AbstractController
         }else{
             $otherUser = Users::where('email', $email)->first();
             if($otherUser){
-                http_response_code(401);
+                http_response_code(203);
                 $result = array('response'=>"There is an account for this e-mail, try to recover your password.");
                 $this->respond($result);
             }else{
