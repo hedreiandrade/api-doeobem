@@ -7,6 +7,7 @@ namespace App\Controllers;
 
 use Datetime;
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use App\Models\Users;
 
 abstract class AbstractController
@@ -107,7 +108,7 @@ abstract class AbstractController
                 Retorno apenas o de ExpiredException
             */
 
-            JWT::decode($token, JWT_SECRET, array('HS256'));
+            JWT::decode($token, new Key(JWT_SECRET, 'HS256'));
             // Verifica senão foi realizado logout
             // Pode travar aplicação caso hacker delete essa sessão token
             // Resolver com variavel privada, true false para login || session token !
