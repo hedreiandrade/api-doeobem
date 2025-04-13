@@ -135,8 +135,8 @@ class UsersController extends AbstractController
 
         $params = $request->getParams();
         // Verifica se foi informado email, senha e nova senha
-        if (!isset($params['email']) || !isset($params['password']) || !isset($params['newPassword']) || !$params['newPassword']) {
-            $return = array('response'=>"Please, give me your email, password and the new password.");
+        if (!isset($params['email']) || !isset($params['password']) || !isset($params['newPassword']) || !$params['newPassword'] || !isset($params['confirmNewPassword']) || !$params['confirmNewPassword']) {
+            $return = array('response'=>"Please, give me your email, password, new password and confirm new password");
             $this->respond($return);
         }
         // Verifica cadastro do email
