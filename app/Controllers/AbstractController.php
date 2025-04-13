@@ -218,7 +218,7 @@ abstract class AbstractController
             $params['password'] = $this->hidePassword($params['password']);     
         }
         if(isset($_FILES['photo'])){
-            $directory = '/var/www/html/public/images/profile';
+            $directory = PUBLIC_PATH.'/images/profile';
             if (!is_dir($directory)) {
                 mkdir($directory, 0777, true);
             }
@@ -256,7 +256,7 @@ abstract class AbstractController
             $params['password'] = $this->hidePassword($params['password']);
         }
         if(isset($_FILES['photo'])){
-            $directory = '/var/www/html/public/images/profile';
+            $directory = PUBLIC_PATH.'/images/profile';
             if (!is_dir($directory)) {
                 mkdir($directory, 0777, true);
             }
