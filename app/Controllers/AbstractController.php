@@ -224,8 +224,8 @@ abstract class AbstractController
             }
             $file = $_FILES['photo'];
             $imageName = rand().$file['name'];
-            move_uploaded_file($file['tmp_name'], "/var/www/html/public".'/images/profile/'.$imageName);
-            $params['photo'] = 'http://localhost:8009/public/images/profile/'.$imageName;
+            move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/profile/'.$imageName);
+            $params['photo'] = URL_PUBLIC.'/images/profile/'.$imageName;
         }
         // Verifica formatação básica de e-mail
         $this->checkEmail($params['email']);
@@ -262,8 +262,8 @@ abstract class AbstractController
             }
             $file = $_FILES['photo'];
             $imageName = rand().$file['name'];
-            move_uploaded_file($file['tmp_name'], "/var/www/html/public".'/images/profile/'.$imageName);
-            $params['photo'] = 'http://localhost:8009/public/images/profile/'.$imageName;
+            move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/profile/'.$imageName);
+            $params['photo'] = URL_PUBLIC.'/images/profile/'.$imageName;
         }
         // Verifica formação básica de e-mail
         if(isset($params['email'])){
