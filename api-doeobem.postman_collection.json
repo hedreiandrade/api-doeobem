@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "4205a16e-4a32-49c5-834f-a976c186f2ed",
-		"name": "api-login",
+		"name": "api-doeobem",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "2055362"
 	},
@@ -14,7 +14,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzQ0NDUwODQ2LCJuYmYiOjE3NDQ0NTA4NDYsImV4cCI6MTc0NDQ3OTY0Nn0.02BOs4_sdCC__wer-WVHTGBiASqVDLiOWDytKb4A1VM",
 							"type": "string"
 						}
 					]
@@ -52,7 +52,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3MTk3NDk0MDYsIm5iZiI6MTcxOTc0OTQwNiwiZXhwIjoxNzE5NzUxMjA2fQ.dVx62R15T_HIA8W4EGiiTUy6FXLMhiWbI1UdzOBUY0g",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzQ0NDUwODQ2LCJuYmYiOjE3NDQ0NTA4NDYsImV4cCI6MTc0NDQ3OTY0Nn0.02BOs4_sdCC__wer-WVHTGBiASqVDLiOWDytKb4A1VM",
 							"type": "string"
 						}
 					]
@@ -280,7 +280,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3MTk3NDk0MDYsIm5iZiI6MTcxOTc0OTQwNiwiZXhwIjoxNzE5NzUxMjA2fQ.dVx62R15T_HIA8W4EGiiTUy6FXLMhiWbI1UdzOBUY0g",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzQ0NTQ0MTE0LCJuYmYiOjE3NDQ1NDQxMTQsImV4cCI6MTc0NDU3MjkxNH0.NdJRIoWcn0u6sKvgoy1OFFVeC8ZuIyToocGY-iMlFTI",
 							"type": "string"
 						}
 					]
@@ -294,7 +294,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\":\"hedreiandrade2@gmail.com\",\n\t\"password\":\"394hca\",\n\t\"newPassword\":\"394hcaB\"\n}"
+					"raw": "{\n\t\"email\":\"hedreiandrade2@gmail.com\",\n\t\"password\":\"394hca@!\",\n\t\"newPassword\":\"394hcaB@!\",\n    \"confirmNewPassword\":\"394hcaB@!\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8009/public/v1/changePassword",

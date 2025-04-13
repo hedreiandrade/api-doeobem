@@ -39,7 +39,7 @@ Configure in app/Config/db.php :
 	const CHARSET = 'utf8';
 	const COLLATION = 'utf8_general_ci';
 
-Test by Postman import the configuration(api-login.postman_collection.json) in attached
+Test by Postman import the configuration(api-doeobem.postman_collection.json) in attached
 
 Login:
 
@@ -69,7 +69,7 @@ Create files and configure \api-doeobem\app\Config
 - facebook.php
 - google.php
 
-Test by Postman import the configuration(api-login.postman_collection.json) in attached
+Test by Postman import the configuration(api-doeobem.postman_collection.json) in attached
 
 Login:
 
