@@ -7,9 +7,8 @@ namespace App\Controllers;
 
 use App\Models\Users;
 use Respect\Validation\Validator as v;
-use Firebase\JWT\JWT;
 
-class UsersController extends AbstractController
+class UsersController extends BaseController
 {
 
     /**
@@ -204,7 +203,7 @@ class UsersController extends AbstractController
             $googleClient->setClientId(CLIENT_ID);
             $googleClient->setClientSecret(CLIENT_SECRET_ID);
             // continue
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
             $return = array('response'=>'Gmail SDK returned an error: ' . $e->getMessage());
         }
 

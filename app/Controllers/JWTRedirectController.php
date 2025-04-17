@@ -17,7 +17,8 @@ class JWTRedirectController
      * @param   Request     $request    Objeto de requisição
      * @return  Json
      */
-    public function verifyTokenRedirect($request) {
+    public function verifyTokenRedirect($request) 
+    {
         $params = $request->getParams();
         if($params['token'] == ''){
             http_response_code(200);

@@ -7,10 +7,9 @@ namespace App\Controllers;
 
 use Datetime;
 use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
 use App\Models\Users;
 
-abstract class AbstractController
+abstract class BaseController
 {
     
     /**
@@ -31,35 +30,6 @@ abstract class AbstractController
      */
     public function __construct($container)
     {
-        $token = '';
-
-        $route = $container->request->getUri()->getPath();
-        // Login deixa passar
-        if(isset($route) && $route === 'v1/login' || $route === 'v1/user') {
-            return;
-        } else {
-            // Baerer Token ou OAuth 2.0
-            if(isset($container->request->getHeaders()['HTTP_AUTHORIZATION'][0])) {
-                $token = $container->request->getHeaders()['HTTP_AUTHORIZATION'][0];
-            } 
-            // Pega token
-            if(isset(explode('Bearer ', $token)[1])) {
-                $token = explode('Bearer ', $token)[1];
-            }
-            // Verifica validade do token
-            // Caso não expirou continua
-            $this->verifyToken($token);
-        }
-    }
-
-    /**
-     * Factory que gera uma instância do controller
-     *
-     * @return  AbstractController
-     */
-    public static function make()
-    {
-        return new static;
     }
 
     public function respond($value = array())
@@ -82,52 +52,6 @@ abstract class AbstractController
     }
 
     /**
-     * Verifica token fornecido
-     * Usar tipos Baerer Token ou OAuth 2.0
-     *
-     * @param   String     $token    Token
-     *
-     * @return Json
-     */
-    public function verifyToken($token = '') {
-        $return = [];
-
-        if( $token === '') {
-            $return = array('response'=>'Please give me a token authorization.');
-            http_response_code(401);
-            $this->respond($return);
-        }
-        session_start();
-        try {
-            /* 
-                Erros que podem ser retornados no decode
-                caso token esteja com erro de digitação:
-                UnexpectedValueException | Message: Wrong number of segments
-                DomainException | Message: Unexpected control character found
-                SignatureInvalidException | Message: Signature verification failed
-                Retorno apenas o de ExpiredException
-            */
-
-            JWT::decode($token, new Key(JWT_SECRET, 'HS256'));
-            // Verifica senão foi realizado logout
-            // Pode travar aplicação caso hacker delete essa sessão token
-            // Resolver com variavel privada, true false para login || session token !
-            // Quando for deletado o token session .. seta privada tb ?
-            /*if (!isset($_SESSION['token'])) {
-                http_response_code(401);
-                $this->respond(array('response'=>'User never logged in.'));
-            }*/
-        } catch (\Exception $e) {
-            session_unset();
-            // Expirou JWT
-            $return = array('response'=> 'Invalid Token');
-            http_response_code(401);
-            $this->respond($return);
-        }
-        session_write_close();
-    }
-
-    /**
      * Cria um novo token
      *
      * @return string|Json
@@ -146,7 +70,7 @@ abstract class AbstractController
             $_SESSION['token'] = '-.-';
             session_write_close();
             return $return;
-        } catch (\Firebase\JWT\DomainException $e) { 
+        } catch (\Firebase\JWT\ExpiredException $e) { 
             $return = array('response'=>$e->getMessage());
             http_response_code(200);
             $this->respond($return);
