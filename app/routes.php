@@ -7,20 +7,24 @@ $app->get('/', function ($request, $response) {
     return 'HOME';
 });
 
-$app->group('/v1', function () use ($app) {
+// Registry Insert
+$app->post('/v1/user', 'App\Controllers\UsersController:insert')
+    ->add(App\Controllers\UsersController::getValidators());
 
+// Login
+$app->post('/v1/login', 'App\Controllers\UsersController:login');
+
+// Verify token
+$app->post('/v1/verifyTokenRedirect', 'App\Controllers\UsersController:verifyTokenRedirect');
+
+$app->group('/v1', function () use ($app) {
     // Home
     $app->get('/', function ($request, $response) { return 'HOME V1';});
-
     // List with page and perPage
     $app->get('/users/{page}/{perPage}', 'App\Controllers\UsersController:listing');
 
     // List by Id
     $app->get('/user/{id}', 'App\Controllers\UsersController:get');
-
-    // Registry Insert
-    $app->post('/user', 'App\Controllers\UsersController:insert')
-        ->add(App\Controllers\UsersController::getValidators());
 
     // Registry Update
     $app->post('/user/{id}', 'App\Controllers\UsersController:update')
@@ -32,9 +36,6 @@ $app->group('/v1', function () use ($app) {
     // Change Password
     $app->post('/changePassword', 'App\Controllers\UsersController:changePassword');
 
-    // Login
-    $app->post('/login', 'App\Controllers\UsersController:login');
-
     // Logout
     $app->post('/logout', 'App\Controllers\UsersController:logout');
 
@@ -43,8 +44,5 @@ $app->group('/v1', function () use ($app) {
 
     // Login with Gmail
     $app->post('/loginGmail', 'App\Controllers\UsersController:loginGmail');
-
-    // Verify token
-    $app->post('/verifyTokenRedirect', 'App\Controllers\JWTRedirectController:verifyTokenRedirect');
-
-});
+    
+})->add($app->getContainer()->get('Authenticate'));
