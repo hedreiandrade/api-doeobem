@@ -91,6 +91,7 @@ class UsersController extends BaseController
             $token = $this->createToken();
             $token['photo'] = $user->photo;
             $token['user_id'] = $user->id;
+            $token['name'] = $user->name;
             $return = array('response' => $token);
             http_response_code(200);
         }
