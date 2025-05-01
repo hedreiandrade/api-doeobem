@@ -134,17 +134,17 @@ class UsersController extends BaseController
     {
         $params = $request->getParams();
         if($params['token'] == ''){
-            http_response_code(200);
-            $this->respond(['message' => 'Por favor forneceder token', 'status'=> 401]);
+            http_response_code(401);
+            $this->respond(['message' => 'Por favor forneceder token']);
         }
         try {
             JWT::decode($params['token'], new Key(JWT_SECRET, 'HS256'));
         } catch(\Exception $e) {
-            http_response_code(200);
-            $this->respond(['message' => $e->getMessage(), 'status'=> 401]);
+            http_response_code(401);
+            $this->respond(['message' => $e->getMessage()]);
         }
         http_response_code(200);
-        return $this->respond(['message' => 'Validado', 'status'=> 200]);
+        return $this->respond(['message' => 'Validado']);
     }
 
     /**
