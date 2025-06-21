@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `followers` (
   KEY `idx_follower_id` (`follower_id`),
   CONSTRAINT `fk_followers_follower` FOREIGN KEY (`follower_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_followers_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela api-doeobem.followers: ~10 rows (aproximadamente)
 /*!40000 ALTER TABLE `followers` DISABLE KEYS */;
@@ -74,16 +74,14 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela api-doeobem.posts: ~4 rows (aproximadamente)
+-- Copiando dados para a tabela api-doeobem.posts: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
 INSERT INTO `posts` (`id`, `description`, `media_link`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'Desse FDS', 'http://localhost:8009/public/images/profile/286959604euuu.jpg', '2025-03-30 03:10:07', NULL, NULL),
-	(2, 'Bom dia pessoal, tem novidades no meu instagram', 'http://localhost:8009/public/images/profile/286959604euu.jpg', '2025-03-30 03:11:18', NULL, NULL),
-	(3, 'Nossa hj está muito calor ', 'http://localhost:8009/public/images/profile/286959604eu.jpg', '2025-03-30 03:12:19', NULL, NULL),
-	(4, 'Olá', 'http://localhost:8009/public/images/profile/2869594euuu.jpg', '2025-03-30 03:19:18', NULL, NULL),
-	(5, 'Oie', 'http://localhost:8009/public/images/profile/2869604euuu.jpg', '2025-03-30 03:19:27', NULL, NULL);
+	(6, 'teste ', 'http://localhost:8015/public/imagesVideos/media/media_68570f661010d0.88172603.mp4', '2025-06-21 20:00:38', '2025-06-21 20:00:38', NULL),
+	(7, 'teste ', '', '2025-06-21 20:02:33', '2025-06-21 20:02:33', NULL);
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela api-doeobem.posts_users
@@ -99,16 +97,14 @@ CREATE TABLE IF NOT EXISTS `posts_users` (
   KEY `FK__posts` (`post_id`),
   CONSTRAINT `FK__posts` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK__users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela api-doeobem.posts_users: ~4 rows (aproximadamente)
+-- Copiando dados para a tabela api-doeobem.posts_users: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `posts_users` DISABLE KEYS */;
 INSERT INTO `posts_users` (`id`, `user_id`, `post_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 85, 1, '2025-03-30 03:10:36', NULL, NULL),
-	(2, 85, 2, '2025-03-30 03:11:34', NULL, NULL),
-	(3, 84, 3, '2025-03-30 03:12:30', NULL, NULL),
-	(4, 84, 5, '2025-03-30 03:19:35', NULL, NULL),
-	(5, 86, 4, '2025-03-30 03:19:45', NULL, NULL);
+	(6, 85, 6, '2025-06-21 20:00:39', '2025-06-21 20:00:39', NULL),
+	(7, 85, 7, '2025-06-21 20:02:33', '2025-06-21 20:02:33', NULL);
 /*!40000 ALTER TABLE `posts_users` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela api-doeobem.users
@@ -143,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Copiando dados para a tabela api-doeobem.users: ~11 rows (aproximadamente)
+-- Copiando dados para a tabela api-doeobem.users: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `name`, `nickname`, `phone1`, `has_whatsapp`, `phone2`, `email`, `password`, `postal_code`, `street`, `number`, `complement`, `neighborhood`, `city`, `state`, `country`, `recovery_key`, `first_access`, `last_access`, `access_count`, `receive_newsletter`, `active`, `created_at`, `updated_at`, `deleted_at`, `userscol`, `photo`) VALUES
 	(60, 'Admin', NULL, NULL, 0, NULL, 'admin@user.com', '$2y$10$DBRiDXdHGicq9HJYnKxODOXsQvWDLc0rU4rUuqfOr/SRNukwS06NC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-03-08 19:02:15', '2025-03-08 19:02:15', NULL, NULL, 'http://localhost:8009/public/images/profile/978727390euuu.jpg'),
