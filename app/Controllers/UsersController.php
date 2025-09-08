@@ -157,8 +157,13 @@ class UsersController extends BaseController
     public function changePassword($request, $response)
     {
         $return = [];
-
         $params = $request->getParams();
+
+        $user = Users::where('id', $params['id'])->first();
+        if($user->email !== $params['email']){
+            $return = array('response'=>"The email you've entered doesn't match with account.");
+            $this->respond($return);
+        }
         // Verifica se foi informado email, senha e nova senha
         if (!isset($params['email']) || !isset($params['password']) || !isset($params['newPassword']) || !$params['newPassword'] || !isset($params['confirmNewPassword']) || !$params['confirmNewPassword']) {
             $return = array('response'=>"Please, give me your email, password, new password and confirm new password");
