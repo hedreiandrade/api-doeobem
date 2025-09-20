@@ -45,10 +45,6 @@ $container['db'] = function ($container) use ($capsule) {
     return $capsule;
 };
 
-$container['UsersController'] = function ($app) {
-    return new App\Controllers\UsersController($app);
-};
-
 // Registra o middleware no container
 $container['Authenticate'] = function ($container) {
     return new App\Middlewares\Authenticate();
