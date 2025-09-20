@@ -18,8 +18,10 @@ $app->post('/v1/login', 'App\Controllers\UsersController:login');
 $app->post('/v1/verifyTokenRedirect', 'App\Controllers\UsersController:verifyTokenRedirect');
 
 $app->group('/v1', function () use ($app) {
+
     // Home
     $app->get('/', function ($request, $response) { return 'HOME V1';});
+    
     // List with page and perPage
     $app->get('/users/{page}/{perPage}', 'App\Controllers\UsersController:listing');
 
