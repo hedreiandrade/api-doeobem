@@ -1,126 +1,11 @@
 {
 	"info": {
-		"_postman_id": "4205a16e-4a32-49c5-834f-a976c186f2ed",
-		"name": "api-doeobem",
+		"_postman_id": "2c32cfbf-510a-4d37-a742-670a1483b93c",
+		"name": "api-doeobem-feed",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "2055362"
 	},
 	"item": [
-		{
-			"name": "listing/api-doeobem/v1/users/1/5",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzQ0NDUwODQ2LCJuYmYiOjE3NDQ0NTA4NDYsImV4cCI6MTc0NDQ3OTY0Nn0.02BOs4_sdCC__wer-WVHTGBiASqVDLiOWDytKb4A1VM",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8009/public/v1/users/1/5",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8009",
-					"path": [
-						"public",
-						"v1",
-						"users",
-						"1",
-						"5"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "getOne/api-doeobem/v1/user/1",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzQ0NDUwODQ2LCJuYmYiOjE3NDQ0NTA4NDYsImV4cCI6MTc0NDQ3OTY0Nn0.02BOs4_sdCC__wer-WVHTGBiASqVDLiOWDytKb4A1VM",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8009/public/v1/user/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8009",
-					"path": [
-						"public",
-						"v1",
-						"user",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "insert/api-doeobem/v1/user",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3Mzc4NDYwNTQsIm5iZiI6MTczNzg0NjA1NCwiZXhwIjoxNzM3ODUzMjU0fQ.NoRdLomG4xj1uTLuS9X4CebUA41f6_tYsES7hPKGJmE",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Calebe Teste\",\r\n    \"nickname\": \"calebejulian\",\r\n    \"phone1\": null,\r\n    \"has_whatsapp\": 0,\r\n    \"phone2\": null,\r\n    \"email\": \"calebe8798@gmail.com\",\r\n    \"password\": \"1256Calebe@\",\r\n    \"postal_code\": null,\r\n    \"street\": null,\r\n    \"number\": null,\r\n    \"complement\": null,\r\n    \"neighborhood\": null,\r\n    \"city\": null,\r\n    \"state\": null,\r\n    \"country\": null,\r\n    \"recovery_key\": null,\r\n    \"first_access\": null,\r\n    \"last_access\": null,\r\n    \"access_count\": null,\r\n    \"receive_newsletter\": 0,\r\n    \"active\": 1,\r\n    \"created_at\": \"2018-01-23 12:48:01\",\r\n    \"updated_at\": \"2018-01-30 16:45:49\",\r\n    \"deleted_at\": null,\r\n    \"userscol\": null\r\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8009/public/v1/user",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8009",
-					"path": [
-						"public",
-						"v1",
-						"user"
-					]
-				}
-			},
-			"response": []
-		},
 		{
 			"name": "login/api-doeobem/v1/login",
 			"request": {
@@ -155,50 +40,14 @@
 			"response": []
 		},
 		{
-			"name": "logout/api-doeobem/v1/logout",
+			"name": "http://localhost:8015/public/v1/follow",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3MTk3NDk0MDYsIm5iZiI6MTcxOTc0OTQwNiwiZXhwIjoxNzE5NzUxMjA2fQ.dVx62R15T_HIA8W4EGiiTUy6FXLMhiWbI1UdzOBUY0g",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8009/public/v1/logout",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8009",
-					"path": [
-						"public",
-						"v1",
-						"logout"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update/api-doeobem/v1/user",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3NDE0NzYyNTIsIm5iZiI6MTc0MTQ3NjI1MiwiZXhwIjoxNzQxNTA1MDUyfQ.PRw11t14EsDriYoPbDHmXBMq8nZasKgxYd3_6sTKzag",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzU4NDkyMzUxLCJuYmYiOjE3NTg0OTIzNTEsImV4cCI6MTc1ODUyMTE1MX0.IH8b68Fi7Jt4l34LVzLEBn19YGTCoWrXSjkWmasUrrA",
 							"type": "string"
 						}
 					]
@@ -212,75 +61,33 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Hedrei\",\n\t\"nickname\": \"hdr\",\n\t\"email\": \"hedreiandrade2@gmail.com\",\n\t\"password\": \"394hca\"\n}\n"
+					"raw": "{\n\t\"user_id\": 106,\n\t\"follower_id\": 84\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8009/public/v1/user/63",
+					"raw": "http://localhost:8015/public/v1/follow",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8009",
+					"port": "8015",
 					"path": [
 						"public",
 						"v1",
-						"user",
-						"63"
+						"follow"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "delete/api-doeobem/v1/user/15",
+			"name": "http://localhost:8015/public/v1/unFollow",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3MTk3NDk0MDYsIm5iZiI6MTcxOTc0OTQwNiwiZXhwIjoxNzE5NzUxMjA2fQ.dVx62R15T_HIA8W4EGiiTUy6FXLMhiWbI1UdzOBUY0g",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8009/public/v1/user/3",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8009",
-					"path": [
-						"public",
-						"v1",
-						"user",
-						"3"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "ChangP/api-doeobem/v1/changePassword",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzQ0NTQ0MTE0LCJuYmYiOjE3NDQ1NDQxMTQsImV4cCI6MTc0NDU3MjkxNH0.NdJRIoWcn0u6sKvgoy1OFFVeC8ZuIyToocGY-iMlFTI",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzU4NDkyMzUxLCJuYmYiOjE3NTg0OTIzNTEsImV4cCI6MTc1ODUyMTE1MX0.IH8b68Fi7Jt4l34LVzLEBn19YGTCoWrXSjkWmasUrrA",
 							"type": "string"
 						}
 					]
@@ -294,78 +101,33 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\":\"hedreiandrade2@gmail.com\",\n\t\"password\":\"394hca@!\",\n\t\"newPassword\":\"394hcaB@!\",\n    \"confirmNewPassword\":\"394hcaB@!\"\n}"
+					"raw": "{\n\t\"user_id\": 106,\n\t\"follower_id\": 84\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8009/public/v1/changePassword",
+					"raw": "http://localhost:8015/public/v1/unFollow",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8009",
+					"port": "8015",
 					"path": [
 						"public",
 						"v1",
-						"changePassword"
+						"unFollow"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "gmailLog/api-doeobem/v1/loginGmail",
-			"request": {
-				"auth": {
-					"type": "oauth2",
-					"oauth2": [
-						{
-							"key": "accessToken",
-							"value": "",
-							"type": "string"
-						},
-						{
-							"key": "addTokenTo",
-							"value": "header",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"email\":\"hedreiandrade@gmail.com\",\n\t\"password\":\"394hca\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8009/public/v1/loginGmail",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8009",
-					"path": [
-						"public",
-						"v1",
-						"loginGmail"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "faceLog/api-doeobem/v1/loginFacebook",
+			"name": "http://localhost:8015/public/v1/like",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzU4NzYxNjQ1LCJuYmYiOjE3NTg3NjE2NDUsImV4cCI6MTc1ODc5MDQ0NX0.uCgOhmEVFvSHOugsLEBh6O6bUfa5EHoOoohJBlG8B9o",
 							"type": "string"
 						}
 					]
@@ -379,33 +141,33 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\":\"hedreiandrade@gmail.com\",\n\t\"password\":\"394hca\"\n}"
+					"raw": "{\n\t\"post_id\": 1,\n\t\"user_id\": 106\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8009/public/v1/loginFacebook",
+					"raw": "http://localhost:8015/public/v1/like",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8009",
+					"port": "8015",
 					"path": [
 						"public",
 						"v1",
-						"loginFacebook"
+						"like"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "VerifyToken/api-doeobem/public/v1/verifyTokenRedirect",
+			"name": "http://localhost:8015/public/v1/unLike",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3MjA2MDE5NDMsIm5iZiI6MTcyMDYwMTk0MywiZXhwIjoxNzIwNjAyNTQzfQ.cl_gDk-qdCmo1BvYm8-wg-8x5dpWfU3UFwuP2QwYaQ8",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzU4NzYxNjQ1LCJuYmYiOjE3NTg3NjE2NDUsImV4cCI6MTc1ODc5MDQ0NX0.uCgOhmEVFvSHOugsLEBh6O6bUfa5EHoOoohJBlG8B9o",
 							"type": "string"
 						}
 					]
@@ -419,31 +181,294 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9naXRodWIuY29tXC9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDpcL1wvdHdpdHRlci5jb20iLCJpYXQiOjE3MjA2MDE5NDMsIm5iZiI6MTcyMDYwMTk0MywiZXhwIjoxNzIwNjAyNTQzfQ.cl_gDk-qdCmo1BvYm8-wg-8x5dpWfU3UFwuP2QwYaQ8\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\n\t\"post_id\": 1,\n\t\"user_id\": 106\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8009/public/v1/verifyTokenRedirect",
+					"raw": "http://localhost:8015/public/v1/unLike",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8009",
+					"port": "8015",
 					"path": [
 						"public",
 						"v1",
-						"verifyTokenRedirect"
-					],
-					"query": [
+						"unLike"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8015/public/v1/isFollowed",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzExNTU0NDUwLCJuYmYiOjE3MTE1NTQ0NTAsImV4cCI6MTcxMTU1Nzk5MH0.IEJyUPRgWileIBYx5N1Q_WAZ6fHqBNjmLY5VbrP4TlE",
-							"disabled": true
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzU4NDkyMzUxLCJuYmYiOjE3NTg0OTIzNTEsImV4cCI6MTc1ODUyMTE1MX0.IH8b68Fi7Jt4l34LVzLEBn19YGTCoWrXSjkWmasUrrA",
+							"type": "string"
 						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user_id\": 106,\n\t\"follower_id\": 84\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8015/public/v1/isFollowed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8015",
+					"path": [
+						"public",
+						"v1",
+						"isFollowed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8015/public/v1/followers/85/1/5",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzU4MjkwODg1LCJuYmYiOjE3NTgyOTA4ODUsImV4cCI6MTc1ODMxOTY4NX0.R7duWXNiMK9GM4IQyp5ibcennVbFSJDf20F2Fe6S3EE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8015/public/v1/followers/85/1/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8015",
+					"path": [
+						"public",
+						"v1",
+						"followers",
+						"85",
+						"1",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8015/public/v1/search/Hedrei/1/5",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzU4NjcwNTgwLCJuYmYiOjE3NTg2NzA1ODAsImV4cCI6MTc1ODY5OTM4MH0.BXh17z1nHDGsXmuiM4KeeQDZL83DAJ0oWpryczKi0mM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8015/public/v1/search/Iasmin/1/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8015",
+					"path": [
+						"public",
+						"v1",
+						"search",
+						"Iasmin",
+						"1",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8015/public/v1/following/85/1/5",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzU4MjkwODg1LCJuYmYiOjE3NTgyOTA4ODUsImV4cCI6MTc1ODMxOTY4NX0.R7duWXNiMK9GM4IQyp5ibcennVbFSJDf20F2Fe6S3EE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8015/public/v1/following/85/1/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8015",
+					"path": [
+						"public",
+						"v1",
+						"following",
+						"85",
+						"1",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8015/public/v1/feed/85/1/5",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzU4Nzk5NTEyLCJuYmYiOjE3NTg3OTk1MTIsImV4cCI6MTc1ODgyODMxMn0.mEJuuWNnZoZF1DJqH9amcinF9QWJqY4cXa6DgGn_0FA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8015/public/v1/feed/85/1/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8015",
+					"path": [
+						"public",
+						"v1",
+						"feed",
+						"85",
+						"1",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8015/public/v1/profile/85/1/5",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzU4MDUxMTQzLCJuYmYiOjE3NTgwNTExNDMsImV4cCI6MTc1ODA3OTk0M30.hJGGEPJDQl7w_qaffIob4rLIUG53t9Tcl4pR_tVZTLM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8015/public/v1/profile/85/1/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8015",
+					"path": [
+						"public",
+						"v1",
+						"profile",
+						"85",
+						"1",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8015/public/v1/posts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzQ1NzkyMzU1LCJuYmYiOjE3NDU3OTIzNTUsImV4cCI6MTc0NTgyMTE1NX0.2ggSEBuH2n3h6-96puvz0LvdTeJJ2Fr38H27rrR50M4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\" : 85,\n\t\"description\": \"Afeeee\",\n\t\"media_link\": \"\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8015/public/v1/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8015",
+					"path": [
+						"public",
+						"v1",
+						"posts"
 					]
 				}
 			},
