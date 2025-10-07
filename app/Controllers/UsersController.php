@@ -289,7 +289,7 @@ class UsersController extends BaseController
                     'email_verified' => 1,
                     'password' => password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT),
                     'active' => 1,
-                    'photo' => $picture ? $this->downloadGooglePhoto($picture, $googleId) : null,
+                    'photo' => $picture ? URL_PUBLIC . '/images/profile/' . $this->downloadGooglePhoto($picture, $googleId) : null,
                     'created_at' => date('Y-m-d H:i:s'),
                     'first_access' => date('Y-m-d H:i:s')
                 ];
@@ -306,7 +306,7 @@ class UsersController extends BaseController
                 ];
                 
                 if (!$user->photo && $picture) {
-                    $updateData['photo'] = $this->downloadGooglePhoto($picture, $googleId);
+                    $updateData['photo'] = URL_PUBLIC . '/images/profile/' . $this->downloadGooglePhoto($picture, $googleId);
                 }
                 
                 $user->update($updateData);
