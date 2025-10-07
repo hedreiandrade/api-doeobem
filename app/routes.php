@@ -45,6 +45,6 @@ $app->group('/v1', function () use ($app) {
     $app->post('/loginFacebook', 'App\Controllers\UsersController:loginFacebook');
 
     // Login with Gmail
-    $app->post('/loginGmail', 'App\Controllers\UsersController:loginGmail');
+    $app->post('/loginGoogle', 'App\Controllers\UsersController:loginGoogle');
     
 })->add($app->getContainer()->get('Authenticate'));

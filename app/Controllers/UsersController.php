@@ -219,13 +219,13 @@ class UsersController extends BaseController
     }
     
     /**
-    * Logar com o Gmail
+    * Logar com o Google
     *
     * @param   Request     $request    Objeto de requisição
     * @param   Response    $response   Objeto de resposta
     * @return  Json
     */
-    public function loginGmail($request, $response)
+    public function loginGoogle($request, $response)
     {
         $return = [];
         $params = $request->getParams();
