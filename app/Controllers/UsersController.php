@@ -219,27 +219,159 @@ class UsersController extends BaseController
     }
     
     /**
-    * Logar com o Google
-    *
-    * @param   Request     $request    Objeto de requisição
-    * @param   Response    $response   Objeto de resposta
-    * @return  Json
-    */
+     * Logar com o Google
+     *
+     * @param   Request     $request    Objeto de requisição
+     * @param   Response    $response   Objeto de resposta
+     * @return  Json
+     */
     public function loginGoogle($request, $response)
     {
         $return = [];
         $params = $request->getParams();
+        
         try {
-            $googleClient = new \Google_Client();
-            $googleClient->setClientId(CLIENT_ID);
-            $googleClient->setClientSecret(CLIENT_SECRET_ID);
-            // continue
+            if (empty($params['token'])) {
+                throw new \Exception('Token do Google é obrigatório');
+            }
+
+            $accessToken = $params['token'];
+            
+            // MÉTODO CORRETO: Usar access_token para buscar informações do usuário
+            $userInfoUrl = "https://www.googleapis.com/oauth2/v3/userinfo";
+            
+            // Usando cURL para melhor controle
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $userInfoUrl);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                "Authorization: Bearer " . $accessToken
+            ]);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+            
+            $userInfo = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+
+            // Verificar se a requisição foi bem sucedida
+            if ($httpCode !== 200) {
+                throw new \Exception('Falha ao validar token. Código HTTP: ' . $httpCode);
+            }
+
+            $userData = json_decode($userInfo, true);
+            
+            if (isset($userData['error'])) {
+                throw new \Exception('Token inválido: ' . ($userData['error_description'] ?? $userData['error']));
+            }
+            
+            if (empty($userData['email'])) {
+                throw new \Exception('Email não encontrado nos dados do usuário');
+            }
+            
+            // Dados do usuário
+            $googleId = $userData['sub'];
+            $email = $userData['email'];
+            $name = $userData['name'] ?? '';
+            $picture = $userData['picture'] ?? null;
+
+            error_log("Google Login - Usuário: $name, Email: $email");
+
+            // Verificar se usuário já existe
+            $user = Users::where('email', $email)->first();
+            
+            if (!$user) {
+                // Criar novo usuário
+                $userData = [
+                    'name' => $name,
+                    'email' => $email,
+                    'google_id' => $googleId,
+                    'auth_provider' => 'google',
+                    'email_verified' => 1,
+                    'password' => password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT),
+                    'active' => 1,
+                    'photo' => $picture ? $this->downloadGooglePhoto($picture, $googleId) : null,
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'first_access' => date('Y-m-d H:i:s')
+                ];
+                
+                $user = Users::create($userData);
+                error_log("Novo usuário criado via Google: $email");
+            } else {
+                // Atualizar dados do usuário existente
+                $updateData = [
+                    'google_id' => $googleId,
+                    'auth_provider' => 'google',
+                    'email_verified' => 1,
+                    'updated_at' => date('Y-m-d H:i:s')
+                ];
+                
+                if (!$user->photo && $picture) {
+                    $updateData['photo'] = $this->downloadGooglePhoto($picture, $googleId);
+                }
+                
+                $user->update($updateData);
+                
+                // Atualizar último acesso
+                $user->update([
+                    'last_access' => date('Y-m-d H:i:s'),
+                    'access_count' => ($user->access_count ?? 0) + 1
+                ]);
+                
+                $user->refresh();
+                error_log("Usuário atualizado via Google: $email");
+            }
+            
+            // Gerar token JWT (use seu método existente)
+            $token = $this->createToken();
+            
+            $return = [
+                'response' => [
+                    'token' => $token['token'],
+                    'user_id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'photo' => $user->photo,
+                    'auth_provider' => $user->auth_provider
+                ]
+            ];
+            
         } catch(\Exception $e) {
-            $return = array('response'=>'Gmail SDK returned an error: ' . $e->getMessage());
+            error_log("ERRO Google Login: " . $e->getMessage());
+            $return = ['response' => 'Erro no login com Google: ' . $e->getMessage()];
+            http_response_code(400);
         }
 
-        http_response_code(200);
         $this->respond($return);
+    }
+
+    /**
+     * Download e salvar foto do Google
+     */
+    private function downloadGooglePhoto($photoUrl, $googleId)
+    {
+        try {
+            $photoContent = file_get_contents($photoUrl);
+            if ($photoContent) {
+                $extension = 'jpg'; // Google geralmente retorna JPG
+                $filename = 'google_' . $googleId . '_' . time() . '.' . $extension;
+                $uploadPath = PUBLIC_PATH.'/images/profile/' . $filename;
+                $directory = PUBLIC_PATH.'/images/profile';
+                
+                // Certifique-se de que o diretório existe
+                if (!is_dir($directory)) {
+                    mkdir($directory, 0755, true);
+                }
+                
+                if (file_put_contents($uploadPath, $photoContent)) {
+                    return $filename;
+                }
+            }
+        } catch (\Exception $e) {
+            // Log do erro, mas não interrompe o processo
+            error_log('Erro ao baixar foto do Google: ' . $e->getMessage());
+        }
+        
+        return null;
     }
 
 }

@@ -17,6 +17,12 @@ $app->post('/v1/login', 'App\Controllers\UsersController:login');
 // Verify token
 $app->post('/v1/verifyTokenRedirect', 'App\Controllers\UsersController:verifyTokenRedirect');
 
+// Login with Facebook
+$app->post('/v1/loginFacebook', 'App\Controllers\UsersController:loginFacebook');
+
+// Login with Gmail
+$app->post('/v1/loginGoogle', 'App\Controllers\UsersController:loginGoogle');
+
 $app->group('/v1', function () use ($app) {
 
     // Home
@@ -40,11 +46,5 @@ $app->group('/v1', function () use ($app) {
 
     // Logout
     $app->post('/logout', 'App\Controllers\UsersController:logout');
-
-    // Login with Facebbok
-    $app->post('/loginFacebook', 'App\Controllers\UsersController:loginFacebook');
-
-    // Login with Gmail
-    $app->post('/loginGoogle', 'App\Controllers\UsersController:loginGoogle');
     
 })->add($app->getContainer()->get('Authenticate'));
