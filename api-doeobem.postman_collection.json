@@ -313,7 +313,7 @@
 			"response": []
 		},
 		{
-			"name": "gmailLog/api-doeobem/v1/loginGmail",
+			"name": "gmailLog/api-doeobem/v1/loginGoogle",
 			"request": {
 				"auth": {
 					"type": "oauth2",
@@ -342,7 +342,7 @@
 					"raw": "{\n\t\"email\":\"hedreiandrade@gmail.com\",\n\t\"password\":\"394hca\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8009/public/v1/loginGmail",
+					"raw": "http://localhost:8009/public/v1/loginGoogle",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -351,7 +351,7 @@
 					"path": [
 						"public",
 						"v1",
-						"loginGmail"
+						"loginGoogle"
 					]
 				}
 			},
