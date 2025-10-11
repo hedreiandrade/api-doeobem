@@ -37,7 +37,10 @@ class Users extends Model
         'receive_newsletter',
         'active',
         'userscol',
-        'photo'
+        'photo',
+        'google_id',
+        'auth_provider',
+        'email_verified'
     ];
     protected $dates = [
         'created_at',
