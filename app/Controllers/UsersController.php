@@ -78,14 +78,23 @@ class UsersController extends BaseController
         }
         $user = Users::where('email', $params['email'])->first();
         if($user) {
-            $user->name = $params['name'];
-            $user->photo = $params['photo'];
-            $user->password = $params['password'];
-            $user->auth_provider = 'local';
-            $user->save();
-            $return = array('id' => $user->id);
+            if($user->auth_provider !== 'local'){
+                $user->name = $params['name'];
+                $user->photo = $params['photo'];
+                $user->password = $params['password'];
+                $user->auth_provider = 'local';
+                $user->last_access = date('Y-m-d H:i:s');
+                $user->google_id = null;
+                $user->save();
+                $return = array('id' => $user->id);
+            }else{
+                $return = array('response'=>"There is an account for this e-mail, try to recover your password.");
+                $this->respond($return);
+            }
         }else{
+            $params['google_id'] = null;
             $params['auth_provider'] = 'local';
+            $params['first_access'] = date('Y-m-d H:i:s');
             $return = Users::create($params);
             $return = array('id' => $return->id);
         }
@@ -133,6 +142,7 @@ class UsersController extends BaseController
         } else {
             $user->auth_provider = 'local';
             $user->email_verified = 1;
+            $user->google_id = null;
             $user->save();
             // Gera Token
             $token = $this->createToken();
