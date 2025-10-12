@@ -46,6 +46,53 @@ class UsersController extends BaseController
         );
     }
 
+        /**
+     * Insere um registro
+     *
+     * @param   Request     $request    Objeto de requisição
+     * @param   Response    $response   Objeto de resposta
+     *
+     * @return  Json
+     */
+    public function insert($request, $response)
+    {
+        $return = [];
+        $params = $request->getParams();
+        // Validações pre-definidas no controller
+        $this->getAttributeErrors($request);
+        // Verifica formatação básica de e-mail
+        $this->checkEmail($params['email']);
+        // Esconde senhas
+        if(isset($params['password'])){
+            $params['password'] = $this->hidePassword($params['password']);     
+        }
+        if(isset($_FILES['photo'])){
+            $directory = PUBLIC_PATH.'/images/profile';
+            if (!is_dir($directory)) {
+                mkdir($directory, 0777, true);
+            }
+            $file = $_FILES['photo'];
+            $imageName = rand().$file['name'];
+            move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/profile/'.$imageName);
+            $params['photo'] = URL_PUBLIC.'/images/profile/'.$imageName;
+        }
+        $user = Users::where('email', $params['email'])->first();
+        if($user) {
+            $user->name = $params['name'];
+            $user->photo = $params['photo'];
+            $user->password = $params['password'];
+            $user->auth_provider = 'local';
+            $user->save();
+            $return = array('id' => $user->id);
+        }else{
+            $params['auth_provider'] = 'local';
+            $return = Users::create($params);
+            $return = array('id' => $return->id);
+        }
+        http_response_code(201);
+        $this->respond($return);
+    }
+
     /**
      * Retorna chave de autenticação do usuário logado
      *
@@ -87,6 +134,9 @@ class UsersController extends BaseController
             $return = array('response'=>"Incorrect password. Try again.");
             //http_response_code(401);
         } else {
+            $user->auth_provider = 'local';
+            $user->email_verified = 1;
+            $user->save();
             // Gera Token
             $token = $this->createToken();
             $token['photo'] = $user->photo;
