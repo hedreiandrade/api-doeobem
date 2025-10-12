@@ -104,7 +104,6 @@ class UsersController extends BaseController
     {
         $return = [];
         $params = $request->getParams();
-
         // Verifica se foi informado email e senha
         if (!isset($params['email']) || !isset($params['password'])) {
             $return = array('response'=>"Please, give me your email and password.");
@@ -118,7 +117,6 @@ class UsersController extends BaseController
             //http_response_code(401);
             $this->respond($return);
         }
-
         // Busca primeiro usuário com esse e-mail
         $user = Users::where('email', $params['email'])->first();
         // Verifica email
@@ -128,7 +126,6 @@ class UsersController extends BaseController
             //http_response_code(401);
             $this->respond($return);
         }
-
         // Verifica senha
         if (!password_verify($params['password'], $user->password)) {
             $return = array('response'=>"Incorrect password. Try again.");
@@ -145,7 +142,6 @@ class UsersController extends BaseController
             $return = array('response' => $token);
             http_response_code(200);
         }
-
         $this->respond($return);
     }
 
