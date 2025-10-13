@@ -148,10 +148,6 @@ class UsersController extends BaseController
             //http_response_code(401);
             $this->respond($return);
         }
-        if(Users::where('email', $params['email'])->where('email_verified', 0)->first()){
-            $return = array('response'=>"This email need a check confirmation in your email: ".$params['email']);
-            $this->respond($return);
-        }
         // Busca primeiro usuário com esse e-mail
         $user = Users::where('email', $params['email'])->where('email_verified', 1)->first();
         // Verifica email
