@@ -6,9 +6,11 @@
 namespace App\Controllers;
 
 use App\Models\Users;
+use Exception;
 use Respect\Validation\Validator as v;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class UsersController extends BaseController
 {
@@ -76,26 +78,40 @@ class UsersController extends BaseController
             move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/profile/'.$imageName);
             $params['photo'] = URL_PUBLIC.'/images/profile/'.$imageName;
         }
+        if(Users::where('email', $params['email'])
+                ->where('email_verified', 0)
+                ->where('auth_provider', 'local')
+                ->first()){
+            $return = array('response'=>"This email need a check confirmation in your email: ".$params['email']);
+            $this->respond($return);
+        }
         $user = Users::where('email', $params['email'])->first();
         if($user) {
-            if($user->auth_provider !== 'local'){
-                $user->name = $params['name'];
-                $user->photo = $params['photo'];
-                $user->password = $params['password'];
-                $user->auth_provider = 'local';
-                $user->last_access = date('Y-m-d H:i:s');
-                $user->google_id = null;
-                $user->save();
-                $return = array('id' => $user->id);
-            }else{
-                $return = array('response'=>"There is an account for this e-mail, try to recover your password.");
-                $this->respond($return);
-            }
+            // Atualizar dados do usuário existente
+            $updateData = [
+                'name' => $params['name'],
+                'email' => $params['email'],
+                'password' => $params['password'],
+                'email_verified' => 0,
+                'photo' => $params['photo'],
+                'auth_provider' => 'local',
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+            $user->update($updateData);
+            // Atualizar último acesso
+            $user->update([
+                'last_access' => date('Y-m-d H:i:s'),
+                'access_count' => ($user->access_count ?? 0) + 1
+            ]);
+            $user->refresh();
+            $this->sendEmail($params['email']);
         }else{
             $params['google_id'] = null;
             $params['auth_provider'] = 'local';
+            $params['email_verified'] = 0;
             $params['first_access'] = date('Y-m-d H:i:s');
             $return = Users::create($params);
+            $this->sendEmail($params['email']);
             $return = array('id' => $return->id);
         }
         http_response_code(201);
@@ -126,8 +142,12 @@ class UsersController extends BaseController
             //http_response_code(401);
             $this->respond($return);
         }
+        if(Users::where('email', $params['email'])->where('email_verified', 0)->first()){
+            $return = array('response'=>"This email need a check confirmation in your email: ".$params['email']);
+            $this->respond($return);
+        }
         // Busca primeiro usuário com esse e-mail
-        $user = Users::where('email', $params['email'])->first();
+        $user = Users::where('email', $params['email'])->where('email_verified', 1)->first();
         // Verifica email
         if (!$user) {
             $userEmail = $params['email'];
@@ -141,7 +161,6 @@ class UsersController extends BaseController
             //http_response_code(401);
         } else {
             $user->auth_provider = 'local';
-            $user->email_verified = 1;
             $user->google_id = null;
             $user->save();
             // Gera Token
@@ -285,17 +304,13 @@ class UsersController extends BaseController
     {
         $return = [];
         $params = $request->getParams();
-        
         try {
             if (empty($params['token'])) {
                 throw new \Exception('Token do Google é obrigatório');
             }
-
             $accessToken = $params['token'];
-            
             // MÉTODO CORRETO: Usar access_token para buscar informações do usuário
             $userInfoUrl = "https://www.googleapis.com/oauth2/v3/userinfo";
-            
             // Usando cURL para melhor controle
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $userInfoUrl);
@@ -304,52 +319,40 @@ class UsersController extends BaseController
             ]);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-            
             $userInfo = curl_exec($ch);
             $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
-
             // Verificar se a requisição foi bem sucedida
             if ($httpCode !== 200) {
                 throw new \Exception('Falha ao validar token. Código HTTP: ' . $httpCode);
             }
-
             $userData = json_decode($userInfo, true);
-            
             if (isset($userData['error'])) {
                 throw new \Exception('Token inválido: ' . ($userData['error_description'] ?? $userData['error']));
             }
-            
             if (empty($userData['email'])) {
                 throw new \Exception('Email não encontrado nos dados do usuário');
             }
-            
             // Dados do usuário
             $googleId = $userData['sub'];
             $email = $userData['email'];
             $name = $userData['name'] ?? '';
             $picture = $userData['picture'] ?? null;
-
             error_log("Google Login - Usuário: $name, Email: $email");
-
             // Verificar se usuário já existe
             $user = Users::where('email', $email)->first();
-            
             if (!$user) {
-                // Criar novo usuário
                 $userData = [
                     'name' => $name,
                     'email' => $email,
                     'google_id' => $googleId,
                     'auth_provider' => 'google',
-                    'email_verified' => 1,
                     'password' => password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT),
                     'active' => 1,
                     'photo' => $picture ? URL_PUBLIC . '/images/profile/' . $this->downloadGooglePhoto($picture, $googleId) : null,
                     'created_at' => date('Y-m-d H:i:s'),
                     'first_access' => date('Y-m-d H:i:s')
                 ];
-                
                 $user = Users::create($userData);
                 error_log("Novo usuário criado via Google: $email");
             } else {
@@ -357,29 +360,22 @@ class UsersController extends BaseController
                 $updateData = [
                     'google_id' => $googleId,
                     'auth_provider' => 'google',
-                    'email_verified' => 1,
                     'updated_at' => date('Y-m-d H:i:s')
                 ];
-                
                 if (!$user->photo && $picture) {
                     $updateData['photo'] = URL_PUBLIC . '/images/profile/' . $this->downloadGooglePhoto($picture, $googleId);
                 }
-                
                 $user->update($updateData);
-                
                 // Atualizar último acesso
                 $user->update([
                     'last_access' => date('Y-m-d H:i:s'),
                     'access_count' => ($user->access_count ?? 0) + 1
                 ]);
-                
                 $user->refresh();
                 error_log("Usuário atualizado via Google: $email");
             }
-            
             // Gerar token JWT (use seu método existente)
             $token = $this->createToken();
-            
             $return = [
                 'response' => [
                     'token' => $token['token'],
@@ -390,13 +386,11 @@ class UsersController extends BaseController
                     'auth_provider' => $user->auth_provider
                 ]
             ];
-            
         } catch(\Exception $e) {
             error_log("ERRO Google Login: " . $e->getMessage());
             $return = ['response' => 'Erro no login com Google: ' . $e->getMessage()];
             http_response_code(400);
         }
-
         $this->respond($return);
     }
 
@@ -428,6 +422,76 @@ class UsersController extends BaseController
         }
         
         return null;
+    }
+
+    /**
+     * Quando o usuário confirma por email
+     *
+     * @param Request $request Objeto de requisição
+
+     * @return Json
+     */
+    public function confirmedByEmail($request)
+    {
+        $return = [];
+        $email = $request->getAttribute('email', false);
+
+        if ($email == '') {
+            $return = array('status' => 401, 
+                            'data' => 'Informe seu e-mail.');
+            http_response_code(200);
+            $this->respond($return);
+        }
+
+        $this->checkEmail($email);
+
+        // Verifica cadastro do email
+        $user = Users::where('email', $email)->first();
+        $user->active = 1;
+        $user->email_verified = 1;
+        $user->save();
+
+        $return = array('status' => 200,
+                        'data' => 'O email: '.$email.' foi confirmado com sucesso.');
+        http_response_code(200);
+        $this->respond($return);
+    }
+
+    /**
+     * Envia emails para primeiro acesso a conta
+     *
+     */
+    public function sendEmail($emailTo = '') 
+    {
+        $mail = new PHPMailer(true);
+
+        try {
+            //Server settings
+            $mail->SMTPDebug = false; 
+            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                     
+            $mail->isSMTP();                                          
+            $mail->Host = SMTP_HOST;                 
+            $mail->SMTPAuth = true; 
+            //$mail->SMTPSecure = "tls";                                  
+            $mail->Username = SMTP_USERNAME;                   
+            $mail->Password = SMTP_PASSWORD;                           
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         
+            $mail->Port = 587;    
+            $mail->CharSet = 'uft-8';                               
+
+            //Recipients
+            $mail->setFrom('hedreiandrade@gmail.com', 'H Media');
+            $mail->addAddress($emailTo, 'H Media');              
+
+            //Content
+            $mail->isHTML(true);                                  
+            $mail->Subject = 'Confirmação de email';
+            $mail->Body = '<a href="'.URL_PUBLIC.'/v1/confirmedByEmail/'.$emailTo.'">Clique aqui para confirmar seu email !</a>';
+            $mail->send();
+            //echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
     }
 
 }
