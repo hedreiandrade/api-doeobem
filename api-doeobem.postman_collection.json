@@ -358,6 +358,36 @@
 			"response": []
 		},
 		{
+			"name": "http://localhost:8009/public/v1/confirmedByEmail/hedreiandrade@gmail.com",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8009/public/v1/confirmedByEmail/hedreiandrade@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8009",
+					"path": [
+						"public",
+						"v1",
+						"confirmedByEmail",
+						"hedreiandrade@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "faceLog/api-doeobem/v1/loginFacebook",
 			"request": {
 				"auth": {
