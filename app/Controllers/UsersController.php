@@ -85,6 +85,12 @@ class UsersController extends BaseController
             $return = array('response'=>"This email need a check confirmation in your email: ".$params['email']);
             $this->respond($return);
         }
+        if(Users::where('email', $params['email'])
+                ->where('email_verified', 1)
+                ->first()){
+            $return = array('response'=>"There is an account for this e-mail, try to recover your password. ");
+            $this->respond($return);
+        }
         $user = Users::where('email', $params['email'])->first();
         if($user) {
             // Atualizar dados do usuário existente
