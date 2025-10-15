@@ -268,31 +268,174 @@ class UsersController extends BaseController
     }
 
     /**
-    * Logar com o Facebook
-    *
-    * @param   Request     $request    Objeto de requisição
-    * @param   Response    $response   Objeto de resposta
-    * @return  Json
-    */
-    public function loginFacebook($request, $response)
+     * Logar com o Facebook
+     *
+     * @param   Request     $request    Objeto de requisição
+     * @return  Json
+     */
+    public function loginFacebook($request)
     {
         $return = [];
-        
         $params = $request->getParams();
+        
         try {
+            if (empty($params['token'])) {
+                throw new \Exception('Token do Facebook é obrigatório');
+            }
+
+            $accessToken = $params['token'];
+            
+            error_log("Token Facebook recebido: " . substr($accessToken, 0, 20) . "...");
+            
             $fbClient = new \Facebook\Facebook([
                 'app_id' => APP_ID,
                 'app_secret' => APP_SECRET,
-                'default_graph_version' => 'v2.10'
-                //'default_access_token' => '{access-token}', // optional
+                'default_graph_version' => 'v19.0'
             ]);
-            // continue
-        } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-            $return = array('response'=>'Facebook SDK returned an error: ' . $e->getMessage());
+
+            // TENTAR buscar dados COM email primeiro
+            try {
+                $fbResponse = $fbClient->get('/me?fields=id,name,email,first_name,last_name,picture.type(large)', $accessToken);
+                $userData = $fbResponse->getGraphUser();
+                
+                error_log("Dados COMPLETOS do usuário Facebook: " . print_r($userData, true));
+                
+            } catch (\Exception $e) {
+                error_log("Erro ao buscar dados com email: " . $e->getMessage());
+                // Se falhar, buscar apenas dados públicos
+                $fbResponse = $fbClient->get('/me?fields=id,name,first_name,last_name,picture.type(large)', $accessToken);
+                $userData = $fbResponse->getGraphUser();
+            }
+
+            // Verificar se temos dados básicos
+            if (empty($userData['id'])) {
+                throw new \Exception('ID do Facebook não encontrado');
+            }
+
+            $facebookId = $userData['id'];
+            $name = $userData['name'] ?? '';
+            $firstName = $userData['first_name'] ?? '';
+            $lastName = $userData['last_name'] ?? '';
+            $picture = $userData['picture']['url'] ?? null;
+            
+            // TENTAR obter email, se não conseguir usar fallback
+            $email = $userData['email'] ?? null;
+            
+            if (empty($email)) {
+                // Fallback: criar email baseado no Facebook ID
+                $email = 'fb_' . $facebookId . '@facebook.com';
+                $emailVerified = 0;
+                error_log("Email não disponível, usando fallback: $email");
+            } else {
+                $emailVerified = 1;
+                error_log("Email obtido do Facebook: $email");
+            }
+            
+            error_log("Facebook Login - Usuário: $name, Email: $email, Facebook ID: $facebookId");
+
+            // Buscar usuário pelo Facebook ID PRIMEIRO
+            $user = Users::where('facebook_id', $facebookId)->first();
+            
+            if (!$user && $email) {
+                // Se não encontrou pelo Facebook ID, tentar pelo email
+                $user = Users::where('email', $email)->first();
+            }
+
+            if (!$user) {
+                // Criar novo usuário
+                $userData = [
+                    'name' => $name,
+                    'email' => $email,
+                    'facebook_id' => $facebookId,
+                    'auth_provider' => 'facebook',
+                    'password' => password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT),
+                    'active' => 1,
+                    'photo' => $picture ? $this->downloadFacebookPhoto($picture, $facebookId) : null,
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'first_access' => date('Y-m-d H:i:s')
+                ];
+                
+                $user = Users::create($userData);
+                error_log("Novo usuário criado via Facebook: $name (Email: $email)");
+            } else {
+                // Atualizar dados do usuário existente
+                $updateData = [
+                    'facebook_id' => $facebookId,
+                    'auth_provider' => 'facebook',
+                    'updated_at' => date('Y-m-d H:i:s')
+                ];
+                
+                // Atualizar email apenas se for um email real do Facebook
+                if ($emailVerified && $email !== $user->email) {
+                    $updateData['email'] = $email;
+                }
+                
+                if (!$user->photo && $picture) {
+                    $updateData['photo'] = $this->downloadFacebookPhoto($picture, $facebookId);
+                }
+                
+                $user->update($updateData);
+                
+                // Atualizar último acesso
+                $user->update([
+                    'last_access' => date('Y-m-d H:i:s'),
+                    'access_count' => ($user->access_count ?? 0) + 1
+                ]);
+                
+                $user->refresh();
+                error_log("Usuário atualizado via Facebook: $name (Email: $email)");
+            }
+
+            // Gerar token JWT
+            $token = $this->createToken();
+            
+            $return = [
+                'response' => [
+                    'token' => $token['token'],
+                    'user_id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'photo' => $user->photo,
+                    'auth_provider' => $user->auth_provider,
+                ]
+            ];
+
+        } catch(\Exception $e) {
+            error_log("ERRO Facebook Login: " . $e->getMessage());
+            $return = ['response' => 'Erro no login com Facebook: ' . $e->getMessage()];
+            http_response_code(400);
         }
 
-        http_response_code(200);
         $this->respond($return);
+    }
+
+    /**
+     * Download foto do Facebook
+     */
+    private function downloadFacebookPhoto($pictureUrl, $facebookId)
+    {
+        try {
+            $photoName = 'facebook_' . $facebookId . '_' . time() . '.jpg';
+            $photoPath = 'images/profile/' . $photoName;
+            $fullPath = $_SERVER['DOCUMENT_ROOT'] . URL_PUBLIC . '/' . $photoPath;
+            
+            // Criar diretório se não existir
+            $dir = dirname($fullPath);
+            if (!is_dir($dir)) {
+                mkdir($dir, 0755, true);
+            }
+            
+            // Download da imagem
+            $imageData = file_get_contents($pictureUrl);
+            if ($imageData !== false) {
+                file_put_contents($fullPath, $imageData);
+                return URL_PUBLIC . '/' . $photoPath;
+            }
+        } catch (\Exception $e) {
+            error_log("Erro ao baixar foto do Facebook: " . $e->getMessage());
+        }
+        
+        return null;
     }
     
     /**
