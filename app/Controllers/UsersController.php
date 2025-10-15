@@ -316,7 +316,9 @@ class UsersController extends BaseController
             $name = $userData['name'] ?? '';
             $firstName = $userData['first_name'] ?? '';
             $lastName = $userData['last_name'] ?? '';
-            $picture = $userData['picture']['url'] ?? null;
+            
+            // CORREÇÃO: Acessar a URL da foto corretamente
+            $picture = $userData['picture'] ? $userData['picture']->getUrl() : null;
             
             // TENTAR obter email, se não conseguir usar fallback
             $email = $userData['email'] ?? null;
@@ -350,7 +352,7 @@ class UsersController extends BaseController
                     'auth_provider' => 'facebook',
                     'password' => password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT),
                     'active' => 1,
-                    'photo' => $picture ? $this->downloadFacebookPhoto($picture, $facebookId) : null,
+                    'photo' => URL_PUBLIC.'/images/profile/' .$picture ? URL_PUBLIC.'/images/profile/' .$this->downloadFacebookPhoto($picture, $facebookId) : null,
                     'created_at' => date('Y-m-d H:i:s'),
                     'first_access' => date('Y-m-d H:i:s')
                 ];
@@ -410,29 +412,30 @@ class UsersController extends BaseController
     }
 
     /**
-     * Download foto do Facebook
+     * Download e salvar foto do Facebook (igual ao Google)
      */
     private function downloadFacebookPhoto($pictureUrl, $facebookId)
     {
         try {
-            $photoName = 'facebook_' . $facebookId . '_' . time() . '.jpg';
-            $photoPath = 'images/profile/' . $photoName;
-            $fullPath = $_SERVER['DOCUMENT_ROOT'] . URL_PUBLIC . '/' . $photoPath;
-            
-            // Criar diretório se não existir
-            $dir = dirname($fullPath);
-            if (!is_dir($dir)) {
-                mkdir($dir, 0755, true);
-            }
-            
-            // Download da imagem
-            $imageData = file_get_contents($pictureUrl);
-            if ($imageData !== false) {
-                file_put_contents($fullPath, $imageData);
-                return URL_PUBLIC . '/' . $photoPath;
+            $photoContent = file_get_contents($pictureUrl);
+            if ($photoContent) {
+                $extension = 'jpg'; // Facebook geralmente retorna JPG
+                $filename = 'facebook_' . $facebookId . '_' . time() . '.' . $extension;
+                $uploadPath = PUBLIC_PATH.'/images/profile/' . $filename;
+                $directory = PUBLIC_PATH.'/images/profile';
+                
+                // Certifique-se de que o diretório existe
+                if (!is_dir($directory)) {
+                    mkdir($directory, 0755, true);
+                }
+                
+                if (file_put_contents($uploadPath, $photoContent)) {
+                    return $filename; // Retornar apenas o filename como no Google
+                }
             }
         } catch (\Exception $e) {
-            error_log("Erro ao baixar foto do Facebook: " . $e->getMessage());
+            // Log do erro, mas não interrompe o processo
+            error_log('Erro ao baixar foto do Facebook: ' . $e->getMessage());
         }
         
         return null;
