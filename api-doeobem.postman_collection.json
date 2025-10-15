@@ -316,19 +316,7 @@
 			"name": "gmailLog/api-doeobem/v1/loginGoogle",
 			"request": {
 				"auth": {
-					"type": "oauth2",
-					"oauth2": [
-						{
-							"key": "accessToken",
-							"value": "",
-							"type": "string"
-						},
-						{
-							"key": "addTokenTo",
-							"value": "header",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [
@@ -339,7 +327,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\":\"hedreiandrade@gmail.com\",\n\t\"password\":\"394hca\"\n}"
+					"raw": "{\n\t\"token\":\"\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8009/public/v1/loginGoogle",
@@ -391,14 +379,7 @@
 			"name": "faceLog/api-doeobem/v1/loginFacebook",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [
@@ -409,7 +390,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\":\"hedreiandrade@gmail.com\",\n\t\"password\":\"394hca\"\n}"
+					"raw": "{\n\t\"token\":\"\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8009/public/v1/loginFacebook",
