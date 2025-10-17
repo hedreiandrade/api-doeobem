@@ -583,26 +583,31 @@ class UsersController extends BaseController
     {
         $return = [];
         $email = $request->getAttribute('email', false);
+        $token = $request->getParam('token', false);
 
-        if ($email == '') {
+        if ($email == '' || $token == '') {
             $return = array('status' => 401, 
-                            'data' => 'Informe seu e-mail.');
+                            'data' => 'Informe seu token e e-mail.');
             http_response_code(200);
             $this->respond($return);
         }
-
-        $this->checkEmail($email);
-
-        // Verifica cadastro do email
-        $user = Users::where('email', $email)->first();
-        $user->active = 1;
-        $user->email_verified = 1;
-        $user->save();
-
-        $return = array('status' => 200,
-                        'data' => 'O email: '.$email.' foi confirmado com sucesso.');
-        http_response_code(200);
-        $this->respond($return);
+        try {
+            JWT::decode($token, new Key(JWT_SECRET, 'HS256'));
+            $this->checkEmail($email);
+            // Verifica cadastro do email
+            $user = Users::where('email', $email)->first();
+            $user->active = 1;
+            $user->email_verified = 1;
+            $user->save();
+            $return = array('status' => 200,
+                            'message' => 'O email: '.$email.' foi confirmado com sucesso.');
+            http_response_code(200);
+            $this->respond($return);
+        } catch (\Exception $e) {
+            $return = array('status' => 401,
+                        'message' => 'Invalid Token');
+             $this->respond($return);
+        }
     }
 
     /**
@@ -612,7 +617,7 @@ class UsersController extends BaseController
     public function sendEmail($emailTo = '') 
     {
         $mail = new PHPMailer(true);
-
+        $token = $this->createToken();
         try {
             //Server settings
             $mail->SMTPDebug = false; 
@@ -634,7 +639,7 @@ class UsersController extends BaseController
             //Content
             $mail->isHTML(true);                                  
             $mail->Subject = 'Confirmação de email';
-            $mail->Body = '<a href="'.URL_PUBLIC.'/v1/confirmedByEmail/'.$emailTo.'">Clique aqui para confirmar seu email !</a>';
+            $mail->Body = '<a href="'.URL_PUBLIC.'/v1/confirmedByEmail/'.$emailTo.'?token='.$token['token'].'">Clique aqui para confirmar seu email !</a>';
             $mail->send();
             //echo 'Message has been sent';
         } catch (Exception $e) {
