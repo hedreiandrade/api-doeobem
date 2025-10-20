@@ -17,6 +17,9 @@ $app->post('/v1/login', 'App\Controllers\UsersController:login');
 // Confirmed by email
 $app->get('/v1/confirmedByEmail/{email}', 'App\Controllers\UsersController:confirmedByEmail');
 
+// Forgot password email
+$app->get('/v1/emailForgotPassword/{email}', 'App\Controllers\UsersController:emailForgotPassword');
+
 // Verify token
 $app->post('/v1/verifyTokenRedirect', 'App\Controllers\UsersController:verifyTokenRedirect');
 

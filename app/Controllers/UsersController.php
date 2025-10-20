@@ -640,12 +640,73 @@ class UsersController extends BaseController
             //Content
             $mail->isHTML(true);                                  
             $mail->Subject = 'Confirmação de email';
-            $mail->Body = '<a href="'.URL_PUBLIC.'/v1/confirmedByEmail/'.$emailTo.'?token='.$token['token'].'">Clique aqui para confirmar seu email !</a>';
+            $mail->Body = '<a href="'.URL_PUBLIC.'/v1/confirmedByEmail/'.$emailTo.'?token='.$token['token'].'">Click here to confirm your email !</a>';
             $mail->send();
             //echo 'Message has been sent';
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
+    }
+
+    /**
+     * Envia emails para trocar senha
+     *
+     */
+    public function sendEmailForgotPassword($emailTo = '') 
+    {
+        $mail = new PHPMailer(true);
+        $token = $this->createToken();
+        try {
+            //Server settings
+            $mail->SMTPDebug = false; 
+            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                     
+            $mail->isSMTP();                                          
+            $mail->Host = SMTP_HOST;                 
+            $mail->SMTPAuth = true; 
+            //$mail->SMTPSecure = "tls";                                  
+            $mail->Username = SMTP_USERNAME;                   
+            $mail->Password = SMTP_PASSWORD;                           
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         
+            $mail->Port = 587;    
+            $mail->CharSet = 'uft-8';                               
+
+            //Recipients
+            $mail->setFrom('hedreiandrade@gmail.com', 'H Media');
+            $mail->addAddress($emailTo, 'H Media');              
+
+            //Content
+            $mail->isHTML(true);                                  
+            $mail->Subject = 'Confirmação de email';
+            $mail->Body = '<a href="'.URL_PUBLIC.'/v1/forgotPassword/'.$emailTo.'?token='.$token['token'].'">Click here to change your password !</a>';
+            $mail->send();
+            //echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    }
+
+    /**
+     * Email para trocar senha
+     *
+     * @param Request $request Objeto de requisição
+
+     * @return Json
+     */
+    public function emailForgotPassword($request)
+    {
+        $email = $request->getAttribute('email', false);
+        if ($email == '') {
+            $return = array('status' => 401, 
+                            'data' => 'Informe seu e-mail.');
+            $this->respond($return);
+        }
+        // Verifica formatação básica de e-mail
+        $validatedEmail = $this->errorEmail($email);
+        if (!$validatedEmail['flEmail']) {
+            $this->respond(array('status' => 203, 'response'=>$validatedEmail['response']));
+        }
+        $this->sendEmailForgotPassword($email);
+        $this->respond(array('status' => 200, 'response'=>"Email to change password sent"));
     }
 
 }
