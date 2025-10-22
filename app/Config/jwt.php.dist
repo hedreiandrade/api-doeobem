@@ -1,7 +1,13 @@
 <?php
 
-// Senha secreta para geração do token
+// Senha secreta para geração do token deve ser diferènte do JWT_SECRET_EMAIL e JWT_SECRET_EMAIL_FORGOT
 const JWT_SECRET = '';
+
+// Senha secreta para geração do token de email deve ser diferènte do JWT_SECRET e JWT_SECRET_EMAIL_FORGOT
+const JWT_SECRET_EMAIL = '';
+
+// Senha secreta para geração do token de email deve ser diferènte do JWT_SECRET e JWT_SECRET_EMAIL
+const JWT_SECRET_EMAIL_FORGOT = '';
 
 // Diferença de tempo entre servidores
 const LEE_WAY = ''; // in seconds

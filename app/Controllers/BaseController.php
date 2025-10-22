@@ -78,6 +78,58 @@ abstract class BaseController
     }
 
     /**
+     * Cria um novo token
+     *
+     * @return string|Json
+     */
+    public function createEmailToken() {
+        $return = [];
+
+        JWT::$leeway = LEE_WAY;
+        try {
+            $payLoad = $this->payLoad();
+            $return['token'] = JWT::encode($payLoad, JWT_SECRET_EMAIL, 'HS256');
+            $return['expire'] = $payLoad['exp'];
+            session_start();
+            // Talvez seja errado fornecer token 
+            // via session
+            $_SESSION['token'] = '-.-';
+            session_write_close();
+            return $return;
+        } catch (\Firebase\JWT\ExpiredException $e) { 
+            $return = array('response'=>$e->getMessage());
+            http_response_code(200);
+            $this->respond($return);
+        }
+    }
+
+        /**
+     * Cria um novo token
+     *
+     * @return string|Json
+     */
+    public function createEmailForgotToken() {
+        $return = [];
+
+        JWT::$leeway = LEE_WAY;
+        try {
+            $payLoad = $this->payLoad();
+            $return['token'] = JWT::encode($payLoad, JWT_SECRET_EMAIL_FORGOT, 'HS256');
+            $return['expire'] = $payLoad['exp'];
+            session_start();
+            // Talvez seja errado fornecer token 
+            // via session
+            $_SESSION['token'] = '-.-';
+            session_write_close();
+            return $return;
+        } catch (\Firebase\JWT\ExpiredException $e) { 
+            $return = array('response'=>$e->getMessage());
+            http_response_code(200);
+            $this->respond($return);
+        }
+    }
+
+    /**
      * Lista de registros específicos (Com deleted_at null)
      *
      * @param   Request     $request    Objeto de requisição

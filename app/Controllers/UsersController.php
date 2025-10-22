@@ -593,7 +593,7 @@ class UsersController extends BaseController
             $this->respond($return);
         }
         try {
-            JWT::decode($token, new Key(JWT_SECRET, 'HS256'));
+            JWT::decode($token, new Key(JWT_SECRET_EMAIL, 'HS256'));
             $this->checkEmail($email);
             // Verifica cadastro do email
             $user = Users::where('email', $email)->first();
@@ -618,7 +618,7 @@ class UsersController extends BaseController
     public function sendEmail($emailTo = '') 
     {
         $mail = new PHPMailer(true);
-        $token = $this->createToken();
+        $token = $this->createEmailToken();
         try {
             //Server settings
             $mail->SMTPDebug = false; 
@@ -655,7 +655,7 @@ class UsersController extends BaseController
     public function sendEmailForgotPassword($emailTo = '') 
     {
         $mail = new PHPMailer(true);
-        $token = $this->createToken();
+        $token = $this->createEmailForgotToken();
         try {
             //Server settings
             $mail->SMTPDebug = false; 
