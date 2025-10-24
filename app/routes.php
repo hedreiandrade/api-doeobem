@@ -20,6 +20,9 @@ $app->get('/v1/confirmedByEmail/{email}', 'App\Controllers\UsersController:confi
 // Forgot password email
 $app->get('/v1/emailForgotPassword/{email}', 'App\Controllers\UsersController:emailForgotPassword');
 
+// Forgot password email
+$app->get('/v1/verifyTokenForgotPassword/{email}', 'App\Controllers\UsersController:verifyTokenForgotPassword');
+
 // Verify token
 $app->post('/v1/verifyTokenRedirect', 'App\Controllers\UsersController:verifyTokenRedirect');
 

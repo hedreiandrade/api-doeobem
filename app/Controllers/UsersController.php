@@ -677,7 +677,7 @@ class UsersController extends BaseController
             //Content
             $mail->isHTML(true);                                  
             $mail->Subject = 'Confirmação de email';
-            $mail->Body = '<a href="'.URL_PUBLIC.'/v1/forgotPassword/'.$emailTo.'?token='.$token['token'].'">Click here to change your password !</a>';
+            $mail->Body = '<a href="'.REACT_URL.'/forgot-password/'.$emailTo.'?token='.$token['token'].'">Click here to change your password !</a>';
             $mail->send();
             //echo 'Message has been sent';
         } catch (Exception $e) {
@@ -707,6 +707,33 @@ class UsersController extends BaseController
         }
         $this->sendEmailForgotPassword($email);
         $this->respond(array('status' => 200, 'response'=>"Email to change password sent"));
+    }
+
+    /**
+     * Verifica token para trocar senha
+     *
+     * @param   Request     $request    Objeto de requisição
+     * @param   Response    $response   Objeto de resposta
+     * @return  Json
+     */
+    public function verifyTokenForgotPassword($request, $response)
+    {
+        $token = $request->getParam('token', false);
+        if ($token == '') {
+            $return = array('status' => 401, 
+                            'data' => 'Please give me a token');
+            $this->respond($return);
+        }
+        try {
+            JWT::decode($token, new Key(JWT_SECRET_EMAIL_FORGOT, 'HS256'));
+            $return = array('status' => 200, 
+                            'data' => 'Token valid');
+             $this->respond($return);
+        } catch (\Exception $e) {
+            $return = array('status' => 401,
+                        'message' => 'Invalid Token');
+             $this->respond($return);
+        }
     }
 
 }

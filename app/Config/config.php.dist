@@ -6,4 +6,5 @@ const URL_PUBLIC = '';
 const SMTP_HOST = '';
 const SMTP_USERNAME = '';
 const SMTP_PASSWORD = '';
+const REACT_URL = '';
 
