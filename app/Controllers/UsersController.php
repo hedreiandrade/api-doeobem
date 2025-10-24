@@ -639,7 +639,7 @@ class UsersController extends BaseController
 
             //Content
             $mail->isHTML(true);                                  
-            $mail->Subject = 'Confirmação de email';
+            $mail->Subject = 'H Media register email confirmation';
             $mail->Body = '<a href="'.URL_PUBLIC.'/v1/confirmedByEmail/'.$emailTo.'?token='.$token['token'].'">Click here to confirm your email !</a>';
             $mail->send();
             //echo 'Message has been sent';
@@ -676,7 +676,7 @@ class UsersController extends BaseController
 
             //Content
             $mail->isHTML(true);                                  
-            $mail->Subject = 'Confirmação de email';
+            $mail->Subject = 'H Media forgot password email confirmation';
             $mail->Body = '<a href="'.REACT_URL.'/forgot-password/'.$emailTo.'?token='.$token['token'].'">Click here to change your password !</a>';
             $mail->send();
             //echo 'Message has been sent';
@@ -732,6 +732,48 @@ class UsersController extends BaseController
         } catch (\Exception $e) {
             $return = array('status' => 401,
                         'message' => 'Invalid Token');
+             $this->respond($return);
+        }
+    }
+
+    /**
+     * Reset password
+     *
+     * @param   Request     $request    Objeto de requisição
+     * @param   Response    $response   Objeto de resposta
+     * @return  Json
+     */
+    public function resetPassword($request, $response)
+    {
+        $return = [];
+        $params = $request->getParams();
+        try{
+            JWT::decode($params['token'], new Key(JWT_SECRET_EMAIL_FORGOT, 'HS256'));
+            // Verifica se foi informado email e senha
+            if (!isset($params['token']) || !isset($params['email']) || !isset($params['newPassword']) || !isset($params['confirmPassword'])) {
+                $return = array('status' => 401, 'message'=>"Please, give me your token, email, new password and confirm password.");
+                //http_response_code(401);
+                $this->respond($return);
+            }else{
+                $this->checkEmail($params['email']);
+            }
+            // Busca primeiro usuário com esse e-mail
+            $user = Users::where('email', $params['email'])->where('email_verified', 1)->first();
+            // Verifica email
+            if (!$user) {
+                $return = array('status' => 401, 'message'=>"The email you've entered: ".$params['email']."doesn't match any account. Sign up for an account.");
+                //http_response_code(401);
+                $this->respond($return);
+            }else{
+                $user->password = $this->hidePassword($params['newPassword']);
+                $user->save();
+            }
+            $return = array('status' => 200, 'message'=>"Password changed successfully");
+            //http_response_code(200);
+            $this->respond($return);
+        }catch (\Exception $e) {
+            $return = array('status' => 401,
+                        'message' => 'Invalid or expired token');
              $this->respond($return);
         }
     }

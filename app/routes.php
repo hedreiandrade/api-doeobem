@@ -23,6 +23,9 @@ $app->get('/v1/emailForgotPassword/{email}', 'App\Controllers\UsersController:em
 // Forgot password email
 $app->get('/v1/verifyTokenForgotPassword/{email}', 'App\Controllers\UsersController:verifyTokenForgotPassword');
 
+// Reset password
+$app->post('/v1/resetPassword', 'App\Controllers\UsersController:resetPassword');
+
 // Verify token
 $app->post('/v1/verifyTokenRedirect', 'App\Controllers\UsersController:verifyTokenRedirect');
 
