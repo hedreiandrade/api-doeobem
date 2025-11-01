@@ -38,6 +38,7 @@ class Users extends Model
         'active',
         'userscol',
         'photo',
+        'cover_photo',
         'google_id',
         'auth_provider',
         'email_verified'

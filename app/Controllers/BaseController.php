@@ -226,7 +226,9 @@ abstract class BaseController
         $params = $request->getParams();
         $id = $request->getAttribute('id');
         // Verifica se e-mail já não está registrado
-        $this->checkEmailRegisteredUpdate($params['email'], $id);
+        if(isset($params['email'])){
+            $this->checkEmailRegisteredUpdate($params['email'], $id);
+        }
         // Esconde senhas
         if(isset($params['password'])){
             $params['password'] = $this->hidePassword($params['password']);
@@ -240,6 +242,16 @@ abstract class BaseController
             $imageName = rand().$file['name'];
             move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/profile/'.$imageName);
             $params['photo'] = URL_PUBLIC.'/images/profile/'.$imageName;
+        }
+        if(isset($_FILES['cover_photo'])){
+            $directory = PUBLIC_PATH.'/images/cover';
+            if (!is_dir($directory)) {
+                mkdir($directory, 0777, true);
+            }
+            $file = $_FILES['cover_photo'];
+            $imageName = rand().$file['name'];
+            move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/cover/'.$imageName);
+            $params['cover_photo'] = URL_PUBLIC.'/images/cover/'.$imageName;
         }
         // Verifica formação básica de e-mail
         if(isset($params['email'])){

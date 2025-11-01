@@ -83,7 +83,7 @@ class UsersController extends BaseController
                 ->where('auth_provider', 'local')
                 ->first()){
             $this->sendEmail($params['email']);
-            $return = array('response'=>"This email need a check confirmation in your email: ".$params['email']);
+            $return = array('response'=>'Account created successfully! Check your email to confirm your account.');
             $this->respond($return);
         }
         if(Users::where('email', $params['email'])
