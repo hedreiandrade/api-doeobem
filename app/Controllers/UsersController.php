@@ -136,43 +136,49 @@ class UsersController extends BaseController
     {
         $return = [];
         $params = $request->getParams();
-        // Verifica se foi informado email e senha
-        if (!isset($params['email']) || !isset($params['password'])) {
-            $return = array('response'=>"Please, give me your email and password.");
-            //http_response_code(401);
-            $this->respond($return);
-        }
-        if(!empty($params['email']) && !empty($params['password'])){
-            $this->checkEmail($params['email']);
-        }else{
-            $return = array('response'=>"Please, give me your email and password.");
-            //http_response_code(401);
-            $this->respond($return);
-        }
-        // Busca primeiro usuário com esse e-mail
-        $user = Users::where('email', $params['email'])->where('email_verified', 1)->first();
-        // Verifica email
-        if (!$user) {
-            $userEmail = $params['email'];
-            $return = array('response'=>"The email you've entered: $userEmail doesn't match any account. Sign up for an account.");
-            //http_response_code(401);
-            $this->respond($return);
-        }
-        // Verifica senha
-        if (!password_verify($params['password'], $user->password)) {
-            $return = array('response'=>"Incorrect password. Try again.");
-            //http_response_code(401);
-        } else {
-            $user->auth_provider = 'local';
-            $user->google_id = null;
-            $user->save();
-            // Gera Token
-            $token = $this->createToken();
-            $token['photo'] = $user->photo;
-            $token['user_id'] = $user->id;
-            $token['name'] = $user->name;
-            $return = array('response' => $token);
-            http_response_code(200);
+        try{
+            // Verifica se foi informado email e senha
+            if (!isset($params['email']) || !isset($params['password'])) {
+                $return = array('response'=>"Please, give me your email and password.");
+                //http_response_code(401);
+                $this->respond($return);
+            }
+            if(!empty($params['email']) && !empty($params['password'])){
+                $this->checkEmail($params['email']);
+            }else{
+                $return = array('response'=>"Please, give me your email and password.");
+                //http_response_code(401);
+                $this->respond($return);
+            }
+            // Busca primeiro usuário com esse e-mail
+            $user = Users::where('email', $params['email'])->where('email_verified', 1)->first();
+            // Verifica email
+            if (!$user) {
+                $userEmail = $params['email'];
+                $return = array('response'=>"The email you've entered: $userEmail doesn't match any account. Sign up for an account.");
+                //http_response_code(401);
+                $this->respond($return);
+            }
+            // Verifica senha
+            if (!password_verify($params['password'], $user->password)) {
+                $return = array('response'=>"Incorrect password. Try again.");
+                //http_response_code(401);
+            } else {
+                $user->auth_provider = 'local';
+                $user->google_id = null;
+                $user->save();
+                // Gera Token
+                $token = $this->createToken();
+                $token['photo'] = $user->photo;
+                $token['user_id'] = $user->id;
+                $token['name'] = $user->name;
+                $return = array('response' => $token);
+                http_response_code(200);
+            }
+        }catch (\Exception $e) {
+            $return = array('status' => 401,
+                        'response' => 'An error occurred while logging in.');
+             $this->respond($return);
         }
         $this->respond($return);
     }
