@@ -290,52 +290,41 @@ class UsersController extends BaseController
     {
         $return = [];
         $params = $request->getParams();
-        
         try {
             if (empty($params['token'])) {
                 throw new \Exception('Token do Facebook é obrigatório');
             }
-
             $accessToken = $params['token'];
-            
             error_log("Token Facebook recebido: " . substr($accessToken, 0, 20) . "...");
-            
             $fbClient = new \Facebook\Facebook([
                 'app_id' => APP_ID,
                 'app_secret' => APP_SECRET,
                 'default_graph_version' => 'v19.0'
             ]);
-
             // TENTAR buscar dados COM email primeiro
             try {
                 $fbResponse = $fbClient->get('/me?fields=id,name,email,first_name,last_name,picture.type(large)', $accessToken);
                 $userData = $fbResponse->getGraphUser();
                 
                 error_log("Dados COMPLETOS do usuário Facebook: " . print_r($userData, true));
-                
             } catch (\Exception $e) {
                 error_log("Erro ao buscar dados com email: " . $e->getMessage());
                 // Se falhar, buscar apenas dados públicos
                 $fbResponse = $fbClient->get('/me?fields=id,name,first_name,last_name,picture.type(large)', $accessToken);
                 $userData = $fbResponse->getGraphUser();
             }
-
             // Verificar se temos dados básicos
             if (empty($userData['id'])) {
                 throw new \Exception('ID do Facebook não encontrado');
             }
-
             $facebookId = $userData['id'];
             $name = $userData['name'] ?? '';
             $firstName = $userData['first_name'] ?? '';
             $lastName = $userData['last_name'] ?? '';
-            
             // CORREÇÃO: Acessar a URL da foto corretamente
             $picture = $userData['picture'] ? $userData['picture']->getUrl() : null;
-            
             // TENTAR obter email, se não conseguir usar fallback
             $email = $userData['email'] ?? null;
-            
             if (empty($email)) {
                 // Fallback: criar email baseado no Facebook ID
                 $email = 'fb_' . $facebookId . '@facebook.com';
@@ -345,17 +334,13 @@ class UsersController extends BaseController
                 $emailVerified = 1;
                 error_log("Email obtido do Facebook: $email");
             }
-            
             error_log("Facebook Login - Usuário: $name, Email: $email, Facebook ID: $facebookId");
-
             // Buscar usuário pelo Facebook ID PRIMEIRO
             $user = Users::where('facebook_id', $facebookId)->first();
-            
             if (!$user && $email) {
                 // Se não encontrou pelo Facebook ID, tentar pelo email
                 $user = Users::where('email', $email)->first();
             }
-
             if (!$user) {
                 // Criar novo usuário
                 $userData = [
@@ -369,7 +354,6 @@ class UsersController extends BaseController
                     'created_at' => date('Y-m-d H:i:s'),
                     'first_access' => date('Y-m-d H:i:s')
                 ];
-                
                 $user = Users::create($userData);
                 error_log("Novo usuário criado via Facebook: $name (Email: $email)");
             } else {
@@ -379,31 +363,24 @@ class UsersController extends BaseController
                     'auth_provider' => 'facebook',
                     'updated_at' => date('Y-m-d H:i:s')
                 ];
-                
                 // Atualizar email apenas se for um email real do Facebook
                 if ($emailVerified && $email !== $user->email) {
                     $updateData['email'] = $email;
                 }
-                
                 if (!$user->photo && $picture) {
                     $updateData['photo'] = $this->downloadFacebookPhoto($picture, $facebookId);
                 }
-                
                 $user->update($updateData);
-                
                 // Atualizar último acesso
                 $user->update([
                     'last_access' => date('Y-m-d H:i:s'),
                     'access_count' => ($user->access_count ?? 0) + 1
                 ]);
-                
                 $user->refresh();
                 error_log("Usuário atualizado via Facebook: $name (Email: $email)");
             }
-
             // Gerar token JWT
             $token = $this->createToken();
-            
             $return = [
                 'response' => [
                     'token' => $token['token'],
@@ -414,13 +391,11 @@ class UsersController extends BaseController
                     'auth_provider' => $user->auth_provider,
                 ]
             ];
-
-        } catch(\Exception $e) {
-            error_log("ERRO Facebook Login: " . $e->getMessage());
-            $return = ['response' => 'Erro no login com Facebook: ' . $e->getMessage()];
-            http_response_code(400);
+        } catch (\Exception $e) {
+            $return = array('status' => 401,
+                        'response' => 'An error occurred while login with Facebook');
+             $this->respond($return);
         }
-
         $this->respond($return);
     }
 
