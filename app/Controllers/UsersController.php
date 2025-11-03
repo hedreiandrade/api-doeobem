@@ -668,7 +668,9 @@ class UsersController extends BaseController
             $mail->send();
             //echo 'Message has been sent';
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            $return = array('status' => 401,
+                        'response' => 'An error occurred while sent email forgot password');
+             $this->respond($return);
         }
     }
 
@@ -681,18 +683,27 @@ class UsersController extends BaseController
      */
     public function emailForgotPassword($request)
     {
-        $email = $request->getAttribute('email', false);
-        if ($email == '') {
-            $return = array('status' => 401, 
-                            'data' => 'Informe seu e-mail.');
-            $this->respond($return);
+        try{
+            $email = $request->getAttribute('email', false);
+            if ($email == '') {
+                $return = array('status' => 401, 
+                                'data' => 'Informe seu e-mail.');
+                $this->respond($return);
+            }
+            // Verifica formatação básica de e-mail
+            $validatedEmail = $this->errorEmail($email);
+            if (!$validatedEmail['flEmail']) {
+                $this->respond(array('status' => 203, 'response'=>$validatedEmail['response']));
+            }
+            $return = $this->sendEmailForgotPassword($email);
+            if($return['response']['status'] === 401){
+                $this->respond($return);
+            }
+        }catch (Exception $e) {
+            $return = array('status' => 401,
+                        'response' => 'An error occurred while sent email forgot password');
+             $this->respond($return);
         }
-        // Verifica formatação básica de e-mail
-        $validatedEmail = $this->errorEmail($email);
-        if (!$validatedEmail['flEmail']) {
-            $this->respond(array('status' => 203, 'response'=>$validatedEmail['response']));
-        }
-        $this->sendEmailForgotPassword($email);
         $this->respond(array('status' => 200, 'response'=>"Email to change password sent"));
     }
 
