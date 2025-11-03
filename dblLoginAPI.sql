@@ -31,9 +31,9 @@ CREATE TABLE IF NOT EXISTS `comments` (
   KEY `user_id` (`user_id`) USING BTREE,
   CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Copiando dados para a tabela api-doeobem.comments: ~5 rows (aproximadamente)
+-- Copiando dados para a tabela api-doeobem.comments: ~67 rows (aproximadamente)
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
 INSERT INTO `comments` (`id`, `post_id`, `user_id`, `comment`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(55, 1, 85, '1', '2025-09-30 20:10:07', '2025-09-30 20:25:20', '2025-09-30 20:25:20'),
@@ -84,7 +84,32 @@ INSERT INTO `comments` (`id`, `post_id`, `user_id`, `comment`, `created_at`, `up
 	(108, 19, 85, 'Parabéns ! 😎', '2025-10-06 12:57:41', '2025-10-06 12:57:41', NULL),
 	(109, 1, 85, 'Foi massa!', '2025-10-06 12:57:58', '2025-10-06 12:57:58', NULL),
 	(110, 24, 89, 'Que designer lindo !!', '2025-10-06 12:59:43', '2025-10-06 12:59:43', NULL),
-	(111, 6, 89, 'Parabéns !', '2025-10-06 13:00:09', '2025-10-06 13:00:09', NULL);
+	(111, 6, 89, 'Parabéns !', '2025-10-06 13:00:09', '2025-10-06 13:00:09', NULL),
+	(119, 39, 84, 'Lindo demais.', '2025-10-16 23:22:41', '2025-10-16 23:22:41', NULL),
+	(123, 24, 202, 'Show!', '2025-10-21 04:10:42', '2025-10-21 04:10:42', NULL),
+	(124, 6, 202, 'Top!', '2025-10-21 04:11:51', '2025-10-21 04:11:53', '2025-10-21 04:11:53'),
+	(125, 6, 202, 'Curti demais.', '2025-10-21 04:12:02', '2025-10-21 04:12:02', NULL),
+	(126, 25, 202, '1', '2025-10-25 17:58:15', '2025-10-25 17:58:32', '2025-10-25 17:58:32'),
+	(127, 25, 202, '2', '2025-10-25 17:58:17', '2025-10-25 17:58:31', '2025-10-25 17:58:31'),
+	(128, 25, 202, '3', '2025-10-25 17:58:19', '2025-10-25 17:58:31', '2025-10-25 17:58:31'),
+	(129, 25, 202, '4', '2025-10-25 17:58:21', '2025-10-25 17:58:30', '2025-10-25 17:58:30'),
+	(130, 25, 202, '5', '2025-10-25 17:58:24', '2025-10-25 17:58:30', '2025-10-25 17:58:30'),
+	(131, 25, 202, '6', '2025-10-25 17:58:26', '2025-10-25 17:58:29', '2025-10-25 17:58:29'),
+	(132, 44, 202, '1', '2025-11-01 11:15:29', '2025-11-01 11:16:07', '2025-11-01 11:16:07'),
+	(133, 44, 202, '2', '2025-11-01 11:15:32', '2025-11-01 11:16:06', '2025-11-01 11:16:06'),
+	(134, 44, 202, '3', '2025-11-01 11:15:34', '2025-11-01 11:16:05', '2025-11-01 11:16:05'),
+	(135, 44, 202, '4', '2025-11-01 11:15:36', '2025-11-01 11:16:03', '2025-11-01 11:16:03'),
+	(136, 44, 202, '5', '2025-11-01 11:15:46', '2025-11-01 11:16:02', '2025-11-01 11:16:02'),
+	(137, 44, 202, '6', '2025-11-01 11:15:50', '2025-11-01 11:16:01', '2025-11-01 11:16:01'),
+	(138, 46, 202, 'Top', '2025-11-01 11:28:06', '2025-11-01 14:51:34', '2025-11-01 14:51:34'),
+	(139, 46, 202, '2', '2025-11-01 14:50:49', '2025-11-01 14:51:33', '2025-11-01 14:51:33'),
+	(140, 46, 202, '3', '2025-11-01 14:50:51', '2025-11-01 14:51:32', '2025-11-01 14:51:32'),
+	(141, 46, 202, '4', '2025-11-01 14:50:53', '2025-11-01 14:51:32', '2025-11-01 14:51:32'),
+	(142, 46, 202, '5', '2025-11-01 14:50:57', '2025-11-01 14:51:31', '2025-11-01 14:51:31'),
+	(143, 46, 202, '6', '2025-11-01 14:51:06', '2025-11-01 14:51:19', '2025-11-01 14:51:19'),
+	(144, 46, 202, '6', '2025-11-01 14:51:24', '2025-11-01 14:51:30', '2025-11-01 14:51:30'),
+	(145, 46, 202, 'Massa !', '2025-11-01 14:51:40', '2025-11-01 14:51:40', NULL),
+	(146, 44, 202, 'Top', '2025-11-01 15:02:31', '2025-11-01 15:02:31', NULL);
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela api-doeobem.followers
@@ -100,9 +125,9 @@ CREATE TABLE IF NOT EXISTS `followers` (
   KEY `idx_follower_id` (`follower_id`),
   CONSTRAINT `fk_followers_follower` FOREIGN KEY (`follower_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_followers_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela api-doeobem.followers: ~49 rows (aproximadamente)
+-- Copiando dados para a tabela api-doeobem.followers: ~77 rows (aproximadamente)
 /*!40000 ALTER TABLE `followers` DISABLE KEYS */;
 INSERT INTO `followers` (`id`, `user_id`, `follower_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 85, 84, '2025-03-30 03:12:43', NULL, NULL),
@@ -162,7 +187,30 @@ INSERT INTO `followers` (`id`, `user_id`, `follower_id`, `created_at`, `updated_
 	(59, 85, 115, '2025-10-05 17:25:59', '2025-10-05 17:25:59', NULL),
 	(60, 115, 85, '2025-10-05 17:27:16', '2025-10-06 08:05:25', '2025-10-06 08:05:25'),
 	(61, 85, 89, '2025-10-06 12:59:14', '2025-10-06 12:59:14', NULL),
-	(62, 84, 89, '2025-10-06 12:59:21', '2025-10-06 12:59:21', NULL);
+	(62, 84, 89, '2025-10-06 12:59:21', '2025-10-06 12:59:21', NULL),
+	(75, 84, 202, '2025-10-21 04:10:21', '2025-10-25 17:56:17', '2025-10-25 17:56:17'),
+	(76, 85, 202, '2025-10-21 04:10:27', '2025-10-29 18:32:17', '2025-10-29 18:32:17'),
+	(77, 84, 202, '2025-10-25 17:56:18', '2025-10-25 18:13:10', '2025-10-25 18:13:10'),
+	(78, 84, 202, '2025-10-25 18:13:11', '2025-10-25 18:13:25', '2025-10-25 18:13:25'),
+	(79, 84, 202, '2025-10-25 18:13:26', '2025-10-25 18:13:27', '2025-10-25 18:13:27'),
+	(80, 84, 202, '2025-10-25 18:13:28', '2025-10-25 18:13:29', '2025-10-25 18:13:29'),
+	(81, 84, 202, '2025-10-25 18:13:30', '2025-10-25 18:13:31', '2025-10-25 18:13:31'),
+	(82, 84, 202, '2025-10-25 18:13:32', '2025-10-25 18:13:55', '2025-10-25 18:13:55'),
+	(83, 84, 202, '2025-10-25 18:13:56', '2025-11-01 10:57:58', '2025-11-01 10:57:58'),
+	(84, 85, 202, '2025-10-29 18:32:18', '2025-11-01 11:16:48', '2025-11-01 11:16:48'),
+	(85, 84, 202, '2025-11-01 10:57:59', '2025-11-01 10:58:03', '2025-11-01 10:58:03'),
+	(86, 84, 202, '2025-11-01 10:58:04', '2025-11-01 15:03:31', '2025-11-01 15:03:31'),
+	(87, 85, 202, '2025-11-01 11:16:49', '2025-11-01 11:16:50', '2025-11-01 11:16:50'),
+	(88, 85, 202, '2025-11-01 11:16:52', '2025-11-01 11:16:52', NULL),
+	(89, 86, 202, '2025-11-01 11:17:05', '2025-11-01 11:17:08', '2025-11-01 11:17:08'),
+	(90, 86, 202, '2025-11-01 11:17:08', '2025-11-01 11:17:17', '2025-11-01 11:17:17'),
+	(91, 86, 202, '2025-11-01 11:17:24', '2025-11-01 11:17:24', NULL),
+	(92, 202, 84, '2025-11-01 11:17:59', '2025-11-01 11:26:45', '2025-11-01 11:26:45'),
+	(93, 202, 84, '2025-11-01 11:26:47', '2025-11-01 11:26:47', NULL),
+	(94, 202, 85, '2025-11-01 11:27:09', '2025-11-01 11:27:09', NULL),
+	(95, 202, 86, '2025-11-01 11:27:41', '2025-11-01 11:27:41', NULL),
+	(96, 84, 202, '2025-11-01 15:03:32', '2025-11-01 22:56:48', '2025-11-01 22:56:48'),
+	(97, 84, 202, '2025-11-01 22:56:51', '2025-11-01 22:56:51', NULL);
 /*!40000 ALTER TABLE `followers` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela api-doeobem.likes
@@ -178,9 +226,9 @@ CREATE TABLE IF NOT EXISTS `likes` (
   KEY `FK_likes_users` (`user_id`),
   CONSTRAINT `FK_likes_posts` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_likes_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela api-doeobem.likes: ~13 rows (aproximadamente)
+-- Copiando dados para a tabela api-doeobem.likes: ~52 rows (aproximadamente)
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
 INSERT INTO `likes` (`id`, `post_id`, `user_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(53, 17, 85, '2025-09-25 16:34:27', '2025-09-25 17:51:47', '2025-09-25 17:51:47'),
@@ -221,7 +269,25 @@ INSERT INTO `likes` (`id`, `post_id`, `user_id`, `created_at`, `updated_at`, `de
 	(89, 19, 89, '2025-10-06 12:59:50', '2025-10-06 12:59:50', NULL),
 	(90, 13, 89, '2025-10-06 12:59:50', '2025-10-06 12:59:50', NULL),
 	(91, 6, 89, '2025-10-06 12:59:52', '2025-10-06 12:59:52', NULL),
-	(92, 1, 89, '2025-10-06 12:59:53', '2025-10-06 12:59:53', NULL);
+	(92, 1, 89, '2025-10-06 12:59:53', '2025-10-06 12:59:53', NULL),
+	(97, 39, 84, '2025-10-16 23:22:35', '2025-10-16 23:22:35', NULL),
+	(102, 24, 202, '2025-10-21 04:10:36', '2025-10-21 04:10:36', NULL),
+	(103, 6, 202, '2025-10-21 04:11:43', '2025-10-21 04:11:43', NULL),
+	(104, 23, 60, '2025-10-22 19:22:44', '2025-10-22 19:22:44', NULL),
+	(105, 6, 60, '2025-10-22 19:22:46', '2025-10-22 19:22:46', NULL),
+	(106, 1, 60, '2025-10-22 19:22:47', '2025-10-22 19:22:47', NULL),
+	(107, 23, 202, '2025-10-29 18:32:07', '2025-10-29 18:32:07', NULL),
+	(108, 44, 202, '2025-11-01 00:42:32', '2025-11-01 00:42:36', '2025-11-01 00:42:36'),
+	(109, 19, 202, '2025-11-01 10:57:55', '2025-11-01 10:57:57', '2025-11-01 10:57:57'),
+	(110, 44, 84, '2025-11-01 11:18:06', '2025-11-01 11:18:06', NULL),
+	(111, 23, 84, '2025-11-01 11:18:18', '2025-11-01 11:18:18', NULL),
+	(112, 19, 84, '2025-11-01 11:18:21', '2025-11-01 11:18:21', NULL),
+	(113, 13, 84, '2025-11-01 11:18:22', '2025-11-01 11:18:22', NULL),
+	(114, 6, 84, '2025-11-01 11:18:23', '2025-11-01 11:18:23', NULL),
+	(115, 48, 202, '2025-11-01 11:25:29', '2025-11-01 11:25:29', NULL),
+	(116, 46, 202, '2025-11-01 11:27:55', '2025-11-01 11:27:55', NULL),
+	(117, 1, 202, '2025-11-01 11:29:24', '2025-11-01 11:29:24', NULL),
+	(118, 25, 202, '2025-11-01 15:02:17', '2025-11-01 15:02:17', NULL);
 /*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela api-doeobem.posts
@@ -233,16 +299,16 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Copiando dados para a tabela api-doeobem.posts: ~9 rows (aproximadamente)
+-- Copiando dados para a tabela api-doeobem.posts: ~32 rows (aproximadamente)
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
 INSERT INTO `posts` (`id`, `description`, `media_link`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'Desse FDS', 'http://localhost:8009/public/images/profile/286959604euuu.jpg', '2025-03-30 03:10:07', NULL, NULL),
 	(6, 'Esse é meu projeto', 'http://localhost:8015/public/imagesVideos/media/media_68570f661010d0.88172603.mp4', '2025-06-21 20:00:38', '2025-06-21 20:00:38', NULL),
 	(11, 'Vamos testar os emojis 🙌👍😍❤💕🎂', '', '2025-08-30 13:08:58', '2025-10-04 22:12:23', '2025-10-04 22:12:23'),
 	(12, 'Olá eu sou o Calebe', '', '2025-09-08 14:08:11', '2025-09-08 14:08:11', NULL),
-	(13, 'Bom dia, passando para dizer OI !', '', '2025-09-16 20:08:31', '2025-09-16 20:08:31', NULL),
+	(13, 'Bom dia, assistindo Star Wars !', '', '2025-09-16 20:08:31', '2025-09-16 20:08:31', NULL),
 	(14, 'Mais um vídeo ', 'http://localhost:8015/public/imagesVideos/media/media_68c9c3d330e431.72516281.mp4', '2025-09-16 20:08:51', '2025-09-16 20:08:51', NULL),
 	(16, 'Qual a boa para esse FDS ?', '', '2025-09-16 20:09:21', '2025-09-16 20:09:21', NULL),
 	(17, 'Vai chover !!!', '', '2025-09-16 20:09:31', '2025-09-16 20:09:31', NULL),
@@ -252,7 +318,30 @@ INSERT INTO `posts` (`id`, `description`, `media_link`, `created_at`, `updated_a
 	(21, 'Olá pessoal :)', '', '2025-10-05 00:14:02', '2025-10-05 06:33:48', '2025-10-05 06:33:48'),
 	(22, 'Hello Word', '', '2025-10-05 17:25:21', '2025-10-05 17:25:21', NULL),
 	(23, 'Mais um lindo dia 😍', '', '2025-10-06 12:53:00', '2025-10-06 12:53:00', NULL),
-	(24, 'Mais um video interessante ', 'http://localhost:8015/public/imagesVideos/media/media_68e3bc107a6e73.90856494.mp4', '2025-10-06 12:54:40', '2025-10-06 12:54:40', NULL);
+	(24, 'Mais um video interessante ', 'http://localhost:8015/public/imagesVideos/media/media_68e3bc107a6e73.90856494.mp4', '2025-10-06 12:54:40', '2025-10-06 12:54:40', NULL),
+	(25, 'Ouvindo minha música favorita :)', '', '2025-10-07 09:35:28', '2025-10-07 09:35:28', NULL),
+	(26, 'Que foto linda', '', '2025-10-07 10:08:15', '2025-10-07 10:08:18', '2025-10-07 10:08:18'),
+	(27, 'Que lindo !', 'http://localhost:8015/public/imagesVideos/media/media_68e4e6ac18d0b5.32992256.jpg', '2025-10-07 10:08:44', '2025-10-08 16:03:40', '2025-10-08 16:03:40'),
+	(28, 'dsadasda', '', '2025-10-08 15:50:02', '2025-10-08 15:50:07', '2025-10-08 15:50:07'),
+	(29, 'dsadas', '', '2025-10-08 15:50:26', '2025-10-08 15:50:28', '2025-10-08 15:50:28'),
+	(30, 'hahha', '', '2025-10-08 16:03:45', '2025-10-08 16:55:17', '2025-10-08 16:55:17'),
+	(31, 'Opa', 'http://localhost:8015/public/imagesVideos/media/media_68e8a09dbe9596.15435654.jpg', '2025-10-10 05:58:53', '2025-10-10 05:58:56', '2025-10-10 05:58:56'),
+	(32, 'Mais uma foto ', 'http://localhost:8015/public/imagesVideos/media/media_68e8a13dca41e7.13196326.jpg', '2025-10-10 06:01:33', '2025-10-10 06:01:46', '2025-10-10 06:01:46'),
+	(33, 'Linda foto da HA - IT Consulting', 'http://localhost:8015/public/imagesVideos/media/media_68e8a21ac038a6.99158856.jpg', '2025-10-10 06:05:14', '2025-10-10 06:05:14', NULL),
+	(34, 'Hoje vai chover !!', '', '2025-10-10 06:07:36', '2025-10-10 06:07:46', '2025-10-10 06:07:46'),
+	(35, 'Veja essa foto', 'http://localhost:8015/public/imagesVideos/media/media_68ec1f77312eb1.56125909.jpg', '2025-10-12 21:36:55', '2025-10-12 21:36:55', NULL),
+	(36, 'Que foto linda', '', '2025-10-13 12:09:37', '2025-10-13 12:09:39', '2025-10-13 12:09:39'),
+	(39, 'Mais um video sobre tecnologia 😍', 'http://localhost:8015/public/imagesVideos/media/media_68f1678fc60ba4.09370647.mp4', '2025-10-16 21:45:51', '2025-10-16 21:45:51', NULL),
+	(40, 'teste', '', '2025-10-16 22:59:01', '2025-10-16 22:59:03', '2025-10-16 22:59:03'),
+	(41, 'teste', '', '2025-10-16 22:59:06', '2025-10-16 22:59:08', '2025-10-16 22:59:08'),
+	(42, 'teste', '', '2025-10-16 22:59:09', '2025-10-16 22:59:11', '2025-10-16 22:59:11'),
+	(43, 'teste', '', '2025-10-16 23:24:24', '2025-10-16 23:24:26', '2025-10-16 23:24:26'),
+	(44, 'Meu primeiro video 😍', 'http://localhost:8015/public/imagesVideos/media/media_68f707ddefc944.81115669.mp4', '2025-10-21 04:11:10', '2025-10-21 04:11:10', NULL),
+	(45, 'teste', '', '2025-10-21 04:11:22', '2025-10-21 04:11:24', '2025-10-21 04:11:24'),
+	(46, 'Meu projeto 😎', 'http://localhost:8015/public/imagesVideos/media/media_6905edc42c32b7.57864072.mp4', '2025-11-01 11:23:48', '2025-11-01 11:23:48', NULL),
+	(47, 'Dia lindo !!', '', '2025-11-01 11:24:17', '2025-11-01 11:25:58', '2025-11-01 11:25:58'),
+	(48, 'Gostei dessa foto ', 'http://localhost:8015/public/imagesVideos/media/media_6905edf28d9548.08560177.jpg', '2025-11-01 11:24:34', '2025-11-01 11:25:55', '2025-11-01 11:25:55'),
+	(49, 'teste', '', '2025-11-01 15:03:50', '2025-11-01 15:03:53', '2025-11-01 15:03:53');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela api-doeobem.posts_users
@@ -268,9 +357,9 @@ CREATE TABLE IF NOT EXISTS `posts_users` (
   KEY `FK__posts` (`post_id`),
   CONSTRAINT `FK__posts` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK__users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela api-doeobem.posts_users: ~4 rows (aproximadamente)
+-- Copiando dados para a tabela api-doeobem.posts_users: ~16 rows (aproximadamente)
 /*!40000 ALTER TABLE `posts_users` DISABLE KEYS */;
 INSERT INTO `posts_users` (`id`, `user_id`, `post_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 85, 1, '2025-03-30 03:10:36', NULL, NULL),
@@ -282,7 +371,14 @@ INSERT INTO `posts_users` (`id`, `user_id`, `post_id`, `created_at`, `updated_at
 	(16, 85, 21, '2025-10-05 00:14:02', '2025-10-05 00:14:02', NULL),
 	(17, 115, 22, '2025-10-05 17:25:21', '2025-10-05 17:25:21', NULL),
 	(18, 85, 23, '2025-10-06 12:53:00', '2025-10-06 12:53:00', NULL),
-	(19, 84, 24, '2025-10-06 12:54:40', '2025-10-06 12:54:40', NULL);
+	(19, 84, 24, '2025-10-06 12:54:40', '2025-10-06 12:54:40', NULL),
+	(20, 86, 25, '2025-10-07 09:35:28', '2025-10-07 09:35:28', NULL),
+	(28, 202, 44, '2025-10-21 04:11:10', '2025-10-21 04:11:10', NULL),
+	(29, 202, 45, '2025-10-21 04:11:22', '2025-10-21 04:11:22', NULL),
+	(30, 84, 46, '2025-11-01 11:23:48', '2025-11-01 11:23:48', NULL),
+	(31, 84, 47, '2025-11-01 11:24:17', '2025-11-01 11:24:17', NULL),
+	(32, 84, 48, '2025-11-01 11:24:34', '2025-11-01 11:24:34', NULL),
+	(33, 202, 49, '2025-11-01 15:03:50', '2025-11-01 15:03:50', NULL);
 /*!40000 ALTER TABLE `posts_users` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela api-doeobem.users
@@ -314,43 +410,52 @@ CREATE TABLE IF NOT EXISTS `users` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `userscol` varchar(45) COLLATE utf8_bin DEFAULT NULL,
   `photo` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `cover_photo` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `google_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `facebook_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `auth_provider` enum('local','google','facebook') COLLATE utf8_bin DEFAULT 'local',
+  `email_verified` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `google_id_UNIQUE` (`google_id`),
+  UNIQUE KEY `email_UNIQUE` (`email`),
+  UNIQUE KEY `facebook_id` (`facebook_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=203 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Copiando dados para a tabela api-doeobem.users: ~28 rows (aproximadamente)
+-- Copiando dados para a tabela api-doeobem.users: ~32 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `name`, `nickname`, `phone1`, `has_whatsapp`, `phone2`, `email`, `password`, `postal_code`, `street`, `number`, `complement`, `neighborhood`, `city`, `state`, `country`, `recovery_key`, `first_access`, `last_access`, `access_count`, `receive_newsletter`, `active`, `created_at`, `updated_at`, `deleted_at`, `userscol`, `photo`) VALUES
-	(60, 'Admin', NULL, NULL, 0, NULL, 'admin@user.com', '$2y$10$DBRiDXdHGicq9HJYnKxODOXsQvWDLc0rU4rUuqfOr/SRNukwS06NC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-03-08 19:02:15', '2025-03-08 19:02:15', NULL, NULL, 'http://localhost:8009/public/images/profile/978727390euuu.jpg'),
-	(84, 'Calebe', NULL, NULL, 0, NULL, 'hedreiandrade2@gmail.com', '$2y$10$joAKBw9fgKYs5rngJD5nSOeBWnhTAkkM84eZAo9PabwEe1KJZFVOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-03-15 18:03:10', '2025-04-13 11:35:58', NULL, NULL, 'http://localhost:8009/public/images/profile/1351828300eu3.jpg'),
-	(85, 'Hedrei Andrade', NULL, NULL, 0, NULL, 'hedreiandrade@gmail.com', '$2y$10$1DDfzgb.SkZr3U7a748hPOsw9MnvtYiXdIX5RU5O7GONjE6Nt3xUW', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-03-16 11:34:17', '2025-09-09 18:50:24', NULL, NULL, 'http://localhost:8009/public/images/profile/424481954euuu.jpg'),
-	(86, 'Andre José', NULL, NULL, 0, NULL, 'teste@teste9.com', '$2y$10$vSN6QyANoNy7SfKVUuLsO.ZZ9fLqKq.lYGvo4bBSvPUxWkZCbABbi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-03-29 02:09:26', '2025-03-29 02:09:26', NULL, NULL, 'http://localhost:8009/public/images/profile/51820549eu4bm.jpg'),
-	(87, 'Fernando Torres', NULL, NULL, 0, NULL, 'teste@teste88.com', '$2y$10$jVHG894ZoIxWKZVXHnafOO5GRIURpcpmoJ81isqQMKizt4ONTJ0nW', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-05 14:19:34', '2025-04-05 14:19:34', NULL, NULL, 'http://localhost:8009/public/images/profile/320161411euuu.jpg'),
-	(88, 'Marcos Rocha', NULL, NULL, 0, NULL, 'teste@testebb.com', '$2y$10$OdAPkZUPWMxZ1tANd/9Z4utEof0pv4WXmwVB3vBOaouSH848oaM2i', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-05 14:54:51', '2025-04-05 14:55:03', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg'),
-	(89, 'Marcos Batista', NULL, NULL, 0, NULL, 'joao@gmail.com', '$2y$10$y4mq77azp9witq.rA8LBLODys8YNNjiJCqnOAUrlBzKV0enFa32vG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-12 09:44:40', '2025-04-12 09:44:47', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg'),
-	(93, 'Pedro Castro', NULL, NULL, 0, NULL, 'alok@gmail.com', '$2y$10$xEJHEv799IOsLM2n3ZUgweLl8XjrKraC8FhSXhdZyYttJ/3Pj1oJi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-13 20:30:14', '2025-04-13 20:30:14', NULL, NULL, 'http://localhost:8009/public/images/profile/1030854678euuu.jpg'),
-	(94, 'João Batista', NULL, NULL, 0, NULL, 'hedreiandrade909@gmail.com', '$2y$10$2KgLceKyXwVS.kQG7CfP7eqpKb.ZX03QVMkvS7iT9vGl39oERkZK.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-17 21:39:54', '2025-04-17 22:34:03', '2025-04-17 22:34:03', NULL, 'http://localhost:8009/public/images/profile/1928325339eu3.jpg'),
-	(95, 'Maria Soares', NULL, NULL, 0, NULL, 'maria@gmail.com', '$2y$10$diyMnueQ6or27JfeLkgid.k/6QmkN26nKTNHeoTrhwnE23PMeGdS2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-20 12:16:09', '2025-04-20 12:16:09', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg'),
-	(96, 'Joana Lucas', NULL, NULL, 0, NULL, 'joana1@gmail.com', '$2y$10$L/IlppHIYuhdtxF3HxeTIukEwwc0UgzVTKD0jyBVSz53aSr8L..lK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-20 12:16:53', '2025-04-20 12:16:53', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg'),
-	(97, 'Tesla', NULL, NULL, 0, NULL, 'joana2@gmail.com', '$2y$10$L/IlppHIYuhdtxF3HxeTIukEwwc0UgzVTKD0jyBVSz53aSr8L..lK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-20 12:16:53', '2025-04-20 12:16:53', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg'),
-	(98, 'Fernanda', NULL, NULL, 0, NULL, 'joana3@gmail.com', '$2y$10$L/IlppHIYuhdtxF3HxeTIukEwwc0UgzVTKD0jyBVSz53aSr8L..lK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-20 12:16:53', '2025-04-20 12:16:53', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg'),
-	(99, 'Julio', NULL, NULL, 0, NULL, 'joana4@gmail.com', '$2y$10$L/IlppHIYuhdtxF3HxeTIukEwwc0UgzVTKD0jyBVSz53aSr8L..lK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-20 12:16:53', '2025-04-20 12:16:53', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg'),
-	(100, 'Carlos Castro', NULL, NULL, 0, NULL, 'joana5@gmail.com', '$2y$10$L/IlppHIYuhdtxF3HxeTIukEwwc0UgzVTKD0jyBVSz53aSr8L..lK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-20 12:16:53', '2025-04-20 12:16:53', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg'),
-	(101, 'Laura', NULL, NULL, 0, NULL, 'joana6@gmail.com', '$2y$10$L/IlppHIYuhdtxF3HxeTIukEwwc0UgzVTKD0jyBVSz53aSr8L..lK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-20 12:16:53', '2025-04-20 12:16:53', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg'),
-	(102, 'Laura Mara', NULL, NULL, 0, NULL, 'joana7@gmail.com', '$2y$10$L/IlppHIYuhdtxF3HxeTIukEwwc0UgzVTKD0jyBVSz53aSr8L..lK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-20 12:16:53', '2025-04-20 12:16:53', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg'),
-	(103, 'Julio K', NULL, NULL, 0, NULL, 'eder@gmail.com', '$2y$10$OGoaveycp6/iJIb9f46rROtlay.7JeoCJnJmTwdcHBAAd9HjIPeoS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 12:33:12', '2025-04-26 12:55:25', NULL, NULL, 'http://localhost:8009/public/images/profile/758210200euuu.jpg'),
-	(104, 'Marcio Abrel', NULL, NULL, 0, NULL, 'teste@testeagora.com', '$2y$10$fa5gmoCS9DoW4NpGyjd5i.xaXnrlRrKYJ6mRr4gFWW7MdGl3DzMGG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 12:55:51', '2025-04-26 12:55:51', NULL, NULL, 'null'),
-	(105, 'Iasmin Flora', NULL, NULL, 0, NULL, 'mesmo@gmail.com', '$2y$10$GvFZMByIjUqTvZHCPkYgZucTYlcOc816dIbw8ZNzUSpkR7SZp4xze', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 12:57:13', '2025-04-26 13:21:37', NULL, NULL, 'http://localhost:8009/public/images/profile/2004235341euuu.jpg'),
-	(106, 'Iasmin Cora', NULL, NULL, 0, NULL, 'iasmin@gmail.com', '$2y$10$zEgQ3Z8ikziLYdEY2L9wfeewd2RH72XGVVqphmJZ16QZyZxpYt7s2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 13:22:35', '2025-04-26 13:22:35', NULL, NULL, 'http://localhost:8009/public/images/profile/2004235341euuu.jpg'),
-	(107, 'Lara Lisa', NULL, NULL, 0, NULL, 'lara@gmail.com', '$2y$10$1MlGcD2zrETpT1VDvhOxFOVpGf70VEkg.vUS8pl38DCVUFF263vvy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 13:24:58', '2025-04-26 13:24:58', NULL, NULL, 'null'),
-	(108, 'Veras', NULL, NULL, 0, NULL, 'hedreiandrade66@gmail.com', '$2y$10$fG5plTMXx2aIW8Ip6/QWMOfpJpyuFF8SWV3dpbHjjZP4nZUrjlRha', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 13:36:18', '2025-04-26 13:36:18', NULL, NULL, 'null'),
-	(109, 'Iago Lucas', NULL, NULL, 0, NULL, 'lucas888@gmail.com', '$2y$10$ZlCAk53uVMnUAvjEy2F8HO1MG54.8fWjsKXmTwWeAa9PAv7pSiPjm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 13:38:04', '2025-04-26 13:38:04', NULL, NULL, 'null'),
-	(110, 'Lucia Amorin', NULL, NULL, 0, NULL, 'lucia@gmail.com', '$2y$10$XHGq7LhyudahkZ/.Ql1KmuFhyoIiHmGS23MhPPHh2szvm0i503FFK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 14:09:22', '2025-04-26 14:10:02', NULL, NULL, 'http://localhost:8009/public/images/profile/1355349776Bonito04.jpg'),
-	(111, 'Ana Julia', NULL, NULL, 0, NULL, 'ana@gmail.com', '$2y$10$VDaYiWueNMqiBOnriIPuYeBE.oUB6DIPS13AXsGULN2.cIz2NqMDe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 15:44:34', '2025-04-26 15:46:44', NULL, NULL, 'http://localhost:8009/public/images/profile/1397644539Code.png'),
-	(112, 'Marcia Amaral', NULL, NULL, 0, NULL, 'marcia@gmail.com', '$2y$10$IWQ3UcNI7cjuIG6gn/Yue.EIDdj/HsN7rh2qfJ4cAgnOdlUFiEnv.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 15:47:08', '2025-04-26 15:47:08', NULL, NULL, 'http://localhost:8009/public/images/profile/1888685797CapaSoundCloud.jpg'),
-	(113, 'Maria Luca', NULL, NULL, 0, NULL, 'maria6@gmail.com', '$2y$10$faVJHP2ztA9zbM7Ro5HhtuOPG3INVH3bk8OE9VeTVxMrHDBBQgQeG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 15:47:37', '2025-04-26 15:47:37', NULL, NULL, 'null'),
-	(114, 'teste', NULL, NULL, 0, NULL, 'teste@teste333.com', '$2y$10$X.4/rFgYuru3BhkYwvXI5uK89HsAoGt7Y.HCMQSFa4uMDRUsn7ZyS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-09-10 06:16:03', '2025-09-10 06:16:03', NULL, NULL, 'null'),
-	(115, 'calebi', NULL, NULL, 0, NULL, 'calebi.andrade@gmail.com', '$2y$10$D1q1lgiCt9fcjbuM/lBF9O/yw47C96R6uvpZqdDML0QEWRMWmOitW', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-10-05 17:25:03', '2025-10-05 17:25:03', NULL, NULL, 'null'),
-	(116, 'Teste', NULL, NULL, 0, NULL, 'heteste@gmail.com', '$2y$10$ulPz6bDvLxOs40EVgt8YYuZ8xJ3y1DeFZg.lmTpcXuQPexDWc1XLK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-10-06 08:43:34', '2025-10-06 08:43:34', NULL, NULL, 'null');
+INSERT INTO `users` (`id`, `name`, `nickname`, `phone1`, `has_whatsapp`, `phone2`, `email`, `password`, `postal_code`, `street`, `number`, `complement`, `neighborhood`, `city`, `state`, `country`, `recovery_key`, `first_access`, `last_access`, `access_count`, `receive_newsletter`, `active`, `created_at`, `updated_at`, `deleted_at`, `userscol`, `photo`, `cover_photo`, `google_id`, `facebook_id`, `auth_provider`, `email_verified`) VALUES
+	(60, 'Admin', NULL, NULL, 0, NULL, 'admin@user.com', '$2y$10$DBRiDXdHGicq9HJYnKxODOXsQvWDLc0rU4rUuqfOr/SRNukwS06NC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-03-08 19:02:15', '2025-03-08 19:02:15', NULL, NULL, 'http://localhost:8009/public/images/profile/978727390euuu.jpg', NULL, NULL, NULL, 'local', 1),
+	(84, 'Calebe', NULL, NULL, 0, NULL, 'hedreiandrade2@gmail.com', '$2y$10$joAKBw9fgKYs5rngJD5nSOeBWnhTAkkM84eZAo9PabwEe1KJZFVOS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-03-15 18:03:10', '2025-11-01 11:26:07', NULL, NULL, 'http://localhost:8009/public/images/profile/878048584dubai.jpg', 'http://localhost:8009/public/images/cover/345168438capasound.jpg', NULL, NULL, 'local', 1),
+	(85, 'Felipe Andrade', NULL, NULL, 0, NULL, 'hedreiandrade990@gmail.com', '$2y$10$vSN6QyANoNy7SfKVUuLsO.ZZ9fLqKq.lYGvo4bBSvPUxWkZCbABbi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-10-07 09:16:23', 5, 0, 1, '2025-03-16 11:34:17', '2025-11-01 11:19:52', NULL, NULL, 'http://localhost:8009/public/images/profile/424481954euuu.jpg', 'http://localhost:8009/public/images/cover/1896109106capasound.jpg', NULL, NULL, 'local', 1),
+	(86, 'Andre José', NULL, NULL, 0, NULL, 'teste@teste9.com', '$2y$10$vSN6QyANoNy7SfKVUuLsO.ZZ9fLqKq.lYGvo4bBSvPUxWkZCbABbi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-03-29 02:09:26', '2025-03-29 02:09:26', NULL, NULL, 'http://localhost:8009/public/images/profile/51820549eu4bm.jpg', NULL, NULL, NULL, 'local', 1),
+	(87, 'Fernando Torres', NULL, NULL, 0, NULL, 'teste@teste88.com', '$2y$10$jVHG894ZoIxWKZVXHnafOO5GRIURpcpmoJ81isqQMKizt4ONTJ0nW', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-05 14:19:34', '2025-04-05 14:19:34', NULL, NULL, 'http://localhost:8009/public/images/profile/320161411euuu.jpg', NULL, NULL, NULL, 'local', 1),
+	(88, 'Marcos Rocha', NULL, NULL, 0, NULL, 'teste@testebb.com', '$2y$10$OdAPkZUPWMxZ1tANd/9Z4utEof0pv4WXmwVB3vBOaouSH848oaM2i', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-05 14:54:51', '2025-04-05 14:55:03', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg', NULL, NULL, NULL, 'local', 1),
+	(89, 'Marcos Batista', NULL, NULL, 0, NULL, 'joao@gmail.com', '$2y$10$y4mq77azp9witq.rA8LBLODys8YNNjiJCqnOAUrlBzKV0enFa32vG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-12 09:44:40', '2025-04-12 09:44:47', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg', NULL, NULL, NULL, 'local', 1),
+	(93, 'Pedro Castro', NULL, NULL, 0, NULL, 'alok@gmail.com', '$2y$10$xEJHEv799IOsLM2n3ZUgweLl8XjrKraC8FhSXhdZyYttJ/3Pj1oJi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-13 20:30:14', '2025-04-13 20:30:14', NULL, NULL, 'http://localhost:8009/public/images/profile/1030854678euuu.jpg', NULL, NULL, NULL, 'local', 1),
+	(94, 'João Batista', NULL, NULL, 0, NULL, 'hedreiandrade90@gmail.com', '$2y$10$2KgLceKyXwVS.kQG7CfP7eqpKb.ZX03QVMkvS7iT9vGl39oERkZK.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-17 21:39:54', '2025-04-17 22:34:03', '2025-04-17 22:34:03', NULL, 'http://localhost:8009/public/images/profile/1928325339eu3.jpg', NULL, NULL, NULL, 'local', 1),
+	(95, 'Maria Soares', NULL, NULL, 0, NULL, 'maria@gmail.com', '$2y$10$diyMnueQ6or27JfeLkgid.k/6QmkN26nKTNHeoTrhwnE23PMeGdS2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-20 12:16:09', '2025-04-20 12:16:09', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg', NULL, NULL, NULL, 'local', 1),
+	(96, 'Joana Lucas', NULL, NULL, 0, NULL, 'joana1@gmail.com', '$2y$10$L/IlppHIYuhdtxF3HxeTIukEwwc0UgzVTKD0jyBVSz53aSr8L..lK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-20 12:16:53', '2025-04-20 12:16:53', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg', NULL, NULL, NULL, 'local', 1),
+	(97, 'Tesla', NULL, NULL, 0, NULL, 'joana2@gmail.com', '$2y$10$L/IlppHIYuhdtxF3HxeTIukEwwc0UgzVTKD0jyBVSz53aSr8L..lK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-20 12:16:53', '2025-04-20 12:16:53', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg', NULL, NULL, NULL, 'local', 1),
+	(98, 'Fernanda', NULL, NULL, 0, NULL, 'joana3@gmail.com', '$2y$10$L/IlppHIYuhdtxF3HxeTIukEwwc0UgzVTKD0jyBVSz53aSr8L..lK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-20 12:16:53', '2025-04-20 12:16:53', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg', NULL, NULL, NULL, 'local', 1),
+	(99, 'Julio', NULL, NULL, 0, NULL, 'joana4@gmail.com', '$2y$10$L/IlppHIYuhdtxF3HxeTIukEwwc0UgzVTKD0jyBVSz53aSr8L..lK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-20 12:16:53', '2025-04-20 12:16:53', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg', NULL, NULL, NULL, 'local', 1),
+	(100, 'Carlos Castro', NULL, NULL, 0, NULL, 'joana5@gmail.com', '$2y$10$L/IlppHIYuhdtxF3HxeTIukEwwc0UgzVTKD0jyBVSz53aSr8L..lK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-20 12:16:53', '2025-04-20 12:16:53', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg', NULL, NULL, NULL, 'local', 1),
+	(101, 'Laura', NULL, NULL, 0, NULL, 'joana6@gmail.com', '$2y$10$L/IlppHIYuhdtxF3HxeTIukEwwc0UgzVTKD0jyBVSz53aSr8L..lK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-20 12:16:53', '2025-04-20 12:16:53', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg', NULL, NULL, NULL, 'local', 1),
+	(102, 'Laura Mara', NULL, NULL, 0, NULL, 'joana7@gmail.com', '$2y$10$L/IlppHIYuhdtxF3HxeTIukEwwc0UgzVTKD0jyBVSz53aSr8L..lK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-20 12:16:53', '2025-04-20 12:16:53', NULL, NULL, 'http://localhost:8009/public/images/profile/643849404Amanita.jpg', NULL, NULL, NULL, 'local', 1),
+	(103, 'Julio K', NULL, NULL, 0, NULL, 'eder@gmail.com', '$2y$10$OGoaveycp6/iJIb9f46rROtlay.7JeoCJnJmTwdcHBAAd9HjIPeoS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 12:33:12', '2025-04-26 12:55:25', NULL, NULL, 'http://localhost:8009/public/images/profile/758210200euuu.jpg', NULL, NULL, NULL, 'local', 1),
+	(104, 'Marcio Abrel', NULL, NULL, 0, NULL, 'teste@testeagora.com', '$2y$10$fa5gmoCS9DoW4NpGyjd5i.xaXnrlRrKYJ6mRr4gFWW7MdGl3DzMGG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 12:55:51', '2025-04-26 12:55:51', NULL, NULL, 'null', NULL, NULL, NULL, 'local', 1),
+	(105, 'Iasmin Flora', NULL, NULL, 0, NULL, 'mesmo@gmail.com', '$2y$10$GvFZMByIjUqTvZHCPkYgZucTYlcOc816dIbw8ZNzUSpkR7SZp4xze', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 12:57:13', '2025-04-26 13:21:37', NULL, NULL, 'http://localhost:8009/public/images/profile/2004235341euuu.jpg', NULL, NULL, NULL, 'local', 1),
+	(106, 'Iasmin Cora', NULL, NULL, 0, NULL, 'iasmin@gmail.com', '$2y$10$zEgQ3Z8ikziLYdEY2L9wfeewd2RH72XGVVqphmJZ16QZyZxpYt7s2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 13:22:35', '2025-04-26 13:22:35', NULL, NULL, 'http://localhost:8009/public/images/profile/2004235341euuu.jpg', NULL, NULL, NULL, 'local', 1),
+	(107, 'Lara Lisa', NULL, NULL, 0, NULL, 'lara@gmail.com', '$2y$10$1MlGcD2zrETpT1VDvhOxFOVpGf70VEkg.vUS8pl38DCVUFF263vvy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 13:24:58', '2025-04-26 13:24:58', NULL, NULL, 'null', NULL, NULL, NULL, 'local', 1),
+	(108, 'Veras', NULL, NULL, 0, NULL, 'hedreiandrade66@gmail.com', '$2y$10$fG5plTMXx2aIW8Ip6/QWMOfpJpyuFF8SWV3dpbHjjZP4nZUrjlRha', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 13:36:18', '2025-04-26 13:36:18', NULL, NULL, 'null', NULL, NULL, NULL, 'local', 1),
+	(109, 'Iago Lucas', NULL, NULL, 0, NULL, 'lucas888@gmail.com', '$2y$10$ZlCAk53uVMnUAvjEy2F8HO1MG54.8fWjsKXmTwWeAa9PAv7pSiPjm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 13:38:04', '2025-04-26 13:38:04', NULL, NULL, 'null', NULL, NULL, NULL, 'local', 1),
+	(110, 'Lucia Amorin', NULL, NULL, 0, NULL, 'lucia@gmail.com', '$2y$10$XHGq7LhyudahkZ/.Ql1KmuFhyoIiHmGS23MhPPHh2szvm0i503FFK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 14:09:22', '2025-04-26 14:10:02', NULL, NULL, 'http://localhost:8009/public/images/profile/1355349776Bonito04.jpg', NULL, NULL, NULL, 'local', 1),
+	(111, 'Ana Julia', NULL, NULL, 0, NULL, 'ana@gmail.com', '$2y$10$VDaYiWueNMqiBOnriIPuYeBE.oUB6DIPS13AXsGULN2.cIz2NqMDe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 15:44:34', '2025-04-26 15:46:44', NULL, NULL, 'http://localhost:8009/public/images/profile/1397644539Code.png', NULL, NULL, NULL, 'local', 1),
+	(112, 'Marcia Amaral', NULL, NULL, 0, NULL, 'marcia@gmail.com', '$2y$10$IWQ3UcNI7cjuIG6gn/Yue.EIDdj/HsN7rh2qfJ4cAgnOdlUFiEnv.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 15:47:08', '2025-04-26 15:47:08', NULL, NULL, 'http://localhost:8009/public/images/profile/1888685797CapaSoundCloud.jpg', NULL, NULL, NULL, 'local', 1),
+	(113, 'Maria Luca', NULL, NULL, 0, NULL, 'maria6@gmail.com', '$2y$10$faVJHP2ztA9zbM7Ro5HhtuOPG3INVH3bk8OE9VeTVxMrHDBBQgQeG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-04-26 15:47:37', '2025-04-26 15:47:37', NULL, NULL, 'null', NULL, NULL, NULL, 'local', 1),
+	(115, 'calebi', NULL, NULL, 0, NULL, 'calebi.andrade@gmail.com', '$2y$10$D1q1lgiCt9fcjbuM/lBF9O/yw47C96R6uvpZqdDML0QEWRMWmOitW', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-10-05 17:25:03', '2025-10-05 17:25:03', NULL, NULL, 'null', NULL, NULL, NULL, 'local', 1),
+	(117, 'Carlos Mora', NULL, NULL, 0, NULL, 'carlos5@gmail.com', '$2y$10$9xPFxBd1zJdCQbAdqRw34OJZPV9uXxFpDtOVrm0ybBxQvJiaHuDia', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-10-07 07:59:41', '2025-10-07 07:59:41', NULL, NULL, 'null', NULL, NULL, NULL, 'local', 1),
+	(118, 'moura', NULL, NULL, 0, NULL, 'moura2@gmail.com', '$2y$10$ZsGprG4bx4iU6oqkV2.fDeZdaOGBZKXSG1blOH3S90VGBhO/uI7ma', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, '2025-10-07 08:47:47', '2025-10-07 08:47:47', NULL, NULL, 'null', NULL, NULL, NULL, 'local', 1),
+	(202, 'Hedrei Andrade', NULL, NULL, 0, NULL, 'hedreiandrade@gmail.com', '$2y$10$jx8U1r2P0uBUiMD9J5/Rd.dZwieCo6fQFgzDqCo8Nj5oqkT101hja', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-10-21 04:09:58', '2025-11-01 15:02:10', 8, 0, 1, '2025-10-21 04:09:58', '2025-11-01 16:16:40', NULL, NULL, 'http://localhost:8009/public/images/profile/1280794419ha.jpg', 'http://localhost:8009/public/images/cover/1611310010capayoutube.jpg', NULL, NULL, 'local', 1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

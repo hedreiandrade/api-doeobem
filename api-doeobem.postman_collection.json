@@ -52,7 +52,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzU4NDkyMzUxLCJuYmYiOjE3NTg0OTIzNTEsImV4cCI6MTc1ODUyMTE1MX0.IH8b68Fi7Jt4l34LVzLEBn19YGTCoWrXSjkWmasUrrA",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzYxOTk0MjgyLCJuYmYiOjE3NjE5OTQyODIsImV4cCI6MTc2MjAyMzA4Mn0.A0lamWbHENP5SrAqdOnjU6S3FAk_p8EzdFK6gGRtgkc",
 							"type": "string"
 						}
 					]
@@ -65,7 +65,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8009/public/v1/user/60",
+					"raw": "http://localhost:8009/public/v1/user/85",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -75,7 +75,7 @@
 						"public",
 						"v1",
 						"user",
-						"60"
+						"85"
 					]
 				}
 			},
@@ -191,7 +191,7 @@
 			"response": []
 		},
 		{
-			"name": "update/api-doeobem/v1/user",
+			"name": "update/api-doeobem/v1/user/63",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -359,7 +359,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8009/public/v1/confirmedByEmail/hedreiandrade@gmail.com",
+					"raw": "http://localhost:8009/public/v1/confirmedByEmail/hedreiandrade@gmail.com?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzYxMjMyNzIzLCJuYmYiOjE3NjEyMzI3MjMsImV4cCI6MTc2MTI2MTUyM30.kDxKrkgvmvS6O9Aqvq01k81wyjfIA9lVITnLvvFG60Y",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -370,6 +370,48 @@
 						"v1",
 						"confirmedByEmail",
 						"hedreiandrade@gmail.com"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzYxMjMyNzIzLCJuYmYiOjE3NjEyMzI3MjMsImV4cCI6MTc2MTI2MTUyM30.kDxKrkgvmvS6O9Aqvq01k81wyjfIA9lVITnLvvFG60Y"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8009/public//v1/verifyTokenForgotPassword/hedreiandrade@gmail.com",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8009/public/v1/verifyTokenForgotPassword/hedreiandrade@gmail.com?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzYxMjYzNjAzLCJuYmYiOjE3NjEyNjM2MDMsImV4cCI6MTc2MTI5MjQwM30.IHf8BHYgIIVX8EsU6p3rTAmPqYeUm0cZsS1NGYQrMnU",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8009",
+					"path": [
+						"public",
+						"v1",
+						"verifyTokenForgotPassword",
+						"hedreiandrade@gmail.com"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZ2l0aHViLmNvbS9oZWRyZWlhbmRyYWRlIiwiYXVkIjoiaHR0cDovL3R3aXR0ZXIuY29tIiwiaWF0IjoxNzYxMjYzNjAzLCJuYmYiOjE3NjEyNjM2MDMsImV4cCI6MTc2MTI5MjQwM30.IHf8BHYgIIVX8EsU6p3rTAmPqYeUm0cZsS1NGYQrMnU"
+						}
 					]
 				}
 			},
