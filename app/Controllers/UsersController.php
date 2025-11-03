@@ -60,68 +60,74 @@ class UsersController extends BaseController
     {
         $return = [];
         $params = $request->getParams();
-        // Validações pre-definidas no controller
-        $this->getAttributeErrors($request);
-        // Verifica formatação básica de e-mail
-        $this->checkEmail($params['email']);
-        // Esconde senhas
-        if(isset($params['password'])){
-            $params['password'] = $this->hidePassword($params['password']);     
-        }
-        if(isset($_FILES['photo'])){
-            $directory = PUBLIC_PATH.'/images/profile';
-            if (!is_dir($directory)) {
-                mkdir($directory, 0777, true);
+        try{
+            // Validações pre-definidas no controller
+            $this->getAttributeErrors($request);
+            // Verifica formatação básica de e-mail
+            $this->checkEmail($params['email']);
+            // Esconde senhas
+            if(isset($params['password'])){
+                $params['password'] = $this->hidePassword($params['password']);     
             }
-            $file = $_FILES['photo'];
-            $imageName = rand().$file['name'];
-            move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/profile/'.$imageName);
-            $params['photo'] = URL_PUBLIC.'/images/profile/'.$imageName;
+            if(isset($_FILES['photo'])){
+                $directory = PUBLIC_PATH.'/images/profile';
+                if (!is_dir($directory)) {
+                    mkdir($directory, 0777, true);
+                }
+                $file = $_FILES['photo'];
+                $imageName = rand().$file['name'];
+                move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/profile/'.$imageName);
+                $params['photo'] = URL_PUBLIC.'/images/profile/'.$imageName;
+            }
+            if(Users::where('email', $params['email'])
+                    ->where('email_verified', 0)
+                    ->where('auth_provider', 'local')
+                    ->first()){
+                $this->sendEmail($params['email']);
+                $return = array('response'=>'Account created successfully! Check your email to confirm your account.');
+                $this->respond($return);
+            }
+            if(Users::where('email', $params['email'])
+                    ->where('email_verified', 1)
+                    ->first()){
+                $return = array('response'=>"There is an account for this e-mail, try to recover your password. ");
+                $this->respond($return);
+            }
+            $user = Users::where('email', $params['email'])->first();
+            if($user) {
+                // Atualizar dados do usuário existente
+                $updateData = [
+                    'name' => $params['name'],
+                    'email' => $params['email'],
+                    'password' => $params['password'],
+                    'email_verified' => 0,
+                    'photo' => $params['photo'],
+                    'auth_provider' => 'local',
+                    'updated_at' => date('Y-m-d H:i:s')
+                ];
+                $user->update($updateData);
+                // Atualizar último acesso
+                $user->update([
+                    'last_access' => date('Y-m-d H:i:s'),
+                    'access_count' => ($user->access_count ?? 0) + 1
+                ]);
+                $user->refresh();
+                $this->sendEmail($params['email']);
+            }else{
+                $params['google_id'] = null;
+                $params['auth_provider'] = 'local';
+                $params['email_verified'] = 0;
+                $params['first_access'] = date('Y-m-d H:i:s');
+                $return = Users::create($params);
+                $this->sendEmail($params['email']);
+                $return = array('id' => $return->id);
+            }
+            http_response_code(201);
+        }catch (\Exception $e) {
+            $return = array('status' => 401,
+                        'response' => 'An error occurred while creating account');
+             $this->respond($return);
         }
-        if(Users::where('email', $params['email'])
-                ->where('email_verified', 0)
-                ->where('auth_provider', 'local')
-                ->first()){
-            $this->sendEmail($params['email']);
-            $return = array('response'=>'Account created successfully! Check your email to confirm your account.');
-            $this->respond($return);
-        }
-        if(Users::where('email', $params['email'])
-                ->where('email_verified', 1)
-                ->first()){
-            $return = array('response'=>"There is an account for this e-mail, try to recover your password. ");
-            $this->respond($return);
-        }
-        $user = Users::where('email', $params['email'])->first();
-        if($user) {
-            // Atualizar dados do usuário existente
-            $updateData = [
-                'name' => $params['name'],
-                'email' => $params['email'],
-                'password' => $params['password'],
-                'email_verified' => 0,
-                'photo' => $params['photo'],
-                'auth_provider' => 'local',
-                'updated_at' => date('Y-m-d H:i:s')
-            ];
-            $user->update($updateData);
-            // Atualizar último acesso
-            $user->update([
-                'last_access' => date('Y-m-d H:i:s'),
-                'access_count' => ($user->access_count ?? 0) + 1
-            ]);
-            $user->refresh();
-            $this->sendEmail($params['email']);
-        }else{
-            $params['google_id'] = null;
-            $params['auth_provider'] = 'local';
-            $params['email_verified'] = 0;
-            $params['first_access'] = date('Y-m-d H:i:s');
-            $return = Users::create($params);
-            $this->sendEmail($params['email']);
-            $return = array('id' => $return->id);
-        }
-        http_response_code(201);
         $this->respond($return);
     }
 
