@@ -547,10 +547,10 @@ class UsersController extends BaseController
                     'auth_provider' => $user->auth_provider
                 ]
             ];
-        } catch(\Exception $e) {
-            error_log("ERRO Google Login: " . $e->getMessage());
-            $return = ['response' => 'Erro no login com Google: ' . $e->getMessage()];
-            http_response_code(400);
+        } catch (\Exception $e) {
+            $return = array('status' => 401,
+                        'response' => 'An error occurred while login with Google');
+             $this->respond($return);
         }
         $this->respond($return);
     }
