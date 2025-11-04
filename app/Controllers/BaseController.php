@@ -223,54 +223,62 @@ abstract class BaseController
     public function update($request, $response)
     {
         $return = [];
-        $params = $request->getParams();
-        $id = $request->getAttribute('id');
-        // Verifica se e-mail já não está registrado
-        if(isset($params['email'])){
-            $this->checkEmailRegisteredUpdate($params['email'], $id);
-        }
-        // Esconde senhas
-        if(isset($params['password'])){
-            $params['password'] = $this->hidePassword($params['password']);
-        }
-        if(isset($_FILES['photo'])){
-            $directory = PUBLIC_PATH.'/images/profile';
-            if (!is_dir($directory)) {
-                mkdir($directory, 0777, true);
+        try{
+            $params = $request->getParams();
+            $id = $request->getAttribute('id');
+            // Verifica se e-mail já não está registrado
+            if(isset($params['email'])){
+                $this->checkEmailRegisteredUpdate($params['email'], $id);
             }
-            $file = $_FILES['photo'];
-            $imageName = rand().$file['name'];
-            move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/profile/'.$imageName);
-            $params['photo'] = URL_PUBLIC.'/images/profile/'.$imageName;
-        }
-        if(isset($_FILES['cover_photo'])){
-            $directory = PUBLIC_PATH.'/images/cover';
-            if (!is_dir($directory)) {
-                mkdir($directory, 0777, true);
+            // Esconde senhas
+            if(isset($params['password'])){
+                $params['password'] = $this->hidePassword($params['password']);
             }
-            $file = $_FILES['cover_photo'];
-            $imageName = rand().$file['name'];
-            move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/cover/'.$imageName);
-            $params['cover_photo'] = URL_PUBLIC.'/images/cover/'.$imageName;
+            if(isset($_FILES['photo'])){
+                $directory = PUBLIC_PATH.'/images/profile';
+                if (!is_dir($directory)) {
+                    mkdir($directory, 0777, true);
+                }
+                $file = $_FILES['photo'];
+                $imageName = rand().$file['name'];
+                move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/profile/'.$imageName);
+                $params['photo'] = URL_PUBLIC.'/images/profile/'.$imageName;
+            }
+            if(isset($_FILES['cover_photo'])){
+                $directory = PUBLIC_PATH.'/images/cover';
+                if (!is_dir($directory)) {
+                    mkdir($directory, 0777, true);
+                }
+                $file = $_FILES['cover_photo'];
+                $imageName = rand().$file['name'];
+                move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/cover/'.$imageName);
+                $params['cover_photo'] = URL_PUBLIC.'/images/cover/'.$imageName;
+            }
+            // Verifica formação básica de e-mail
+            if(isset($params['email'])){
+                $validatedEmail = $this->errorEmail($params['email']);
+                if (!$validatedEmail['flEmail']) {
+                    $this->respond(array('status' => 401, 'response'=>$validatedEmail['response']));
+                }
+            }
+            // Verifica existência do registro
+            $model = $this->activeModel->find($id);
+            if (!isset($model)) {
+                $result = array('response'=>"id: $id not found the same may have been previously deleted.");
+                $this->respond($result);
+            }
+            // Enche model com os dados para o save
+            $model->fill($params);
+            if ($model->save()) { // Atualiza registro
+                $return = $model->toArray();
+            } else {
+                $return = array('response'=>"ERRO: id: $id can not be updated.");
+            }
+        }catch (\Exception $e) {
+            $return = array('status' => 401,
+                        'response' => 'An error occurred while update profile');
+             $this->respond($return);
         }
-        // Verifica formação básica de e-mail
-        if(isset($params['email'])){
-            $this->checkEmail($params['email']);
-        }
-        // Verifica existência do registro
-        $model = $this->activeModel->find($id);
-        if (!isset($model)) {
-            $result = array('response'=>"id: $id not found the same may have been previously deleted.");
-            $this->respond($result);
-        }
-        // Enche model com os dados para o save
-        $model->fill($params);
-        if ($model->save()) { // Atualiza registro
-            $return = $model->toArray();
-        } else {
-            $return = array('response'=>"ERRO: id: $id can not be updated.");
-        }
-
         http_response_code(200);
         $this->respond($return);
     }
@@ -363,7 +371,7 @@ abstract class BaseController
             $otherUser = Users::where('email', $email)->first();
             if($otherUser){
                 http_response_code(203);
-                $result = array('response'=>"There is an account for this e-mail, try to recover your password.");
+                $result = array('status' => 203, 'response'=>"There is an account for this e-mail, try to recover your password.");
                 $this->respond($result);
             }else{
                 return true;
