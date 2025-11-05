@@ -248,35 +248,39 @@ class UsersController extends BaseController
     {
         $return = [];
         $params = $request->getParams();
-
-        // Verifica se foi informado email, senha e nova senha
-        if (!isset($params['email']) || !isset($params['password']) || !isset($params['newPassword']) || !$params['newPassword'] || !isset($params['confirmNewPassword']) || !$params['confirmNewPassword']) {
-            $return = array('response'=>"Please, give me your email, password, new password and confirm new password");
-            $this->respond($return);
+        try{
+            // Verifica se foi informado email, senha e nova senha
+            if (!isset($params['email']) || !isset($params['password']) || !isset($params['newPassword']) || !$params['newPassword'] || !isset($params['confirmNewPassword']) || !$params['confirmNewPassword']) {
+                $return = array('status' => 401, 'response'=>"Please, give me your email, password, new password and confirm new password");
+                $this->respond($return);
+            }
+            $user = Users::where('id', $params['id'])->first();
+            if($user->email !== $params['email']){
+                $return = array('status' => 401, 'response'=>"The email you've entered doesn't match with account.");
+                $this->respond($return);
+            }
+            // Verifica cadastro do email
+            $user = Users::where('email', $params['email'])->first();
+            if (!$user) {
+                $userEmail = $params['email'];
+                $return = array('status' => 401, 'response'=>"The email you've entered: $userEmail doesn't match any account. Sign up for an account.");
+                $this->respond($return);
+            }
+            // Verifica a velha senha
+            if (!password_verify($params['password'], $user->password)) {
+                $return = array('status' => 401, 'response'=>"The old password is not correct. Try again.");
+            } else {
+                // Seta nova
+                $user->password = $this->hidePassword($params['newPassword']);
+                $user->save();
+                $return = array('status' => 200, 'response'=>"User: $user->id password changed successfully.");
+            }
+            http_response_code(200);
+        }catch (\Exception $e) {
+            $return = array('status' => 401,
+                        'response' => 'An error occurred while change password.');
+             $this->respond($return);
         }
-        $user = Users::where('id', $params['id'])->first();
-        if($user->email !== $params['email']){
-            $return = array('response'=>"The email you've entered doesn't match with account.");
-            $this->respond($return);
-        }
-        // Verifica cadastro do email
-        $user = Users::where('email', $params['email'])->first();
-        if (!$user) {
-            $userEmail = $params['email'];
-            $return = array('response'=>"The email you've entered: $userEmail doesn't match any account. Sign up for an account.");
-            $this->respond($return);
-        }
-          // Verifica a velha senha
-        if (!password_verify($params['password'], $user->password)) {
-            $return = array('response'=>"The old password is not correct. Try again.");
-        } else {
-            // Seta nova
-            $user->password = $this->hidePassword($params['newPassword']);
-            $user->save();
-            $return = array('response'=>"User: $user->id password changed successfully.");
-        }
-        
-        http_response_code(200);
         $this->respond($return);
     }
 
