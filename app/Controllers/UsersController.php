@@ -604,36 +604,107 @@ class UsersController extends BaseController
 
     /**
      * Envia emails para primeiro acesso a conta
-     *
      */
     public function sendEmail($emailTo = '') 
     {
         $mail = new PHPMailer(true);
         $token = $this->createEmailToken();
+        $user = Users::where('email', $emailTo)->first();
         try {
             //Server settings
             $mail->SMTPDebug = false; 
-            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                     
             $mail->isSMTP();                                          
             $mail->Host = SMTP_HOST;                 
             $mail->SMTPAuth = true; 
-            //$mail->SMTPSecure = "tls";                                  
             $mail->Username = SMTP_USERNAME;                   
             $mail->Password = SMTP_PASSWORD;                           
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         
             $mail->Port = 587;    
-            $mail->CharSet = 'uft-8';                               
-
+            $mail->CharSet = 'UTF-8';                               
             //Recipients
             $mail->setFrom('hedreiandrade@gmail.com', 'H Media');
-            $mail->addAddress($emailTo, 'H Media');              
-
+            $mail->addAddress($emailTo, $user->name);              
+            // Create the email HTML
+            $confirmationLink = URL_PUBLIC.'/v1/confirmedByEmail/'.$emailTo.'?token='.$token['token'];
+            $emailBody = '
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Confirm Your Email - H Media</title>
+                <style>
+                    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #f4f4f4; }
+                    .container { max-width: 600px; margin: 0 auto; background: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+                    .header { text-align: center; padding: 20px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px 10px 0 0; color: white; }
+                    .header h1 { margin: 0; font-size: 28px; }
+                    .content { padding: 30px 20px; text-align: center; }
+                    .welcome-text { font-size: 24px; color: #333; margin-bottom: 20px; font-weight: bold; }
+                    .message { font-size: 16px; color: #666; margin-bottom: 30px; line-height: 1.8; }
+                    .button { display: inline-block; padding: 15px 30px; background: #0D6EFD; color: #FFF !important; text-decoration: none; border-radius: 25px; font-size: 16px; font-weight: bold; margin: 20px 0; transition: all 0.3s ease; }
+                    .button:hover { background: #0B5ED7; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(13,110,253,0.3); }
+                    .footer { text-align: center; padding: 20px; color: #888; font-size: 14px; border-top: 1px solid #eee; }
+                    .security-note { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0; font-size: 14px; color: #666; }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="header">
+                        <h1>H Media</h1>
+                    </div>
+                    
+                    <div class="content">
+                        <div class="welcome-text">
+                            Welcome to H Media, '.$user->name.'! 🎉
+                        </div>
+                        
+                        <div class="message">
+                            <p>We\'re thrilled to have you join our community! Your journey to amazing content and connections starts here.</p>
+                            
+                            <p>To complete your registration and unlock all the features of H Media, please confirm your email address by clicking the button below:</p>
+                        </div>
+                        
+                        <a href="'.$confirmationLink.'" class="button">
+                            Confirm my email address
+                        </a>
+                        
+                        <div class="security-note">
+                            <strong>Security Note:</strong> This link will expire in 8 hours for your protection. 
+                            If you didn\'t create an account with H Media, please ignore this email.
+                        </div>
+                        
+                        <div class="message">
+                            <p>Once confirmed, you\'ll be able to:</p>
+                            <ul style="text-align: left; display: inline-block; margin: 0;">
+                                <li>Access exclusive content</li>
+                                <li>Connect with other members</li>
+                                <li>Personalize your experience</li>
+                                <li>And much more!</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="footer">
+                        <p>If the button doesn\'t work, copy and paste this link into your browser:</p>
+                        <p style="word-break: break-all; color: #0D6EFD; font-size: 12px;">'.$confirmationLink.'</p>
+                        
+                        <p>&copy; H Media. All rights reserved.</p>
+                    </div>
+                </div>
+            </body>
+            </html>';
             //Content
             $mail->isHTML(true);                                  
-            $mail->Subject = 'H Media register email confirmation';
-            $mail->Body = '<a href="'.URL_PUBLIC.'/v1/confirmedByEmail/'.$emailTo.'?token='.$token['token'].'">Click here to confirm your email !</a>';
+            $mail->Subject = 'Welcome to H Media - Confirm your email address';
+            $mail->Body = $emailBody;
+            // Add plain text version for email clients that don't support HTML
+            $mail->AltBody = "Welcome to H Media, ".$user->name."!\n\n"
+                ."Please confirm your email address by clicking the following link:\n"
+                .$confirmationLink."\n\n"
+                ."If you didn't create an account with H Media, please ignore this email.\n\n"
+                ."Best regards,\n"
+                ."H Media Team";
             $mail->send();
-            //echo 'Message has been sent';
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
