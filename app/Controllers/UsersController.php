@@ -706,7 +706,9 @@ class UsersController extends BaseController
                 ."H Media Team";
             $mail->send();
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            $return = array('status' => 401,
+                        'response' => 'An error occurred while sent email confirmation');
+            $this->respond($return);
         }
     }
 
