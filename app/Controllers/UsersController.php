@@ -48,7 +48,7 @@ class UsersController extends BaseController
         );
     }
 
-        /**
+    /**
      * Insere um registro
      *
      * @param   Request     $request    Objeto de requisição
