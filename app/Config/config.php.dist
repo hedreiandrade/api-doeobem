@@ -7,4 +7,5 @@ const SMTP_HOST = '';
 const SMTP_USERNAME = '';
 const SMTP_PASSWORD = '';
 const REACT_URL = '';
-
+const S3_CHAVE = '';
+const S3_CHAVE_SECRET = '';
