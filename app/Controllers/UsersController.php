@@ -11,9 +11,16 @@ use Respect\Validation\Validator as v;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use PHPMailer\PHPMailer\PHPMailer;
+use Aws\S3\S3Client;
+use Aws\Exception\AwsException;
 
 class UsersController extends BaseController
 {
+
+    /**
+     * S3 object
+     */    
+    private $s3Client;
 
     /**
      * Construtor
@@ -26,6 +33,23 @@ class UsersController extends BaseController
     {
         parent::__construct($container);
         $this->activeModel = new Users();
+        $config = [
+            'version' => S3_VERSION,
+            'region'  => S3_REGION, 
+            'credentials' => [
+                'key'    => S3_KEY,
+                'secret' => S3_KEY_SECRET,
+            ],
+        ];
+        try {
+            $this->s3Client = new S3Client($config);
+        } catch (AwsException $e) {
+            echo "Erro AWS: " . $e->getMessage() . "\n";
+            die('Erro na configuração S3');
+        } catch (Exception $e) {
+            echo "Erro: " . $e->getMessage() . "\n";
+            die('Erro na configuração S3');
+        }
     }
 
     /**
@@ -60,7 +84,13 @@ class UsersController extends BaseController
     {
         $return = [];
         $params = $request->getParams();
+        $bucketName = 'hmediaha';
         try{
+            /*$result = $this->s3Client->listObjectsV2([
+                    'Bucket' => $bucketName
+            ]);
+            print_r($result);
+            die('aaa');*/
             // Validações pre-definidas no controller
             $this->getAttributeErrors($request);
             // Verifica formatação básica de e-mail
@@ -125,7 +155,7 @@ class UsersController extends BaseController
             http_response_code(201);
         }catch (\Exception $e) {
             $return = array('status' => 401,
-                        'response' => 'An error occurred while creating account');
+                        'response' => 'An error occurred while creating account'. $e->getMessage());
              $this->respond($return);
         }
         $this->respond($return);
