@@ -118,7 +118,9 @@ class UsersController extends BaseController
                         'Bucket' => $bucketName,
                         'Key'    => $s3Path,
                         'Body'   => fopen($file['tmp_name'], 'rb'),
-                        'ACL'    => 'public-read'
+                        'ACL'    => 'public-read',
+                        'ContentType' => mime_content_type($file['tmp_name']),
+                        'ContentDisposition' => 'inline' // para não baixar
                     ]);
                     // URL pública do arquivo no S3
                     $params['photo'] = $result->get('ObjectURL');
