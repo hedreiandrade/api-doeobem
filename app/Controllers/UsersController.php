@@ -394,20 +394,37 @@ class UsersController extends BaseController
                 $user = Users::where('email', $email)->first();
             }
             if (!$user) {
-                // Criar novo usuário
-                $userData = [
-                    'name' => $name,
-                    'email' => $email,
-                    'facebook_id' => $facebookId,
-                    'auth_provider' => 'facebook',
-                    'password' => password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT),
-                    'active' => 1,
-                    'photo' => URL_PUBLIC.'/images/profile/' .$picture ? URL_PUBLIC.'/images/profile/' .$this->downloadFacebookPhoto($picture, $facebookId) : null,
-                    'created_at' => date('Y-m-d H:i:s'),
-                    'first_access' => date('Y-m-d H:i:s')
-                ];
-                $user = Users::create($userData);
-                error_log("Novo usuário criado via Facebook: $name (Email: $email)");
+                if(STORAGE === 'local'){
+                    // Criar novo usuário
+                    $userData = [
+                        'name' => $name,
+                        'email' => $email,
+                        'facebook_id' => $facebookId,
+                        'auth_provider' => 'facebook',
+                        'password' => password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT),
+                        'active' => 1,
+                        'photo' => URL_PUBLIC.'/images/profile/' .$picture ? URL_PUBLIC.'/images/profile/' .$this->downloadFacebookPhoto($picture, $facebookId) : null,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'first_access' => date('Y-m-d H:i:s')
+                    ];
+                    $user = Users::create($userData);
+                    error_log("Novo usuário criado via Facebook: $name (Email: $email)");
+                }else{
+                    // Criar novo usuário
+                    $userData = [
+                        'name' => $name,
+                        'email' => $email,
+                        'facebook_id' => $facebookId,
+                        'auth_provider' => 'facebook',
+                        'password' => password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT),
+                        'active' => 1,
+                        'photo' => $this->downloadFacebookPhotoS3($picture, $facebookId, $email, $name) ? : null,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'first_access' => date('Y-m-d H:i:s')
+                    ];
+                    $user = Users::create($userData);
+                    error_log("Novo usuário criado via Facebook: $name (Email: $email)");
+                }
             } else {
                 // Atualizar dados do usuário existente
                 $updateData = [
@@ -420,7 +437,11 @@ class UsersController extends BaseController
                     $updateData['email'] = $email;
                 }
                 if (!$user->photo && $picture) {
-                    $updateData['photo'] = $this->downloadFacebookPhoto($picture, $facebookId);
+                    if(STORAGE === 'local'){
+                        $updateData['photo'] = $this->downloadFacebookPhoto($picture, $facebookId);
+                    }else{
+                        $updateData['photo'] = $this->downloadFacebookPhotoS3($picture, $facebookId, $email, $name) ? : null;
+                    }
                 }
                 $user->update($updateData);
                 // Atualizar último acesso
@@ -472,6 +493,41 @@ class UsersController extends BaseController
                 if (file_put_contents($uploadPath, $photoContent)) {
                     return $filename; // Retornar apenas o filename como no Google
                 }
+            }
+        } catch (\Exception $e) {
+            // Log do erro, mas não interrompe o processo
+            error_log('Erro ao baixar foto do Facebook: ' . $e->getMessage());
+        }
+        
+        return null;
+    }
+
+    /**
+     * Download e salvar foto do Facebook (igual ao Google)
+     */
+    private function downloadFacebookPhotoS3($pictureUrl, $facebookId, $email, $name)
+    {
+        $bucketName = 'hmediaha';
+        try {
+            $photoContent = file_get_contents($pictureUrl);
+            if ($photoContent) {
+                $extension = 'jpg'; // Facebook geralmente retorna JPG
+                $filename = 'facebook_' . $facebookId . '_' . time() . '.' . $extension;
+                $userName = strtolower(str_replace(' ', '', $name));
+                $userFolder = md5($email) . '_' . $userName;
+                // Criar caminho no S3
+                $s3Path = 'images/profile/' . $userFolder . '/' . $filename;
+                // Fazer upload para o S3
+                $result = $this->s3Client->putObject([
+                    'Bucket' => $bucketName,
+                    'Key'    => $s3Path,
+                    'Body'   => $photoContent,
+                    'ACL'    => 'public-read',
+                    'ContentType' => 'image/jpeg',
+                    'ContentDisposition' => 'inline'
+                ]);
+                // URL pública do arquivo no S3
+                return $result->get('ObjectURL');
             }
         } catch (\Exception $e) {
             // Log do erro, mas não interrompe o processo
