@@ -108,7 +108,7 @@ class UsersController extends BaseController
             }else{
                 if(isset($_FILES['photo'])){
                     $file = $_FILES['photo'];
-                    $imageName = rand().$file['name'];
+                    $imageName = rand() . strtolower(str_replace(' ', '', $file['name']));
                     $userName = strtolower(str_replace(' ', '', $params['name']));
                     $userFolder = md5($params['email']) . '_' . $userName;
                     // Criar caminho no S3
