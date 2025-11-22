@@ -86,11 +86,6 @@ class UsersController extends BaseController
         $params = $request->getParams();
         $bucketName = 'hmediaha';
         try{
-            /*$result = $this->s3Client->listObjectsV2([
-                    'Bucket' => $bucketName
-            ]);
-            print_r($result);
-            die('aaa');*/
             // Validações pre-definidas no controller
             $this->getAttributeErrors($request);
             // Verifica formatação básica de e-mail
@@ -99,16 +94,37 @@ class UsersController extends BaseController
             if(isset($params['password'])){
                 $params['password'] = $this->hidePassword($params['password']);     
             }
-            if(isset($_FILES['photo'])){
-                $directory = PUBLIC_PATH.'/images/profile';
-                if (!is_dir($directory)) {
-                    mkdir($directory, 0777, true);
+            if(STORAGE === 'local'){
+                if(isset($_FILES['photo'])){
+                    $directory = PUBLIC_PATH.'/images/profile';
+                    if (!is_dir($directory)) {
+                        mkdir($directory, 0777, true);
+                    }
+                    $file = $_FILES['photo'];
+                    $imageName = rand().$file['name'];
+                    move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/profile/'.$imageName);
+                    $params['photo'] = URL_PUBLIC.'/images/profile/'.$imageName;
                 }
-                $file = $_FILES['photo'];
-                $imageName = rand().$file['name'];
-                move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/profile/'.$imageName);
-                $params['photo'] = URL_PUBLIC.'/images/profile/'.$imageName;
+            }else{
+                if(isset($_FILES['photo'])){
+                    $file = $_FILES['photo'];
+                    $imageName = rand().$file['name'];
+                    $userName = strtolower(str_replace(' ', '', $params['name']));
+                    $userFolder = md5($params['email']) . '_' . $userName;
+                    // Criar caminho no S3
+                    $s3Path = 'images/profile/' . $userFolder . '/' . $imageName;
+                    // Fazer upload para o S3
+                    $result = $this->s3Client->putObject([
+                        'Bucket' => $bucketName,
+                        'Key'    => $s3Path,
+                        'Body'   => fopen($file['tmp_name'], 'rb'),
+                        'ACL'    => 'public-read'
+                    ]);
+                    // URL pública do arquivo no S3
+                    $params['photo'] = $result->get('ObjectURL');
+                }
             }
+
             if(Users::where('email', $params['email'])
                     ->where('email_verified', 0)
                     ->where('auth_provider', 'local')
