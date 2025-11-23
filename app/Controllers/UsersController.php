@@ -173,7 +173,7 @@ class UsersController extends BaseController
             http_response_code(201);
         }catch (\Exception $e) {
             $return = array('status' => 401,
-                        'response' => 'An error occurred while creating account'. $e->getMessage());
+                        'response' => 'An error occurred while creating account');
              $this->respond($return);
         }
         $this->respond($return);

@@ -8,6 +8,9 @@ namespace App\Controllers;
 use Datetime;
 use Firebase\JWT\JWT;
 use App\Models\Users;
+use Aws\S3\S3Client;
+use Aws\Exception\AwsException;
+use Exception;
 
 abstract class BaseController
 {
@@ -22,6 +25,12 @@ abstract class BaseController
     protected $activeModel = null;
 
     /**
+     * S3 object
+     */    
+    private $s3Client;
+
+
+    /**
      * Construtor
      *
      * @param   Slim\Container    $Container    Container da aplicação
@@ -30,6 +39,23 @@ abstract class BaseController
      */
     public function __construct($container)
     {
+        $config = [
+            'version' => S3_VERSION,
+            'region'  => S3_REGION, 
+            'credentials' => [
+                'key'    => S3_KEY,
+                'secret' => S3_KEY_SECRET,
+            ],
+        ];
+        try {
+            $this->s3Client = new S3Client($config);
+        } catch (AwsException $e) {
+            echo "Erro AWS: " . $e->getMessage() . "\n";
+            die('Erro na configuração S3');
+        } catch (Exception $e) {
+            echo "Erro: " . $e->getMessage() . "\n";
+            die('Erro na configuração S3');
+        }
     }
 
     public function respond($value = array())
@@ -223,6 +249,7 @@ abstract class BaseController
     public function update($request, $response)
     {
         $return = [];
+        $bucketName = 'hmediaha';
         try{
             $params = $request->getParams();
             $id = $request->getAttribute('id');
@@ -234,25 +261,70 @@ abstract class BaseController
             if(isset($params['password'])){
                 $params['password'] = $this->hidePassword($params['password']);
             }
-            if(isset($_FILES['photo'])){
-                $directory = PUBLIC_PATH.'/images/profile';
-                if (!is_dir($directory)) {
-                    mkdir($directory, 0777, true);
+            if(STORAGE === 'local'){
+                if(isset($_FILES['photo'])){
+                    $directory = PUBLIC_PATH.'/images/profile';
+                    if (!is_dir($directory)) {
+                        mkdir($directory, 0777, true);
+                    }
+                    $file = $_FILES['photo'];
+                    $imageName = rand().$file['name'];
+                    move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/profile/'.$imageName);
+                    $params['photo'] = URL_PUBLIC.'/images/profile/'.$imageName;
                 }
-                $file = $_FILES['photo'];
-                $imageName = rand().$file['name'];
-                move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/profile/'.$imageName);
-                $params['photo'] = URL_PUBLIC.'/images/profile/'.$imageName;
+            }else{
+                if(isset($_FILES['photo'])){
+                    $file = $_FILES['photo'];
+                    $imageName = rand() . strtolower(str_replace(' ', '', $file['name']));
+                    $userName = strtolower(str_replace(' ', '', $params['name']));
+                    $userFolder = md5($params['email']) . '_' . $userName;
+                    // Criar caminho no S3
+                    $s3Path = 'images/profile/' . $userFolder . '/' . $imageName;
+                    // Fazer upload para o S3
+                    $result = $this->s3Client->putObject([
+                        'Bucket' => $bucketName,
+                        'Key'    => $s3Path,
+                        'Body'   => fopen($file['tmp_name'], 'rb'),
+                        'ACL'    => 'public-read',
+                        'ContentType' => mime_content_type($file['tmp_name']),
+                        'ContentDisposition' => 'inline' // para não baixar
+                    ]);
+                    // URL pública do arquivo no S3
+                    $params['photo'] = $result->get('ObjectURL');
+                }
             }
-            if(isset($_FILES['cover_photo'])){
-                $directory = PUBLIC_PATH.'/images/cover';
-                if (!is_dir($directory)) {
-                    mkdir($directory, 0777, true);
+            if(STORAGE === 'local'){
+                if(isset($_FILES['cover_photo'])){
+                    $directory = PUBLIC_PATH.'/images/cover';
+                    if (!is_dir($directory)) {
+                        mkdir($directory, 0777, true);
+                    }
+                    $file = $_FILES['cover_photo'];
+                    $imageName = rand().$file['name'];
+                    move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/cover/'.$imageName);
+                    $params['cover_photo'] = URL_PUBLIC.'/images/cover/'.$imageName;
                 }
-                $file = $_FILES['cover_photo'];
-                $imageName = rand().$file['name'];
-                move_uploaded_file($file['tmp_name'], PUBLIC_PATH.'/images/cover/'.$imageName);
-                $params['cover_photo'] = URL_PUBLIC.'/images/cover/'.$imageName;
+            }else{
+                if(isset($_FILES['cover_photo'])){
+                    $file = $_FILES['cover_photo'];
+                    $model = $this->activeModel->find($id);
+                    $imageName = rand() . strtolower(str_replace(' ', '', $file['name']));
+                    $userName = strtolower(str_replace(' ', '', $model->name));
+                    $userFolder = md5($model->mail) . '_' . $userName;
+                    // Criar caminho no S3
+                    $s3Path = 'images/cover/' . $userFolder . '/' . $imageName;
+                    // Fazer upload para o S3
+                    $result = $this->s3Client->putObject([
+                        'Bucket' => $bucketName,
+                        'Key'    => $s3Path,
+                        'Body'   => fopen($file['tmp_name'], 'rb'),
+                        'ACL'    => 'public-read',
+                        'ContentType' => mime_content_type($file['tmp_name']),
+                        'ContentDisposition' => 'inline' // para não baixar
+                    ]);
+                    // URL pública do arquivo no S3
+                    $params['cover_photo'] = $result->get('ObjectURL');
+                }
             }
             // Verifica formação básica de e-mail
             if(isset($params['email'])){
