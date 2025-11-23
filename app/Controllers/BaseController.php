@@ -39,22 +39,24 @@ abstract class BaseController
      */
     public function __construct($container)
     {
-        $config = [
-            'version' => S3_VERSION,
-            'region'  => S3_REGION, 
-            'credentials' => [
-                'key'    => S3_KEY,
-                'secret' => S3_KEY_SECRET,
-            ],
-        ];
-        try {
-            $this->s3Client = new S3Client($config);
-        } catch (AwsException $e) {
-            echo "Erro AWS: " . $e->getMessage() . "\n";
-            die('Erro na configuração S3');
-        } catch (Exception $e) {
-            echo "Erro: " . $e->getMessage() . "\n";
-            die('Erro na configuração S3');
+        if(STORAGE === 'S3'){
+            $config = [
+                'version' => S3_VERSION,
+                'region'  => S3_REGION, 
+                'credentials' => [
+                    'key'    => S3_KEY,
+                    'secret' => S3_KEY_SECRET,
+                ],
+            ];
+            try {
+                $this->s3Client = new S3Client($config);
+            } catch (AwsException $e) {
+                echo "Erro AWS: " . $e->getMessage() . "\n";
+                die('Erro na configuração S3');
+            } catch (Exception $e) {
+                echo "Erro: " . $e->getMessage() . "\n";
+                die('Erro na configuração S3');
+            }
         }
     }
 
