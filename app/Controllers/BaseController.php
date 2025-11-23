@@ -103,7 +103,7 @@ abstract class BaseController
         }
     }
 
-        /**
+    /**
      * Cria um novo token
      *
      * @return string|Json
@@ -352,7 +352,7 @@ abstract class BaseController
         return true;
     }
 
-        /**
+    /**
      * Verifica se e-mail já não está registrado
      * Pode dar erro de senha pq pega o 1º e-mail
      * e poderia ter o mesmo e-mail com outra senha

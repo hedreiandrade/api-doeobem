@@ -988,6 +988,7 @@ class UsersController extends BaseController
             $this->respond($return);
         }
     }
+    
     /**
      * Email para trocar senha
      *
