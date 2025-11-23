@@ -586,19 +586,35 @@ class UsersController extends BaseController
             // Verificar se usuário já existe
             $user = Users::where('email', $email)->first();
             if (!$user) {
-                $userData = [
-                    'name' => $name,
-                    'email' => $email,
-                    'google_id' => $googleId,
-                    'auth_provider' => 'google',
-                    'password' => password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT),
-                    'active' => 1,
-                    'photo' => $picture ? URL_PUBLIC . '/images/profile/' . $this->downloadGooglePhoto($picture, $googleId) : null,
-                    'created_at' => date('Y-m-d H:i:s'),
-                    'first_access' => date('Y-m-d H:i:s')
-                ];
-                $user = Users::create($userData);
-                error_log("Novo usuário criado via Google: $email");
+                if(STORAGE === 'local'){
+                    $userData = [
+                        'name' => $name,
+                        'email' => $email,
+                        'google_id' => $googleId,
+                        'auth_provider' => 'google',
+                        'password' => password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT),
+                        'active' => 1,
+                        'photo' => $picture ? URL_PUBLIC . '/images/profile/' . $this->downloadGooglePhoto($picture, $googleId) : null,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'first_access' => date('Y-m-d H:i:s')
+                    ];
+                    $user = Users::create($userData);
+                    error_log("Novo usuário criado via Google: $email");
+                }else{
+                    $userData = [
+                        'name' => $name,
+                        'email' => $email,
+                        'google_id' => $googleId,
+                        'auth_provider' => 'google',
+                        'password' => password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT),
+                        'active' => 1,
+                        'photo' => $this->downloadGooglePhotoS3($picture, $googleId, $email, $name) ? : null,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'first_access' => date('Y-m-d H:i:s')
+                    ];
+                    $user = Users::create($userData);
+                    error_log("Novo usuário criado via Google: $email");
+                }
             } else {
                 // Atualizar dados do usuário existente
                 $updateData = [
@@ -607,7 +623,11 @@ class UsersController extends BaseController
                     'updated_at' => date('Y-m-d H:i:s')
                 ];
                 if (!$user->photo && $picture) {
-                    $updateData['photo'] = URL_PUBLIC . '/images/profile/' . $this->downloadGooglePhoto($picture, $googleId);
+                    if(STORAGE === 'local'){
+                        $updateData['photo'] = URL_PUBLIC . '/images/profile/' . $this->downloadGooglePhoto($picture, $googleId);
+                    }else{
+                        $updateData['photo'] = $this->downloadGooglePhotoS3($picture, $googleId, $email, $name) ? : null;
+                    }
                 }
                 $user->update($updateData);
                 // Atualizar último acesso
@@ -665,6 +685,40 @@ class UsersController extends BaseController
             error_log('Erro ao baixar foto do Google: ' . $e->getMessage());
         }
         
+        return null;
+    }
+
+    /**
+     * Download e salvar foto do Google
+     */
+    private function downloadGooglePhotoS3($photoUrl, $googleId, $email , $name)
+    {
+        $bucketName = 'hmediaha';
+        try {
+            $photoContent = file_get_contents($photoUrl);
+            if ($photoContent) {
+                $extension = 'jpg'; // Facebook geralmente retorna JPG
+                $filename = 'google_' . $googleId . '_' . time() . '.' . $extension;
+                $userName = strtolower(str_replace(' ', '', $name));
+                $userFolder = md5($email) . '_' . $userName;
+                // Criar caminho no S3
+                $s3Path = 'images/profile/' . $userFolder . '/' . $filename;
+                // Fazer upload para o S3
+                $result = $this->s3Client->putObject([
+                    'Bucket' => $bucketName,
+                    'Key'    => $s3Path,
+                    'Body'   => $photoContent,
+                    'ACL'    => 'public-read',
+                    'ContentType' => 'image/jpeg',
+                    'ContentDisposition' => 'inline'
+                ]);
+                // URL pública do arquivo no S3
+                return $result->get('ObjectURL');
+            }
+        } catch (\Exception $e) {
+            // Log do erro, mas não interrompe o processo
+            error_log('Erro ao baixar foto do Facebook: ' . $e->getMessage());
+        }
         return null;
     }
 
