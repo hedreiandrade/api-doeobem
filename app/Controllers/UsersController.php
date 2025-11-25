@@ -475,7 +475,7 @@ class UsersController extends BaseController
     }
 
     /**
-     * Download e salvar foto do Facebook (igual ao Google)
+     * Download e salvar foto do Facebook
      */
     private function downloadFacebookPhoto($pictureUrl, $facebookId)
     {
