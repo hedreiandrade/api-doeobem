@@ -23,7 +23,7 @@ class Users extends Model
         'email',
         'password',
         'postal_code',
-        'street',
+        'address',
         'number',
         'complement',
         'neighborhood',
