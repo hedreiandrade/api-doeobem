@@ -30,6 +30,7 @@ class Users extends Model
         'city',
         'state',
         'country',
+        'birth_date',
         'recovery_key',
         'first_access',
         'last_access',

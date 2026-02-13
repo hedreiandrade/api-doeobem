@@ -164,6 +164,7 @@ class UsersController extends BaseController
                 $user->refresh();
                 $this->sendEmail($params['email']);
             }else{
+                $params['birth_date'] = $params['birth_date'].' 00:00:00';
                 $params['google_id'] = null;
                 $params['auth_provider'] = 'local';
                 $params['email_verified'] = 0;
