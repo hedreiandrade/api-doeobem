@@ -148,6 +148,13 @@ class UsersController extends BaseController
                 // Atualizar dados do usuário existente
                 $updateData = [
                     'name' => $params['name'],
+                    'birth_date' => $params['birth_date'].' 00:00:00',
+                    'address' => $params['address'],
+                    'number' => $params['number'],
+                    'city' => $params['city'],
+                    'country' => $params['country'],
+                    'state' => $params['state'],
+                    'postal_code' => $params['postal_code'],
                     'email' => $params['email'],
                     'password' => $params['password'],
                     'email_verified' => 0,
