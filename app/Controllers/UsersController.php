@@ -157,6 +157,8 @@ class UsersController extends BaseController
                     'postal_code' => $params['postal_code'],
                     'email' => $params['email'],
                     'password' => $params['password'],
+                    'bio' => $params['bio'],
+                    'website' => $params['website'],
                     'country_code' => $params['country_code'],
                     'state_code' => $params['state_code'],
                     'email_verified' => 0,

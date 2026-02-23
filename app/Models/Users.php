@@ -31,6 +31,8 @@ class Users extends Model
         'state',
         'country',
         'country_code',
+        'bio',
+        'website',
         'state_code',
         'birth_date',
         'recovery_key',
