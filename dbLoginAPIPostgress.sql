@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict us9Q3ufUhTVREZ4qNqqFck2G2lnhK3rIfqBHCEBKO5R1xEr8oy95SVQ0ivlMhcA
+\restrict WutX0KcgULYP2TYXawo35lej4X1Ddnxfq5KCcjFyYwRCfn3PsATP43XSUlP4Mkf
 
 -- Dumped from database version 17.9 (Debian 17.9-1.pgdg13+1)
 -- Dumped by pg_dump version 17.9 (Debian 17.9-1.pgdg13+1)
@@ -405,9 +405,9 @@ COPY public.posts_users (id, user_id, post_id, created_at, updated_at, deleted_a
 --
 
 COPY public.users (id, name, nickname, phone1, has_whatsapp, phone2, email, password, postal_code, address, number, complement, neighborhood, city, state, country, country_code, state_code, recovery_key, first_access, last_access, bio, website, access_count, receive_newsletter, active, created_at, updated_at, deleted_at, birth_date, userscol, photo, cover_photo, google_id, facebook_id, auth_provider, email_verified, verified_profile) FROM stdin;
-2	Calebe Andrade	\N	\N	f	\N	calebe@gmail.com	$2y$10$2TeaEg6VWyHyGlfSaM88DeQQEhf.6iQ.uFmb8myjy2fLeoi65KIay	13392-350	teste	5656	\N	\N	Campinas	São Paulo	Brazil	BR	SP	\N	2026-03-02 23:45:12	\N	Meu site www.calebe.com.br	\N	\N	f	t	2026-03-02 23:45:12	2026-03-02 23:45:21	\N	2026-03-02 00:00:00	\N	https://hmediaha.s3.us-west-2.amazonaws.com/images/profile/45ffe4526a174467d18531ced45e90df_calebeandrade/1650059618eu3.jpg	\N	\N	\N	local	t	f
 3	Thor Tron	\N	\N	f	\N	thor@gmail.com	$2y$10$1DJQc0HcpVsMmOfnz/PdsOVKLtYgQaZOCr7EEskqMa95aYlQ1WVMW	13392-350	teste	265	\N	\N	Campinas	São Paulo	Brazil	BR	SP	\N	2026-03-02 23:48:07	\N	www.thor.com.br	www.mixcloud.com/starprojectt	\N	f	t	2026-03-02 23:48:07	2026-03-02 23:48:14	\N	2026-03-02 00:00:00	\N	https://hmediaha.s3.us-west-2.amazonaws.com/images/profile/45ffe4526a174467d18531ced45e90df_thortron/1578230748euuu.jpg	\N	\N	\N	local	t	f
-1	Hedrei Andrade	\N	\N	f	\N	hedreiandrade@gmail.com	$2y$10$7SBLIUvkpDdC5km.ATdt/.Xw/szkq2IAQ8btjhgTtVsku4t.tPRUq	13051251	teste	989	\N	\N	Campinas	São Paulo	Brazil	BR	SP	\N	2026-02-28 01:13:41	\N	www.youtube.com/@starprojectt	www.hedreiandrade.com.br	\N	f	t	2026-02-28 01:13:41	2026-02-28 01:13:58	\N	1988-05-07 00:00:00	\N	https://hmediaha.s3.us-west-2.amazonaws.com/images/profile/45ffe4526a174467d18531ced45e90df_hedreiandrade/35275069ha.jpg	\N	\N	\N	local	t	f
+1	Hedrei Andrade	\N	\N	f	\N	hedreiandrade@gmail.com	$2y$10$7SBLIUvkpDdC5km.ATdt/.Xw/szkq2IAQ8btjhgTtVsku4t.tPRUq	13051251	teste	989	\N	\N	Campinas	São Paulo	Brazil	BR	SP	\N	2026-02-28 01:13:41	\N	www.youtube.com/@starprojectt	www.hedreiandrade.com.br	\N	f	t	2026-02-28 01:13:41	2026-03-02 23:54:59	\N	1988-05-07 00:00:00	\N	https://hmediaha.s3.us-west-2.amazonaws.com/images/profile/45ffe4526a174467d18531ced45e90df_hedreiandrade/35275069ha.jpg	https://hmediaha.s3.us-west-2.amazonaws.com/images/cover/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/1488094812capayoutube.jpg	\N	\N	local	t	f
+2	Calebe Andrade	\N	\N	f	\N	calebe@gmail.com	$2y$10$2TeaEg6VWyHyGlfSaM88DeQQEhf.6iQ.uFmb8myjy2fLeoi65KIay	13392-350	teste	5656	\N	\N	Campinas	São Paulo	Brazil	BR	SP	\N	2026-03-02 23:45:12	\N	Meu site www.calebe.com.br	\N	\N	f	t	2026-03-02 23:45:12	2026-03-02 23:55:28	\N	2026-03-02 00:00:00	\N	https://hmediaha.s3.us-west-2.amazonaws.com/images/profile/45ffe4526a174467d18531ced45e90df_calebeandrade/1650059618eu3.jpg	https://hmediaha.s3.us-west-2.amazonaws.com/images/cover/d41d8cd98f00b204e9800998ecf8427e_calebeandrade/684454171capasound.jpg	\N	\N	local	t	f
 \.
 
 
@@ -735,5 +735,5 @@ ALTER TABLE ONLY public.posts_users
 -- PostgreSQL database dump complete
 --
 
-\unrestrict us9Q3ufUhTVREZ4qNqqFck2G2lnhK3rIfqBHCEBKO5R1xEr8oy95SVQ0ivlMhcA
+\unrestrict WutX0KcgULYP2TYXawo35lej4X1Ddnxfq5KCcjFyYwRCfn3PsATP43XSUlP4Mkf
 
