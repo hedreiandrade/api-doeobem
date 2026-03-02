@@ -23,7 +23,7 @@ services:
 
   postgresdb:
     container_name: postgresdb
-    image: postgres:15
+    image: postgres:17
     restart: unless-stopped
     shm_size: 1G
     environment:
