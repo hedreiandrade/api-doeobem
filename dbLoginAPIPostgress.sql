@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict xWYkfjAD5bwaeMEwuUYc6ofXn7QM8ApafuuevVsdceoRuRLxTyhIzrFEd12wG0v
+\restrict 111K1dNZ6M48NFMKWCrBVk9qv5vSzP7gs6cU061xWb5dVcu47mfR1Oh2YIJUV1a
 
 -- Dumped from database version 17.9 (Debian 17.9-1.pgdg13+1)
 -- Dumped by pg_dump version 17.9 (Debian 17.9-1.pgdg13+1)
@@ -344,6 +344,42 @@ COPY public.comments (id, post_id, user_id, comment, created_at, updated_at, del
 6	6	1	Bom dia!	2026-03-22 18:51:59	2026-03-22 18:51:59	\N
 7	72	1	teste	2026-06-05 12:25:42	2026-06-05 12:25:42	\N
 8	72	1	🖤	2026-06-05 12:26:05	2026-06-05 12:26:05	\N
+9	90	1	Demais!	2026-06-10 19:21:32	2026-06-10 22:27:38	2026-06-10 22:27:38
+10	7	1	Massa!	2026-06-10 19:27:49	2026-06-10 22:27:51	2026-06-10 22:27:51
+11	90	1	Lindo!	2026-06-10 19:36:31	2026-06-10 22:40:09	2026-06-10 22:40:09
+12	90	1	Lindo!	2026-06-10 19:42:24	2026-06-10 22:44:20	2026-06-10 22:44:20
+13	90	1	Lindo	2026-06-10 19:46:50	2026-06-10 19:46:50	\N
+14	110	1	teste veritical video	2026-06-15 17:39:34	2026-06-15 17:39:34	\N
+15	110	3	Demais!	2026-06-15 19:56:20	2026-06-15 19:56:20	\N
+16	112	1	trste	2026-06-28 10:23:17	2026-06-28 13:23:28	2026-06-28 13:23:28
+22	128	1	6	2026-06-28 18:56:09	2026-06-28 21:56:12	2026-06-28 21:56:12
+21	128	1	5	2026-06-28 18:56:05	2026-06-28 21:56:12	2026-06-28 21:56:12
+20	128	1	4	2026-06-28 18:56:01	2026-06-28 21:56:13	2026-06-28 21:56:13
+19	128	1	3	2026-06-28 18:55:26	2026-06-28 21:56:14	2026-06-28 21:56:14
+18	128	1	2	2026-06-28 18:55:19	2026-06-28 21:56:15	2026-06-28 21:56:15
+17	128	1	1	2026-06-28 18:55:18	2026-06-28 21:56:16	2026-06-28 21:56:16
+28	128	1	6	2026-06-28 18:56:59	2026-06-28 21:57:59	2026-06-28 21:57:59
+27	128	1	5	2026-06-28 18:56:53	2026-06-28 21:58:00	2026-06-28 21:58:00
+25	128	1	3	2026-06-28 18:56:50	2026-06-28 21:58:01	2026-06-28 21:58:01
+24	128	1	2	2026-06-28 18:56:48	2026-06-28 21:58:01	2026-06-28 21:58:01
+23	128	1	1	2026-06-28 18:56:44	2026-06-28 21:58:03	2026-06-28 21:58:03
+26	128	1	4	2026-06-28 18:56:51	2026-06-28 21:58:03	2026-06-28 21:58:03
+29	128	1	1	2026-06-28 18:58:11	2026-06-28 18:58:11	\N
+30	128	1	2	2026-06-28 18:58:13	2026-06-28 18:58:13	\N
+31	128	1	3	2026-06-28 18:58:14	2026-06-28 18:58:14	\N
+32	128	1	4	2026-06-28 18:58:19	2026-06-28 18:58:19	\N
+33	128	1	5	2026-06-28 18:58:21	2026-06-28 18:58:21	\N
+34	128	1	6	2026-06-28 18:58:24	2026-06-28 18:58:24	\N
+35	12	1	teste	2026-06-28 19:35:54	2026-06-28 22:35:56	2026-06-28 22:35:56
+36	111	1	Demais!	2026-06-29 11:33:55	2026-06-29 11:33:55	\N
+37	135	1	Amei!	2026-06-29 11:34:41	2026-06-29 11:34:41	\N
+38	143	1	teste	2026-07-10 20:21:09	2026-07-10 23:21:10	2026-07-10 23:21:10
+39	153	3	Demais!	2026-07-30 23:54:10	2026-07-30 23:54:10	\N
+40	151	3	Lindo!	2026-07-30 23:54:49	2026-07-30 23:54:49	\N
+41	153	2	Top!	2026-07-31 00:23:20	2026-07-31 00:23:20	\N
+42	159	1	Demais 💚	2026-08-09 00:39:59	2026-08-09 00:39:59	\N
+43	12	1	Olá!	2026-08-09 00:53:55	2026-08-09 00:53:55	\N
+44	185	1	Opa!	2026-08-09 01:25:33	2026-08-09 01:25:33	\N
 \.
 
 
@@ -360,7 +396,13 @@ COPY public.followers (id, user_id, follower_id, created_at, updated_at, deleted
 16	2	1	2026-06-05 15:49:13	2026-06-05 15:49:35	2026-06-05 15:49:35
 17	2	1	2026-06-05 15:49:52	2026-06-05 15:49:52	\N
 6	4	1	2026-03-10 19:50:24	2026-06-10 22:15:05	2026-06-10 22:15:05
-18	4	1	2026-06-10 22:15:16	2026-06-10 22:15:16	\N
+18	4	1	2026-06-10 22:15:16	2026-06-10 22:22:18	2026-06-10 22:22:18
+19	4	1	2026-06-10 22:22:24	2026-06-10 22:28:02	2026-06-10 22:28:02
+20	4	1	2026-06-10 22:28:12	2026-06-10 22:38:17	2026-06-10 22:38:17
+21	4	1	2026-06-10 22:38:24	2026-06-10 22:41:24	2026-06-10 22:41:24
+22	4	1	2026-06-10 22:41:31	2026-06-10 22:45:12	2026-06-10 22:45:12
+23	4	1	2026-06-10 22:45:20	2026-06-10 22:45:20	\N
+24	1	4	2026-06-11 09:10:15	2026-06-11 09:10:15	\N
 \.
 
 
@@ -376,7 +418,6 @@ COPY public.likes (id, post_id, user_id, created_at, updated_at, deleted_at) FRO
 5	1	3	2026-03-02 23:49:29	2026-03-02 23:49:29	\N
 6	3	1	2026-03-02 23:50:27	2026-03-02 23:50:27	\N
 7	4	1	2026-03-02 23:50:32	2026-03-02 23:50:32	\N
-8	7	1	2026-03-22 21:43:20	2026-03-22 21:43:20	\N
 9	6	1	2026-03-22 21:51:54	2026-03-22 21:51:54	\N
 10	57	1	2026-05-11 03:36:10	2026-05-11 03:36:11	2026-05-11 03:36:11
 11	62	1	2026-05-11 03:39:58	2026-05-11 03:39:58	2026-05-11 03:39:58
@@ -384,6 +425,49 @@ COPY public.likes (id, post_id, user_id, created_at, updated_at, deleted_at) FRO
 13	72	1	2026-06-05 15:19:36	2026-06-05 15:19:37	2026-06-05 15:19:37
 14	72	1	2026-06-05 15:22:11	2026-06-05 15:25:34	2026-06-05 15:25:34
 15	72	1	2026-06-05 15:25:36	2026-06-05 15:25:36	\N
+16	90	1	2026-06-10 22:21:27	2026-06-10 22:27:34	2026-06-10 22:27:34
+17	90	1	2026-06-10 22:27:35	2026-06-10 22:36:25	2026-06-10 22:36:25
+18	90	1	2026-06-10 22:36:26	2026-06-10 22:40:07	2026-06-10 22:40:07
+19	90	1	2026-06-10 22:42:17	2026-06-10 22:44:19	2026-06-10 22:44:19
+20	90	1	2026-06-10 22:46:45	2026-06-10 22:46:45	\N
+21	110	3	2026-06-15 22:56:15	2026-06-15 22:56:15	\N
+23	112	1	2026-06-28 13:23:00	2026-06-28 13:23:13	2026-06-28 13:23:13
+24	112	1	2026-06-28 21:54:16	2026-06-28 21:54:16	\N
+25	110	1	2026-06-28 22:08:21	2026-06-28 22:08:57	2026-06-28 22:08:57
+26	110	1	2026-06-28 22:09:02	2026-06-28 22:09:03	2026-06-28 22:09:03
+27	110	1	2026-06-28 22:09:12	2026-06-28 22:09:16	2026-06-28 22:09:16
+28	130	1	2026-06-28 22:09:31	2026-06-28 22:09:34	2026-06-28 22:09:34
+29	130	1	2026-06-28 22:09:35	2026-06-28 22:09:39	2026-06-28 22:09:39
+30	130	1	2026-06-28 22:10:23	2026-06-28 22:10:24	2026-06-28 22:10:24
+31	135	5	2026-06-28 22:20:01	2026-06-28 22:20:02	2026-06-28 22:20:02
+32	135	1	2026-06-28 22:20:29	2026-06-28 22:20:36	2026-06-28 22:20:36
+33	12	1	2026-06-28 22:35:47	2026-06-28 22:35:48	2026-06-28 22:35:48
+34	109	1	2026-06-29 14:34:03	2026-06-29 14:34:03	\N
+35	135	1	2026-06-29 14:34:33	2026-06-29 14:34:33	\N
+22	111	1	2026-06-15 22:57:46	2026-06-29 14:39:04	2026-06-29 14:39:04
+36	111	1	2026-06-29 14:39:05	2026-06-29 14:39:05	\N
+8	7	1	2026-03-22 21:43:20	2026-06-29 16:13:40	2026-06-29 16:13:40
+37	7	1	2026-06-29 16:13:41	2026-06-29 16:13:41	\N
+38	142	1	2026-07-02 22:32:32	2026-07-02 22:32:34	2026-07-02 22:32:34
+39	142	1	2026-07-02 22:32:36	2026-07-02 22:32:37	2026-07-02 22:32:37
+40	143	1	2026-07-10 23:21:05	2026-07-10 23:21:06	2026-07-10 23:21:06
+41	153	3	2026-07-31 02:53:58	2026-07-31 02:53:58	\N
+42	152	3	2026-07-31 02:54:41	2026-07-31 02:54:41	\N
+43	151	3	2026-07-31 02:54:43	2026-07-31 02:54:43	\N
+44	138	3	2026-07-31 02:54:51	2026-07-31 02:54:51	\N
+45	133	3	2026-07-31 02:54:52	2026-07-31 02:54:52	\N
+46	156	2	2026-07-31 03:23:09	2026-07-31 03:23:09	\N
+47	153	2	2026-07-31 03:23:11	2026-07-31 03:23:11	\N
+48	152	2	2026-07-31 03:23:23	2026-07-31 03:23:23	\N
+49	151	2	2026-07-31 03:23:24	2026-07-31 03:23:24	\N
+50	138	2	2026-07-31 03:23:25	2026-07-31 03:23:25	\N
+51	159	3	2026-07-31 03:28:26	2026-07-31 03:28:26	\N
+52	159	1	2026-08-09 03:39:48	2026-08-09 03:39:48	\N
+53	151	1	2026-08-09 03:40:08	2026-08-09 03:40:08	\N
+54	12	1	2026-08-09 03:53:51	2026-08-09 03:53:51	\N
+55	185	1	2026-08-09 04:25:27	2026-08-09 04:25:27	\N
+56	160	1	2026-08-09 04:25:39	2026-08-09 04:25:39	\N
+57	187	1	2026-08-10 21:10:56	2026-08-10 21:10:56	\N
 \.
 
 
@@ -392,13 +476,14 @@ COPY public.likes (id, post_id, user_id, created_at, updated_at, deleted_at) FRO
 --
 
 COPY public.posts (id, description, media_link, created_at, updated_at, deleted_at, is_repost, original_post_id, original_user_id, music_link) FROM stdin;
-2	MVP da H Media 💙	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_69a620913354d6.86533246.mp4	2026-03-02 20:43:45	2026-03-02 20:43:45	\N	f	\N	\N	\N
+142	teste		2026-07-02 19:32:27	2026-07-02 19:32:27	\N	f	\N	\N	\N
+144	tes		2026-07-10 20:20:06	2026-07-10 23:20:08	2026-07-10 23:20:08	f	\N	\N	\N
 4	Bom dia pessoal! 💜		2026-03-02 20:49:12	2026-03-02 23:51:35	2026-03-02 23:51:35	f	\N	\N	\N
 6	Bom dia Pessoal		2026-03-02 20:51:40	2026-03-02 20:51:40	\N	f	\N	\N	\N
 7	Vamos pescar hj 💦 ?		2026-03-02 20:51:54	2026-03-02 20:51:54	\N	f	\N	\N	\N
+146	teste		2026-07-10 21:07:38	2026-07-11 00:07:43	2026-07-11 00:07:43	t	142	1	\N
 8	teste		2026-03-10 16:51:27	2026-03-10 19:51:31	2026-03-10 19:51:31	f	\N	\N	\N
 9	Esse é o meu portfolio 🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_69a61f391fd426.45868746.mp4	2026-03-22 18:43:35	2026-03-22 21:43:46	2026-03-22 21:43:46	t	1	1	\N
-10	MVP da H Media 💙	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_69a620913354d6.86533246.mp4	2026-03-22 18:43:50	2026-03-22 18:43:50	\N	t	2	1	\N
 11	teste		2026-03-22 18:44:26	2026-03-22 21:44:40	2026-03-22 21:44:40	f	\N	\N	\N
 1	Esse é o meu portfolio 🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_69a61f391fd426.45868746.mp4	2026-03-02 20:42:26	2026-03-22 21:48:25	2026-03-22 21:48:25	f	\N	\N	\N
 3	Esse é o meu portfolio 🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_69a61f391fd426.45868746.mp4	2026-03-02 20:46:13	2026-03-22 21:50:13	2026-03-22 21:50:13	t	1	1	\N
@@ -411,8 +496,6 @@ COPY public.posts (id, description, media_link, created_at, updated_at, deleted_
 17	teste		2026-04-11 19:13:16	2026-04-11 22:13:22	2026-04-11 22:13:22	f	\N	\N	\N
 18	🎵 High on Mel - Astrix		2026-04-11 21:56:31	2026-04-12 00:56:44	2026-04-12 00:56:44	f	\N	\N	\N
 19	Teste\r\n\r\n🎵 Clouds - Star Project		2026-04-11 21:57:32	2026-04-12 00:57:39	2026-04-12 00:57:39	f	\N	\N	\N
-20	Lindo design	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_69fe1edbc85695.55532545.jpg	2026-05-08 14:35:25	2026-05-08 14:35:25	\N	f	\N	\N	\N
-21	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_69fe1f0474bd56.57218318.mp4	2026-05-08 14:36:16	2026-05-08 14:36:16	\N	f	\N	\N	\N
 22	teste		2026-05-08 20:14:21	2026-05-08 23:14:32	2026-05-08 23:14:32	f	\N	\N	\N
 23	teste2		2026-05-08 20:14:39	2026-05-08 23:14:41	2026-05-08 23:14:41	f	\N	\N	\N
 24	teste 2		2026-05-08 20:14:48	2026-05-08 23:14:51	2026-05-08 23:14:51	f	\N	\N	\N
@@ -457,9 +540,14 @@ COPY public.posts (id, description, media_link, created_at, updated_at, deleted_
 63	hjjj		2026-05-11 02:51:16	2026-05-11 05:51:17	2026-05-11 05:51:17	f	\N	\N	\N
 64	teste	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a0689263470a2.90138169.jpg	2026-05-14 23:47:09	2026-05-15 02:47:18	2026-05-15 02:47:18	f	\N	\N	\N
 65	teste	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a068983c6ccf8.61078770.jpg	2026-05-14 23:48:38	2026-05-15 02:48:42	2026-05-15 02:48:42	f	\N	\N	\N
+20	Lindo design	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_69fe1edbc85695.55532545.jpg	2026-05-08 14:35:25	2026-06-10 22:29:34	2026-06-10 22:29:34	f	\N	\N	\N
+21	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_69fe1f0474bd56.57218318.mp4	2026-05-08 14:36:16	2026-06-10 22:29:38	2026-06-10 22:29:38	f	\N	\N	\N
+2	MVP da H Media 💙	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_69a620913354d6.86533246.mp4	2026-03-02 20:43:45	2026-06-28 22:15:51	2026-06-28 22:15:51	f	\N	\N	\N
+10	MVP da H Media 💙	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_69a620913354d6.86533246.mp4	2026-03-22 18:43:50	2026-06-28 22:15:53	2026-06-28 22:15:53	t	2	1	\N
 66	teste	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a22d96b7932a7.71930435.mp4	2026-06-05 11:13:04	2026-06-05 14:13:12	2026-06-05 14:13:12	f	\N	\N	\N
 67	teste	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a22d989cccf53.02668244.jpg	2026-06-05 11:13:32	2026-06-05 14:13:36	2026-06-05 14:13:36	f	\N	\N	\N
 68	teste		2026-06-05 11:13:40	2026-06-05 14:13:41	2026-06-05 14:13:41	f	\N	\N	\N
+165	k		2026-08-09 00:04:32	2026-08-09 03:04:35	2026-08-09 03:04:35	f	\N	\N	\N
 69	teste	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a22da17586735.07248073.jpg	2026-06-05 11:15:53	2026-06-05 14:15:59	2026-06-05 14:15:59	f	\N	\N	\N
 70	teste	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a22da2da5fbf1.69151386.mp4	2026-06-05 11:16:21	2026-06-05 14:16:27	2026-06-05 14:16:27	f	\N	\N	\N
 71	teste		2026-06-05 11:16:36	2026-06-05 14:16:38	2026-06-05 14:16:38	f	\N	\N	\N
@@ -481,9 +569,100 @@ COPY public.posts (id, description, media_link, created_at, updated_at, deleted_
 88	teste	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a22e8f95415b6.39663727.jpg	2026-06-05 12:19:26	2026-06-05 15:19:31	2026-06-05 15:19:31	f	\N	\N	\N
 89	Video massa 🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_maradias/media_6a22dbbe6c2ce9.81762900.mp4	2026-06-05 12:26:11	2026-06-05 15:26:15	2026-06-05 15:26:15	t	72	4	\N
 72	Video massa 🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_maradias/media_6a22dbbe6c2ce9.81762900.mp4	2026-06-05 11:22:59	2026-06-05 15:41:03	2026-06-05 15:41:03	f	\N	\N	\N
-90	Video massa 🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_maradias/media_6a22ee2b966cf7.94433712.mp4	2026-06-05 12:41:41	2026-06-05 12:41:41	\N	f	\N	\N	\N
 91	teste		2026-06-10 19:12:01	2026-06-10 22:12:03	2026-06-10 22:12:03	f	\N	\N	\N
 92	teste	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a29e141d07700.35664476.jpg	2026-06-10 19:12:21	2026-06-10 22:12:27	2026-06-10 22:12:27	f	\N	\N	\N
+95	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_69fe1f0474bd56.57218318.mp4	2026-06-10 19:24:55	2026-06-10 22:25:03	2026-06-10 22:25:03	t	93	1	\N
+94	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a29e3b49880f6.57555689.jpg	2026-06-10 19:22:46	2026-06-10 22:25:07	2026-06-10 22:25:07	f	\N	\N	\N
+98	Video massa 🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_maradias/media_6a22ee2b966cf7.94433712.mp4	2026-06-10 19:25:24	2026-06-10 22:25:27	2026-06-10 22:25:27	t	97	4	\N
+97	Video massa 🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_maradias/media_6a22ee2b966cf7.94433712.mp4	2026-06-10 19:25:20	2026-06-10 22:25:29	2026-06-10 22:25:29	t	96	4	\N
+96	Video massa 🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_maradias/media_6a22ee2b966cf7.94433712.mp4	2026-06-10 19:25:17	2026-06-10 22:25:30	2026-06-10 22:25:30	t	90	4	\N
+99	Lindo design	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_69fe1edbc85695.55532545.jpg	2026-06-10 19:27:22	2026-06-10 22:27:32	2026-06-10 22:27:32	t	20	1	\N
+93	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_69fe1f0474bd56.57218318.mp4	2026-06-10 19:21:40	2026-06-10 22:29:20	2026-06-10 22:29:20	t	21	1	\N
+100	dz\\d	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a29e6a0650130.67617474.mp4	2026-06-10 19:35:14	2026-06-10 22:35:22	2026-06-10 22:35:22	f	\N	\N	\N
+101	Vamos pescar hj 💦 ?		2026-06-10 19:36:37	2026-06-10 22:37:23	2026-06-10 22:37:23	t	7	3	\N
+102	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a29e7880e6820.39966388.mp4	2026-06-10 19:39:40	2026-06-10 22:39:58	2026-06-10 22:39:58	f	\N	\N	\N
+105	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a29e82d504e45.34685684.mp4	2026-06-10 19:42:01	2026-06-10 22:42:15	2026-06-10 22:42:15	f	\N	\N	\N
+104	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a29e5862d5f17.37167275.mp4	2026-06-10 19:41:42	2026-06-10 22:43:36	2026-06-10 22:43:36	f	\N	\N	\N
+103	Vamos pescar hj 💦 ?		2026-06-10 19:40:44	2026-06-10 22:43:37	2026-06-10 22:43:37	t	7	3	\N
+90	Video massa 🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_maradias/media_6a22ee2b966cf7.94433712.mp4	2026-06-05 12:41:41	2026-06-11 09:09:38	2026-06-11 09:09:38	f	\N	\N	\N
+106	tteste	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a29e8ab719700.68058209.mp4	2026-06-10 19:44:02	2026-06-10 22:44:12	2026-06-10 22:44:12	f	\N	\N	\N
+111	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a308334204ea4.65970375.mp4	2026-06-15 19:56:55	2026-07-02 22:34:49	2026-07-02 22:34:49	f	\N	\N	\N
+107	💙	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a29e91110f159.37505758.mp4	2026-06-10 19:46:17	2026-06-10 22:46:30	2026-06-10 22:46:30	f	\N	\N	\N
+109	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_maradias/media_6a2a7b631c1723.72180230.mp4	2026-06-11 06:09:58	2026-07-02 22:35:06	2026-07-02 22:35:06	f	\N	\N	\N
+108	Vamos pescar hj 💦 ?		2026-06-10 19:46:34	2026-06-10 22:47:43	2026-06-10 22:47:43	t	7	3	\N
+145	💛	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a46f83dd56511.67969580.jpg	2026-07-10 20:21:11	2026-07-10 23:21:18	2026-07-10 23:21:18	t	143	3	\N
+147	Trabalhando na rede social 🤍	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_jo%C3%A3obatista/media_6a419df34f28f3.20121899.jpg	2026-07-10 21:07:44	2026-07-11 00:07:54	2026-07-11 00:07:54	t	138	5	\N
+114	aaaa		2026-06-23 20:39:23	2026-06-24 00:04:07	2026-06-24 00:04:07	f	\N	\N	\N
+113	teste		2026-06-23 20:39:03	2026-06-24 00:04:08	2026-06-24 00:04:08	f	\N	\N	\N
+148	teste www.hedreiandrade.com.br		2026-07-10 21:20:21	2026-07-11 00:20:24	2026-07-11 00:20:24	f	\N	\N	\N
+115	teste		2026-06-28 10:23:43	2026-06-28 13:24:18	2026-06-28 13:24:18	t	112	5	\N
+116	teste		2026-06-28 10:24:26	2026-06-28 13:24:30	2026-06-28 13:24:30	t	112	5	\N
+149	ggit.com		2026-07-10 21:20:36	2026-07-11 00:20:40	2026-07-11 00:20:40	f	\N	\N	\N
+117	teste		2026-06-28 10:24:37	2026-06-28 13:25:01	2026-06-28 13:25:01	t	112	5	\N
+150	soundcloud.com		2026-07-10 21:20:52	2026-07-11 00:21:06	2026-07-11 00:21:06	f	\N	\N	\N
+119	teste		2026-06-28 10:25:13	2026-06-28 13:25:16	2026-06-28 13:25:16	t	118	5	\N
+118	teste		2026-06-28 10:25:11	2026-06-28 13:25:17	2026-06-28 13:25:17	t	112	5	\N
+143	💛	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a46f83dd56511.67969580.jpg	2026-07-02 20:46:12	2026-07-31 01:04:37	2026-07-31 01:04:37	f	\N	\N	\N
+120	teste		2026-06-28 10:26:14	2026-06-28 13:26:33	2026-06-28 13:26:33	t	112	5	\N
+151	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a6bf4dcc4cb02.47940315.jpeg	2026-07-30 22:05:34	2026-07-30 22:05:34	\N	f	\N	\N	\N
+121	teste		2026-06-28 10:26:43	2026-06-28 13:27:09	2026-06-28 13:27:09	t	112	5	\N
+152	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a6c0c515f3005.94560582.mp4	2026-07-30 23:45:41	2026-07-30 23:45:41	\N	f	\N	\N	\N
+122	teste		2026-06-28 10:27:33	2026-06-28 13:27:50	2026-06-28 13:27:50	t	112	5	\N
+153	❤💓	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a6c0e2a63ad86.95155625.mp4	2026-07-30 23:53:33	2026-07-30 23:53:33	\N	f	\N	\N	\N
+124	teste		2026-06-28 18:52:57	2026-06-28 21:52:59	2026-06-28 21:52:59	t	123	5	\N
+123	teste		2026-06-28 18:52:49	2026-06-28 21:52:59	2026-06-28 21:52:59	t	112	5	\N
+154	teste		2026-07-31 00:05:32	2026-07-31 03:07:00	2026-07-31 03:07:00	f	\N	\N	\N
+125	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a308334204ea4.65970375.mp4	2026-06-28 18:53:06	2026-06-28 21:53:33	2026-06-28 21:53:33	t	111	3	\N
+126	teste		2026-06-28 18:53:41	2026-06-28 21:53:57	2026-06-28 21:53:57	t	112	5	\N
+155	teste		2026-07-31 00:07:08	2026-07-31 03:07:14	2026-07-31 03:07:14	f	\N	\N	\N
+127	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a308334204ea4.65970375.mp4	2026-06-28 18:54:00	2026-06-28 21:54:13	2026-06-28 21:54:13	t	111	3	\N
+156		https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a6c12fe84da02.90567172.mp4	2026-07-31 00:14:19	2026-07-31 00:14:19	\N	f	\N	\N	\N
+128	teste		2026-06-28 18:55:13	2026-06-28 21:58:45	2026-06-28 21:58:45	t	112	5	\N
+129	haha	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a30601c863e72.26472188.mp4	2026-06-28 19:07:47	2026-06-28 22:07:55	2026-06-28 22:07:55	t	110	1	\N
+157	teste		2026-07-31 00:24:48	2026-07-31 03:24:49	2026-07-31 03:24:49	f	\N	\N	\N
+130	haha	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a30601c863e72.26472188.mp4	2026-06-28 19:09:27	2026-06-28 22:11:10	2026-06-28 22:11:10	t	110	1	\N
+110	haha	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a30601c863e72.26472188.mp4	2026-06-15 17:28:09	2026-06-28 22:11:13	2026-06-28 22:11:13	f	\N	\N	\N
+131	MVP da H Media 💙	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_69a620913354d6.86533246.mp4	2026-06-28 19:11:20	2026-06-28 22:12:21	2026-06-28 22:12:21	t	2	1	\N
+161	teste		2026-08-08 23:42:41	2026-08-09 02:50:47	2026-08-09 02:50:47	f	\N	\N	\N
+132	teste		2026-06-28 19:12:24	2026-06-28 22:12:35	2026-06-28 22:12:35	t	112	5	\N
+133	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a419d4e721c53.71307569.mp4	2026-06-28 19:16:54	2026-06-28 19:16:54	\N	f	\N	\N	\N
+112	teste		2026-06-22 22:58:41	2026-06-28 22:18:35	2026-06-28 22:18:35	f	\N	\N	\N
+135	Trabalhando na rede social 🤍	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_jo%C3%A3obatista/media_6a419df34f28f3.20121899.jpg	2026-06-28 19:19:32	2026-06-28 19:19:32	\N	f	\N	\N	\N
+136	Legal 	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a419d970e3b45.60192054.mp4	2026-06-28 19:41:00	2026-06-28 22:41:07	2026-06-28 22:41:07	t	134	1	\N
+134	Legal 	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a419d970e3b45.60192054.mp4	2026-06-28 19:18:01	2026-06-28 22:44:13	2026-06-28 22:44:13	f	\N	\N	\N
+137	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_maradias/media_6a2a7b631c1723.72180230.mp4	2026-06-29 11:34:07	2026-06-29 14:34:24	2026-06-29 14:34:24	t	109	4	\N
+139	teste		2026-06-29 11:35:21	2026-06-29 14:35:25	2026-06-29 14:35:25	f	\N	\N	\N
+140	teste		2026-06-29 11:38:52	2026-06-29 14:38:54	2026-06-29 14:38:54	f	\N	\N	\N
+141	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a308334204ea4.65970375.mp4	2026-06-29 11:39:09	2026-06-29 14:39:14	2026-06-29 14:39:14	t	111	3	\N
+158	teste	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_calebeandrade/media_6a6c158bce6fd3.18283327.jpg	2026-07-31 00:25:01	2026-07-31 03:25:06	2026-07-31 03:25:06	f	\N	\N	\N
+160	Studio time !	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a6c16526ebd44.97891671.mp4	2026-07-31 00:28:23	2026-07-31 00:28:23	\N	f	\N	\N	\N
+159	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_calebeandrade/media_6a6c15af9bdc47.01220479.mp4	2026-07-31 00:25:37	2026-08-09 04:19:25	2026-08-09 04:19:25	f	\N	\N	\N
+162	teste		2026-08-08 23:51:06	2026-08-09 03:02:47	2026-08-09 03:02:47	f	\N	\N	\N
+163	teste		2026-08-09 00:02:56	2026-08-09 03:03:00	2026-08-09 03:03:00	f	\N	\N	\N
+164	teste		2026-08-09 00:03:09	2026-08-09 03:03:19	2026-08-09 03:03:19	f	\N	\N	\N
+166		https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a77ee63436bd1.89886746.png	2026-08-09 00:05:14	2026-08-09 03:05:22	2026-08-09 03:05:22	f	\N	\N	\N
+167	teste		2026-08-09 00:12:58	2026-08-09 03:13:01	2026-08-09 03:13:01	f	\N	\N	\N
+168	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a6bf4dcc4cb02.47940315.jpeg	2026-08-09 00:40:10	2026-08-09 03:40:45	2026-08-09 03:40:45	t	151	3	\N
+169	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a6bf4dcc4cb02.47940315.jpeg	2026-08-09 00:41:10	2026-08-09 03:42:35	2026-08-09 03:42:35	t	151	3	\N
+170	Vamos pescar hj 💦 ?		2026-08-09 00:43:00	2026-08-09 03:43:07	2026-08-09 03:43:07	t	7	3	\N
+171	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_calebeandrade/media_6a6c15af9bdc47.01220479.mp4	2026-08-09 00:43:15	2026-08-09 03:43:25	2026-08-09 03:43:25	t	159	2	\N
+172	Trabalhando na rede social 🤍	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_jo%C3%A3obatista/media_6a419df34f28f3.20121899.jpg	2026-08-09 00:44:06	2026-08-09 03:44:21	2026-08-09 03:44:21	t	138	5	\N
+173	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a6bf4dcc4cb02.47940315.jpeg	2026-08-09 00:48:28	2026-08-09 03:48:44	2026-08-09 03:48:44	t	151	3	\N
+174	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a6bf4dcc4cb02.47940315.jpeg	2026-08-09 00:48:50	2026-08-09 03:48:55	2026-08-09 03:48:55	t	151	3	\N
+175	Trabalhando na rede social 🤍	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_jo%C3%A3obatista/media_6a419df34f28f3.20121899.jpg	2026-08-09 00:49:23	2026-08-09 03:49:31	2026-08-09 03:49:31	t	135	5	\N
+176	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a6bf4dcc4cb02.47940315.jpeg	2026-08-09 00:50:12	2026-08-09 03:50:20	2026-08-09 03:50:20	t	151	3	\N
+177	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a6bf4dcc4cb02.47940315.jpeg	2026-08-09 00:50:36	2026-08-09 03:50:42	2026-08-09 03:50:42	t	151	3	\N
+178	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a6bf4dcc4cb02.47940315.jpeg	2026-08-09 00:51:28	2026-08-09 03:51:32	2026-08-09 03:51:32	t	151	3	\N
+179	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a6bf4dcc4cb02.47940315.jpeg	2026-08-09 00:51:42	2026-08-09 03:51:49	2026-08-09 03:51:49	t	151	3	\N
+180	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a6bf4dcc4cb02.47940315.jpeg	2026-08-09 00:52:01	2026-08-09 03:52:05	2026-08-09 03:52:05	t	151	3	\N
+181	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a6bf4dcc4cb02.47940315.jpeg	2026-08-09 00:52:13	2026-08-09 03:52:22	2026-08-09 03:52:22	t	151	3	\N
+182	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a6bf4dcc4cb02.47940315.jpeg	2026-08-09 00:52:33	2026-08-09 03:52:44	2026-08-09 03:52:44	t	151	3	\N
+184	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a77fa406a7098.85134109.jpg	2026-08-09 00:55:48	2026-08-09 04:17:38	2026-08-09 04:17:38	f	\N	\N	\N
+183	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_calebeandrade/media_6a6c15af9bdc47.01220479.mp4	2026-08-09 00:54:13	2026-08-09 04:17:42	2026-08-09 04:17:42	t	159	2	\N
+185	Boa madrugada amigos !!! 🖤		2026-08-09 01:19:59	2026-08-09 01:19:59	\N	f	\N	\N	\N
+138	Trabalhando na rede social 🤍	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_jo%C3%A3obatista/media_6a419df34f28f3.20121899.jpg	2026-06-29 11:34:44	2026-08-09 04:20:29	2026-08-09 04:20:29	t	135	5	\N
+186	Studio time !	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_thortron/media_6a6c16526ebd44.97891671.mp4	2026-08-09 01:25:48	2026-08-09 01:25:48	\N	t	160	3	\N
+187	🖤	https://hmediaha.s3.us-west-2.amazonaws.com/imagesVideos/posts/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/media_6a7801b3ef1c65.55553091.jpg	2026-08-09 01:27:40	2026-08-09 01:27:40	\N	f	\N	\N	\N
 \.
 
 
@@ -584,6 +763,101 @@ COPY public.posts_users (id, user_id, post_id, created_at, updated_at, deleted_a
 90	4	90	2026-06-05 12:41:41	2026-06-05 12:41:41	\N
 91	1	91	2026-06-10 19:12:01	2026-06-10 19:12:01	\N
 92	1	92	2026-06-10 19:12:21	2026-06-10 19:12:21	\N
+93	1	93	2026-06-10 19:21:40	2026-06-10 19:21:40	\N
+94	1	94	2026-06-10 19:22:46	2026-06-10 19:22:46	\N
+95	1	95	2026-06-10 19:24:55	2026-06-10 19:24:55	\N
+96	1	96	2026-06-10 19:25:17	2026-06-10 19:25:17	\N
+97	1	97	2026-06-10 19:25:20	2026-06-10 19:25:20	\N
+98	1	98	2026-06-10 19:25:24	2026-06-10 19:25:24	\N
+99	1	99	2026-06-10 19:27:22	2026-06-10 19:27:22	\N
+100	1	100	2026-06-10 19:35:14	2026-06-10 19:35:14	\N
+101	1	101	2026-06-10 19:36:37	2026-06-10 19:36:37	\N
+102	1	102	2026-06-10 19:39:40	2026-06-10 19:39:40	\N
+103	1	103	2026-06-10 19:40:45	2026-06-10 19:40:45	\N
+104	1	104	2026-06-10 19:41:42	2026-06-10 19:41:42	\N
+105	1	105	2026-06-10 19:42:01	2026-06-10 19:42:01	\N
+106	1	106	2026-06-10 19:44:02	2026-06-10 19:44:02	\N
+107	1	107	2026-06-10 19:46:17	2026-06-10 19:46:17	\N
+108	1	108	2026-06-10 19:46:34	2026-06-10 19:46:34	\N
+109	4	109	2026-06-11 06:09:58	2026-06-11 06:09:58	\N
+110	1	110	2026-06-15 17:28:10	2026-06-15 17:28:10	\N
+111	3	111	2026-06-15 19:56:55	2026-06-15 19:56:55	\N
+112	5	112	2026-06-22 22:58:41	2026-06-22 22:58:41	\N
+113	1	113	2026-06-23 20:39:03	2026-06-23 20:39:03	\N
+114	1	114	2026-06-23 20:39:23	2026-06-23 20:39:23	\N
+115	1	115	2026-06-28 10:23:43	2026-06-28 10:23:43	\N
+116	1	116	2026-06-28 10:24:26	2026-06-28 10:24:26	\N
+117	1	117	2026-06-28 10:24:37	2026-06-28 10:24:37	\N
+118	1	118	2026-06-28 10:25:11	2026-06-28 10:25:11	\N
+119	1	119	2026-06-28 10:25:13	2026-06-28 10:25:13	\N
+120	1	120	2026-06-28 10:26:14	2026-06-28 10:26:14	\N
+121	1	121	2026-06-28 10:26:43	2026-06-28 10:26:43	\N
+122	1	122	2026-06-28 10:27:33	2026-06-28 10:27:33	\N
+123	1	123	2026-06-28 18:52:49	2026-06-28 18:52:49	\N
+124	1	124	2026-06-28 18:52:57	2026-06-28 18:52:57	\N
+125	1	125	2026-06-28 18:53:06	2026-06-28 18:53:06	\N
+126	1	126	2026-06-28 18:53:42	2026-06-28 18:53:42	\N
+127	1	127	2026-06-28 18:54:00	2026-06-28 18:54:00	\N
+128	1	128	2026-06-28 18:55:13	2026-06-28 18:55:13	\N
+129	1	129	2026-06-28 19:07:48	2026-06-28 19:07:48	\N
+130	1	130	2026-06-28 19:09:27	2026-06-28 19:09:27	\N
+131	1	131	2026-06-28 19:11:20	2026-06-28 19:11:20	\N
+132	1	132	2026-06-28 19:12:24	2026-06-28 19:12:24	\N
+133	1	133	2026-06-28 19:16:54	2026-06-28 19:16:54	\N
+134	1	134	2026-06-28 19:18:02	2026-06-28 19:18:02	\N
+135	5	135	2026-06-28 19:19:32	2026-06-28 19:19:32	\N
+136	1	136	2026-06-28 19:41:00	2026-06-28 19:41:00	\N
+137	1	137	2026-06-29 11:34:08	2026-06-29 11:34:08	\N
+138	1	138	2026-06-29 11:34:45	2026-06-29 11:34:45	\N
+139	1	139	2026-06-29 11:35:22	2026-06-29 11:35:22	\N
+140	1	140	2026-06-29 11:38:52	2026-06-29 11:38:52	\N
+141	1	141	2026-06-29 11:39:09	2026-06-29 11:39:09	\N
+142	1	142	2026-07-02 19:32:28	2026-07-02 19:32:28	\N
+143	3	143	2026-07-02 20:46:12	2026-07-02 20:46:12	\N
+144	1	144	2026-07-10 20:20:07	2026-07-10 20:20:07	\N
+145	1	145	2026-07-10 20:21:11	2026-07-10 20:21:11	\N
+146	1	146	2026-07-10 21:07:39	2026-07-10 21:07:39	\N
+147	1	147	2026-07-10 21:07:45	2026-07-10 21:07:45	\N
+148	1	148	2026-07-10 21:20:22	2026-07-10 21:20:22	\N
+149	1	149	2026-07-10 21:20:36	2026-07-10 21:20:36	\N
+150	1	150	2026-07-10 21:20:52	2026-07-10 21:20:52	\N
+151	3	151	2026-07-30 22:05:34	2026-07-30 22:05:34	\N
+152	1	152	2026-07-30 23:45:41	2026-07-30 23:45:41	\N
+153	1	153	2026-07-30 23:53:33	2026-07-30 23:53:33	\N
+154	1	154	2026-07-31 00:05:33	2026-07-31 00:05:33	\N
+155	1	155	2026-07-31 00:07:08	2026-07-31 00:07:08	\N
+156	1	156	2026-07-31 00:14:19	2026-07-31 00:14:19	\N
+157	2	157	2026-07-31 00:24:48	2026-07-31 00:24:48	\N
+158	2	158	2026-07-31 00:25:01	2026-07-31 00:25:01	\N
+159	2	159	2026-07-31 00:25:37	2026-07-31 00:25:37	\N
+160	3	160	2026-07-31 00:28:23	2026-07-31 00:28:23	\N
+161	1	161	2026-08-08 23:42:44	2026-08-08 23:42:44	\N
+162	1	162	2026-08-08 23:51:07	2026-08-08 23:51:07	\N
+163	1	163	2026-08-09 00:02:56	2026-08-09 00:02:56	\N
+164	1	164	2026-08-09 00:03:10	2026-08-09 00:03:10	\N
+165	1	165	2026-08-09 00:04:32	2026-08-09 00:04:32	\N
+166	1	166	2026-08-09 00:05:14	2026-08-09 00:05:14	\N
+167	1	167	2026-08-09 00:12:59	2026-08-09 00:12:59	\N
+168	1	168	2026-08-09 00:40:10	2026-08-09 00:40:10	\N
+169	1	169	2026-08-09 00:41:10	2026-08-09 00:41:10	\N
+170	1	170	2026-08-09 00:43:00	2026-08-09 00:43:00	\N
+171	1	171	2026-08-09 00:43:15	2026-08-09 00:43:15	\N
+172	1	172	2026-08-09 00:44:06	2026-08-09 00:44:06	\N
+173	1	173	2026-08-09 00:48:28	2026-08-09 00:48:28	\N
+174	1	174	2026-08-09 00:48:50	2026-08-09 00:48:50	\N
+175	1	175	2026-08-09 00:49:23	2026-08-09 00:49:23	\N
+176	1	176	2026-08-09 00:50:12	2026-08-09 00:50:12	\N
+177	1	177	2026-08-09 00:50:36	2026-08-09 00:50:36	\N
+178	1	178	2026-08-09 00:51:28	2026-08-09 00:51:28	\N
+179	1	179	2026-08-09 00:51:42	2026-08-09 00:51:42	\N
+180	1	180	2026-08-09 00:52:01	2026-08-09 00:52:01	\N
+181	1	181	2026-08-09 00:52:14	2026-08-09 00:52:14	\N
+182	1	182	2026-08-09 00:52:34	2026-08-09 00:52:34	\N
+183	1	183	2026-08-09 00:54:13	2026-08-09 00:54:13	\N
+184	1	184	2026-08-09 00:55:48	2026-08-09 00:55:48	\N
+185	2	185	2026-08-09 01:19:59	2026-08-09 01:19:59	\N
+186	1	186	2026-08-09 01:25:48	2026-08-09 01:25:48	\N
+187	1	187	2026-08-09 01:27:40	2026-08-09 01:27:40	\N
 \.
 
 
@@ -592,9 +866,10 @@ COPY public.posts_users (id, user_id, post_id, created_at, updated_at, deleted_a
 --
 
 COPY public.users (id, name, nickname, phone1, has_whatsapp, phone2, email, password, postal_code, address, number, complement, neighborhood, city, state, country, country_code, state_code, recovery_key, first_access, last_access, bio, website, access_count, receive_newsletter, active, created_at, updated_at, deleted_at, birth_date, userscol, photo, cover_photo, google_id, facebook_id, auth_provider, email_verified, verified_profile) FROM stdin;
+5	João Batista	\N	\N	f	\N	joaobatista@gmail.com	$2y$10$hAYqKqf6Kn98R.fbT6th6OvqJy7AkNg5wbI5NgA1k9KIzsn3BFQcO	13051257	Rua Walmir Jose	232	\N	\N		São Paulo	Brazil	BR	SP	\N	2026-06-23 01:57:01	\N	\N	\N	\N	f	t	2026-06-23 01:57:01	2026-06-23 01:57:18	\N	1981-11-13 00:00:00	\N	https://hmediaha.s3.us-west-2.amazonaws.com/images/profile/45ffe4526a174467d18531ced45e90df_jo%C3%A3obatista/2091435885sol.jpeg	\N	\N	\N	local	t	f
 2	Calebe Andrade	\N	\N	f	\N	calebe@gmail.com	$2y$10$7SBLIUvkpDdC5km.ATdt/.Xw/szkq2IAQ8btjhgTtVsku4t.tPRUq	13392-350	teste	5656	\N	\N	Campinas	São Paulo	Brazil	BR	SP	\N	2026-03-02 23:45:12	\N	Meu site www.calebe.com.br	\N	\N	f	t	2026-03-02 23:45:12	2026-03-02 23:55:28	\N	2026-03-02 00:00:00	\N	https://hmediaha.s3.us-west-2.amazonaws.com/images/profile/45ffe4526a174467d18531ced45e90df_calebeandrade/1650059618eu3.jpg	https://hmediaha.s3.us-west-2.amazonaws.com/images/cover/d41d8cd98f00b204e9800998ecf8427e_calebeandrade/684454171capasound.jpg	\N	\N	local	t	f
 3	Thor Tron	\N	\N	f	\N	thor@gmail.com	$2y$10$7SBLIUvkpDdC5km.ATdt/.Xw/szkq2IAQ8btjhgTtVsku4t.tPRUq	13392-350	teste	265	\N	\N	Campinas	São Paulo	Brazil	BR	SP	\N	2026-03-02 23:48:07	\N	www.thor.com.br	www.mixcloud.com/starprojectt	\N	f	t	2026-03-02 23:48:07	2026-03-02 23:48:14	\N	2026-03-02 00:00:00	\N	https://hmediaha.s3.us-west-2.amazonaws.com/images/profile/45ffe4526a174467d18531ced45e90df_thortron/1578230748euuu.jpg	\N	\N	\N	local	t	f
-1	Hedrei Andrade	\N	\N	f	\N	hedreiandrade@gmail.com	$2y$10$7SBLIUvkpDdC5km.ATdt/.Xw/szkq2IAQ8btjhgTtVsku4t.tPRUq	13051251	teste	989	\N	\N	Campinas	São Paulo	Brazil	BR	SP	\N	2026-02-28 01:13:41	2026-06-05 15:24:48	www.youtube.com/@starprojectt	www.github.com/hedreiandrade	4	f	t	2026-02-28 01:13:41	2026-06-05 15:25:26	\N	1988-05-07 00:00:00	\N	https://hmediaha.s3.us-west-2.amazonaws.com/images/profile/45ffe4526a174467d18531ced45e90df_hedreiandrade/35275069ha.jpg	https://hmediaha.s3.us-west-2.amazonaws.com/images/cover/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/1488094812capayoutube.jpg	\N	\N	local	t	t
+1	Hedrei Andrade	\N	\N	f	\N	hedreiandrade@gmail.com	$2y$10$7SBLIUvkpDdC5km.ATdt/.Xw/szkq2IAQ8btjhgTtVsku4t.tPRUq	13051251	teste	989	\N	\N	Campinas	São Paulo	Brazil	BR	SP	\N	2026-02-28 01:13:41	2026-06-05 15:24:48	www.youtube.com/@starprojectt	www.github.com/hedreiandrade	4	f	t	2026-02-28 01:13:41	2026-07-11 00:06:08	\N	1988-05-07 00:00:00	\N	https://hmediaha.s3.us-west-2.amazonaws.com/images/profile/45ffe4526a174467d18531ced45e90df_hedreiandrade/35275069ha.jpg	https://hmediaha.s3.us-west-2.amazonaws.com/images/cover/d41d8cd98f00b204e9800998ecf8427e_hedreiandrade/506200019capayoutube.jpg	\N	\N	local	t	t
 4	Mara Dias	\N	\N	f	\N	maradias@gmail.com	$2y$10$7SBLIUvkpDdC5km.ATdt/.Xw/szkq2IAQ8btjhgTtVsku4t.tPRUq	11851252	Rua Walmir Jose Peres	5454	\N	\N	Assunção do Piauí	Piauí	Brazil	BR	PI	\N	2026-03-10 19:48:26	\N	Jupiter ⚫	www.maradias.com.br	\N	f	t	2026-03-10 19:48:27	2026-06-03 23:00:14	\N	2026-03-04 00:00:00	\N	https://hmediaha.s3.us-west-2.amazonaws.com/images/profile/58b126c625581c7d0ea3f8472de5303e_maradias/1394953472mandalaart.jpg	\N	\N	\N	local	t	f
 \.
 
@@ -603,42 +878,42 @@ COPY public.users (id, name, nickname, phone1, has_whatsapp, phone2, email, pass
 -- Name: comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.comments_id_seq', 8, true);
+SELECT pg_catalog.setval('public.comments_id_seq', 44, true);
 
 
 --
 -- Name: followers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.followers_id_seq', 18, true);
+SELECT pg_catalog.setval('public.followers_id_seq', 24, true);
 
 
 --
 -- Name: likes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.likes_id_seq', 15, true);
+SELECT pg_catalog.setval('public.likes_id_seq', 57, true);
 
 
 --
 -- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.posts_id_seq', 92, true);
+SELECT pg_catalog.setval('public.posts_id_seq', 187, true);
 
 
 --
 -- Name: posts_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.posts_users_id_seq', 92, true);
+SELECT pg_catalog.setval('public.posts_users_id_seq', 187, true);
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 4, true);
+SELECT pg_catalog.setval('public.users_id_seq', 5, true);
 
 
 --
@@ -922,5 +1197,5 @@ ALTER TABLE ONLY public.posts_users
 -- PostgreSQL database dump complete
 --
 
-\unrestrict xWYkfjAD5bwaeMEwuUYc6ofXn7QM8ApafuuevVsdceoRuRLxTyhIzrFEd12wG0v
+\unrestrict 111K1dNZ6M48NFMKWCrBVk9qv5vSzP7gs6cU061xWb5dVcu47mfR1Oh2YIJUV1a
 
