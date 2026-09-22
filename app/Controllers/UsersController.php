@@ -251,8 +251,6 @@ class UsersController extends BaseController
         $this->respond($return);
     }
 
-    //teste
-
     /**
      * Logout
      *
