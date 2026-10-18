@@ -46,7 +46,8 @@ class Users extends Model
         'cover_photo',
         'google_id',
         'auth_provider',
-        'email_verified'
+        'email_verified',
+        'verified_profile'
     ];
     protected $dates = [
         'created_at',
